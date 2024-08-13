@@ -1,7 +1,9 @@
+import 'dart:io';
+import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
+import 'package:image_picker/image_picker.dart';
 import '../../../../common_widgets/auth_button.dart';
 import '../../../../common_widgets/custom_text_feild.dart';
 import '../../../../common_widgets/or_divider.dart';
@@ -24,9 +26,16 @@ class _SignUpScreenState extends State<SignUpScreen> {
   final _fullNameController = TextEditingController();
   final _emailController = TextEditingController();
   final _passController = TextEditingController();
+  final ValueNotifier<XFile?> _imageFileNotifier = ValueNotifier<XFile?>(null);
   bool _pass = false;
   bool _confPass = false;
   bool _isCheck = false;
+
+  @override
+  void dispose() {
+    _imageFileNotifier.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -53,14 +62,45 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 style: TextFontStyle.headline16w400C848484StyleInter,
               ),
               UIHelper.verticalSpace(23.h),
-              Container(
-                width: 112.w,
-                height: 112.w,
-                decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    border: Border.all(
-                        color: AppColors.allPrimaryColor, width: 2.w)),
+              DottedBorder(
+                color: AppColors.c3B5998,
+                borderType: BorderType.Circle,
+                dashPattern: const [2, 0, 4],
+                child: CircleAvatar(
+                  radius: 50.r,
+                  backgroundColor: AppColors.cF4F5F7,
+                  child: ValueListenableBuilder<XFile?>(
+                    valueListenable: _imageFileNotifier,
+                    builder: (context, imageFile, child) {
+                      if (imageFile != null) {
+                        return ClipOval(
+                          child: Image.file(
+                            File(imageFile.path),
+                            fit: BoxFit.cover,
+                            height: 100.h,
+                          ),
+                        );
+                      } else {
+                        return Padding(
+                          padding: EdgeInsets.all(26.sp),
+                          child: Image.asset(
+                            Assets.icons.cameraIcon.path,
+                            width: 40.w,
+                          ),
+                        );
+                      }
+                    },
+                  ),
+                ),
               ),
+              // Container(
+              //   width: 112.w,
+              //   height: 112.w,
+              //   decoration: BoxDecoration(
+              //       shape: BoxShape.circle,
+              //       border: Border.all(
+              //           color: AppColors.allPrimaryColor, width: 2.w)),
+              // ),
               UIHelper.verticalSpace(20.h),
               CustomTextFormField(
                 controller: _fullNameController,

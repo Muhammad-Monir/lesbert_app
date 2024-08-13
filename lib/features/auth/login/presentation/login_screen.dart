@@ -79,7 +79,9 @@ class _LoginScreenState extends State<LoginScreen> {
                 children: [
                   const Spacer(),
                   GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+                      NavigationService.navigateTo(Routes.forgotPass);
+                    },
                     child: const Text(
                       'Forgot password?',
                       style: TextStyle(

@@ -30,5 +30,7 @@ class TextFontStyle {
       GoogleFonts.inter(color: AppColors.c848484, fontSize: 18.sp, fontWeight: FontWeight.w500);
       static final headline14w400C848484StyleInter =
       GoogleFonts.inter(color: AppColors.c3B5998, fontSize: 14.sp, fontWeight: FontWeight.w400);
+      static final headline18w700C22252DStyleInter =
+      GoogleFonts.inter(color: AppColors.c22252D, fontSize: 18.sp, fontWeight: FontWeight.w700);
 
 }
