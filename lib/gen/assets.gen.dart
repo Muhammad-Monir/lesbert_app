@@ -12,6 +12,10 @@ import 'package:flutter/widgets.dart';
 class $AssetsIconsGen {
   const $AssetsIconsGen();
 
+  /// File path: assets/icons/boost_icon.png
+  AssetGenImage get boostIcon =>
+      const AssetGenImage('assets/icons/boost_icon.png');
+
   /// File path: assets/icons/dashboard_icon.png
   AssetGenImage get dashboardIcon =>
       const AssetGenImage('assets/icons/dashboard_icon.png');
@@ -35,14 +39,12 @@ class $AssetsIconsGen {
   AssetGenImage get messageIcon =>
       const AssetGenImage('assets/icons/message_icon.png');
 
-
-
+  /// File path: assets/icons/notofocation.svg
   String get notofocation => 'assets/icons/notofocation.svg';
 
   /// File path: assets/icons/person_icon.png
   AssetGenImage get personIcon =>
       const AssetGenImage('assets/icons/person_icon.png');
-
 
   /// File path: assets/icons/profile_icon.png
   AssetGenImage get profileIcon =>
@@ -52,31 +54,29 @@ class $AssetsIconsGen {
   AssetGenImage get subscriptionIcon =>
       const AssetGenImage('assets/icons/subscription_icon.png');
 
+  /// File path: assets/icons/tick_circle.png
+  AssetGenImage get tickCircle =>
+      const AssetGenImage('assets/icons/tick_circle.png');
+
   /// File path: assets/icons/totalConnect.png
   AssetGenImage get totalConnect =>
       const AssetGenImage('assets/icons/totalConnect.png');
 
-
+  /// List of all assets
   List<dynamic> get values => [
-        dashboardIcon,
-        logo,
-        messageIcon,
-        notofocation,
-        profileIcon,
-        subscriptionIcon,
-        totalConnect
-
-  List<AssetGenImage> get values => [
+        boostIcon,
         dashboardIcon,
         emailIcon,
         googleIcon,
         lockIcon,
         logo,
         messageIcon,
+        notofocation,
         personIcon,
         profileIcon,
-        subscriptionIcon
-
+        subscriptionIcon,
+        tickCircle,
+        totalConnect
       ];
 }
 
