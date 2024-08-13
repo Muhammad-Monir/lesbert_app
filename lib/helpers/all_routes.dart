@@ -1,6 +1,10 @@
 import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
+import 'package:lsebert/features/auth/forgot_password/presentation/forgot_pass_screen.dart';
+import 'package:lsebert/features/auth/forgot_password/presentation/otp_success_screen.dart';
+import 'package:lsebert/features/auth/forgot_password/presentation/otp_verify_screen.dart';
+import 'package:lsebert/features/auth/forgot_password/presentation/reset_pass_screen.dart';
 import 'package:lsebert/features/auth/login/presentation/login_screen.dart';
 import 'package:lsebert/features/auth/signup/presentation/sign_up_screen.dart';
 import 'package:lsebert/features/dashboard/presentation/dashboard_screen.dart';
@@ -25,6 +29,10 @@ final class Routes {
   static const String role = '/role';
   static const String login = '/login';
   static const String signup = '/signup';
+  static const String forgotPass = '/forgotPass';
+  static const String otpVerify = '/otpVerify';
+  static const String resetPass = '/resetPass';
+  static const String otpSuccess = '/otpSuccess';
 }
 
 final class RouteGenerator {
@@ -90,6 +98,31 @@ final class RouteGenerator {
                 widget: const ScreenTitle(widget: SignUpScreen()),
                 settings: settings)
             : CupertinoPageRoute(builder: (context) => const SignUpScreen());
+      case Routes.forgotPass:
+        return Platform.isAndroid
+            ? _FadedTransitionRoute(
+                widget: const ScreenTitle(widget: ForgotPassScreen()),
+                settings: settings)
+            : CupertinoPageRoute(
+                builder: (context) => const ForgotPassScreen());
+      case Routes.otpVerify:
+        return Platform.isAndroid
+            ? _FadedTransitionRoute(
+                widget: const ScreenTitle(widget: OtpVerifyScreen()),
+                settings: settings)
+            : CupertinoPageRoute(builder: (context) => const OtpVerifyScreen());
+      case Routes.resetPass:
+        return Platform.isAndroid
+            ? _FadedTransitionRoute(
+                widget: const ScreenTitle(widget: ResetPassScreen()),
+                settings: settings)
+            : CupertinoPageRoute(builder: (context) => const ResetPassScreen());
+            case Routes.otpSuccess:
+        return Platform.isAndroid
+            ? _FadedTransitionRoute(
+                widget: const ScreenTitle(widget: OtpSuccessScreen()),
+                settings: settings)
+            : CupertinoPageRoute(builder: (context) => const OtpSuccessScreen());
 
       // case Routes.sliderWebViewPage:
       //   final args = settings.arguments as Map;
