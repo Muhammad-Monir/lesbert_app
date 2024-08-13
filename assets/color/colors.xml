@@ -4,6 +4,16 @@
   <color name="scaffoldColor">#FFFFFFFF</color>
   <color name="c000000">#FF000000</color>
   <color name="cffffff">#FFFFFFFF</color>
+  <color name="c073D71">#FF073D71</color>
   <color name="c9E9E9E">#FF9E9E9E</color>
+  <color name="c848484">#FF848484</color>
+  <color name="cF4F5F7">#FFF4F5F7</color>
+  <color name="cB3BAC5">#FFB3BAC5</color>
+  <color name="c3B5998">#FF3B5998</color>
+  <color name="cA5ADBA">#FFA5ADBA</color>
+  <color name="cDEE4F2">#FFDEE4F2</color>
+  <color name="c5A5C5F">#FF5A5C5F</color>
+
+
 
 </colors>

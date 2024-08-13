@@ -39,10 +39,10 @@ final class UIHelper {
 
   static double safePadding() => MediaQuery.of(NavigationService.context).padding.top;
 
-  static Widget customDivider() => Container(
-        height: .6.h,
-        color: AppColors.c000000.withOpacity(.3),
-        width: double.infinity,
+   static Widget customDivider({double width = double.infinity}) => Container(
+        height: .8.h,
+        color: AppColors.cA5ADBA,
+        width: width,
       );
   static double kDefaulutPadding() => 20.sp;
 }

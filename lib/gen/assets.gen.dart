@@ -16,12 +16,28 @@ class $AssetsIconsGen {
   AssetGenImage get dashboardIcon =>
       const AssetGenImage('assets/icons/dashboard_icon.png');
 
+  /// File path: assets/icons/email_icon.png
+  AssetGenImage get emailIcon =>
+      const AssetGenImage('assets/icons/email_icon.png');
+
+  /// File path: assets/icons/google_icon.png
+  AssetGenImage get googleIcon =>
+      const AssetGenImage('assets/icons/google_icon.png');
+
+  /// File path: assets/icons/lock_icon.png
+  AssetGenImage get lockIcon =>
+      const AssetGenImage('assets/icons/lock_icon.png');
+
   /// File path: assets/icons/logo.png
   AssetGenImage get logo => const AssetGenImage('assets/icons/logo.png');
 
   /// File path: assets/icons/message_icon.png
   AssetGenImage get messageIcon =>
       const AssetGenImage('assets/icons/message_icon.png');
+
+  /// File path: assets/icons/person_icon.png
+  AssetGenImage get personIcon =>
+      const AssetGenImage('assets/icons/person_icon.png');
 
   /// File path: assets/icons/profile_icon.png
   AssetGenImage get profileIcon =>
@@ -32,8 +48,17 @@ class $AssetsIconsGen {
       const AssetGenImage('assets/icons/subscription_icon.png');
 
   /// List of all assets
-  List<AssetGenImage> get values =>
-      [dashboardIcon, logo, messageIcon, profileIcon, subscriptionIcon];
+  List<AssetGenImage> get values => [
+        dashboardIcon,
+        emailIcon,
+        googleIcon,
+        lockIcon,
+        logo,
+        messageIcon,
+        personIcon,
+        profileIcon,
+        subscriptionIcon
+      ];
 }
 
 class $AssetsImagesGen {
@@ -43,8 +68,21 @@ class $AssetsImagesGen {
   AssetGenImage get onboardImage1 =>
       const AssetGenImage('assets/images/onboard_image1.png');
 
+  /// File path: assets/images/onboarding_image2.png
+  AssetGenImage get onboardingImage2 =>
+      const AssetGenImage('assets/images/onboarding_image2.png');
+
+  /// File path: assets/images/onboarding_image3.png
+  AssetGenImage get onboardingImage3 =>
+      const AssetGenImage('assets/images/onboarding_image3.png');
+
+  /// File path: assets/images/onboarding_image4.png
+  AssetGenImage get onboardingImage4 =>
+      const AssetGenImage('assets/images/onboarding_image4.png');
+
   /// List of all assets
-  List<AssetGenImage> get values => [onboardImage1];
+  List<AssetGenImage> get values =>
+      [onboardImage1, onboardingImage2, onboardingImage3, onboardingImage4];
 }
 
 class Assets {
