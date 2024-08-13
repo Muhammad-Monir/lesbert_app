@@ -12,6 +12,7 @@ import 'helpers/helper_methods.dart';
 import 'helpers/navigation_service.dart';
 import 'helpers/register_provider.dart';
 import 'loading_screen.dart';
+import 'navigation_screen.dart';
 
 Future<void> backgroundHandler(RemoteMessage message) async {}
 void main() async {
@@ -82,7 +83,7 @@ class UtillScreenMobile extends StatelessWidget {
             },
             navigatorKey: NavigationService.navigatorKey,
             onGenerateRoute: RouteGenerator.generateRoute,
-            home: const Loading(),
+            home: const NavigationScreen(),
           ),
         );
       },
