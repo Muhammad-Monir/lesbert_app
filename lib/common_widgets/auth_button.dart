@@ -19,7 +19,7 @@ Widget AuthCustomeButton({
       borderRadius: BorderRadius.circular(borderRadius),
     ),
     color: color,
-    splashColor: Colors.white.withOpacity(0.4),
+    // splashColor: Colors.white.withOpacity(0.4),
     child: Text(
       name,
       style: textStyle,

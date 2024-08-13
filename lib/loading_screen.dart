@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:lsebert/navigation_screen.dart';
+import 'package:lsebert/features/intro/splash_screen.dart';
 import 'helpers/app_version_updater.dart';
 import 'helpers/helper_methods.dart';
 import 'welcome_screen.dart';
@@ -46,7 +46,7 @@ class _LoadingState extends State<Loading> {
     if (_isLoading) {
       return const WelcomeScreen();
     } else {
-      return const NavigationScreen();
+      return const SplashScreen();
       // return appData.read(kKeyIsLoggedIn) || appData.read(kKeyIsExploring) ? const NavigationScreen() : LogeinScreen();
     }
   }

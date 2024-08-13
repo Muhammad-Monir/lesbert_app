@@ -1,7 +1,12 @@
 import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
+import 'package:lsebert/features/auth/login/presentation/login_screen.dart';
+import 'package:lsebert/features/auth/signup/presentation/sign_up_screen.dart';
 import 'package:lsebert/features/dashboard/presentation/dashboard_screen.dart';
+import 'package:lsebert/features/intro/onboarding_screen.dart';
+import 'package:lsebert/features/intro/role_screen.dart';
+import 'package:lsebert/features/intro/splash_screen.dart';
 import 'package:lsebert/features/message/presentation/message_screen.dart';
 import 'package:lsebert/features/profile/presentation/profile_screen.dart';
 import 'package:lsebert/features/subscription/presentation/subscription_screen.dart';
@@ -15,6 +20,11 @@ final class Routes {
   static const String subscription = '/subscription';
   static const String message = '/message';
   static const String profile = '/profile';
+  static const String splash = '/splash';
+  static const String onboarding = '/onboarding';
+  static const String role = '/role';
+  static const String login = '/login';
+  static const String signup = '/signup';
 }
 
 final class RouteGenerator {
@@ -49,6 +59,37 @@ final class RouteGenerator {
                 widget: const ScreenTitle(widget: ProfileScreen()),
                 settings: settings)
             : CupertinoPageRoute(builder: (context) => const ProfileScreen());
+      case Routes.splash:
+        return Platform.isAndroid
+            ? _FadedTransitionRoute(
+                widget: const ScreenTitle(widget: SplashScreen()),
+                settings: settings)
+            : CupertinoPageRoute(builder: (context) => const SplashScreen());
+      case Routes.onboarding:
+        return Platform.isAndroid
+            ? _FadedTransitionRoute(
+                widget: const ScreenTitle(widget: OnboardingScreen()),
+                settings: settings)
+            : CupertinoPageRoute(
+                builder: (context) => const OnboardingScreen());
+      case Routes.role:
+        return Platform.isAndroid
+            ? _FadedTransitionRoute(
+                widget: const ScreenTitle(widget: RoleScreen()),
+                settings: settings)
+            : CupertinoPageRoute(builder: (context) => const RoleScreen());
+      case Routes.login:
+        return Platform.isAndroid
+            ? _FadedTransitionRoute(
+                widget: const ScreenTitle(widget: LoginScreen()),
+                settings: settings)
+            : CupertinoPageRoute(builder: (context) => const LoginScreen());
+      case Routes.signup:
+        return Platform.isAndroid
+            ? _FadedTransitionRoute(
+                widget: const ScreenTitle(widget: SignUpScreen()),
+                settings: settings)
+            : CupertinoPageRoute(builder: (context) => const SignUpScreen());
 
       // case Routes.sliderWebViewPage:
       //   final args = settings.arguments as Map;
