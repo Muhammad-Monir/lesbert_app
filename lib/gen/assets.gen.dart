@@ -23,6 +23,9 @@ class $AssetsIconsGen {
   AssetGenImage get messageIcon =>
       const AssetGenImage('assets/icons/message_icon.png');
 
+  /// File path: assets/icons/notofocation.svg
+  String get notofocation => 'assets/icons/notofocation.svg';
+
   /// File path: assets/icons/profile_icon.png
   AssetGenImage get profileIcon =>
       const AssetGenImage('assets/icons/profile_icon.png');
@@ -31,9 +34,20 @@ class $AssetsIconsGen {
   AssetGenImage get subscriptionIcon =>
       const AssetGenImage('assets/icons/subscription_icon.png');
 
+  /// File path: assets/icons/totalConnect.png
+  AssetGenImage get totalConnect =>
+      const AssetGenImage('assets/icons/totalConnect.png');
+
   /// List of all assets
-  List<AssetGenImage> get values =>
-      [dashboardIcon, logo, messageIcon, profileIcon, subscriptionIcon];
+  List<dynamic> get values => [
+        dashboardIcon,
+        logo,
+        messageIcon,
+        notofocation,
+        profileIcon,
+        subscriptionIcon,
+        totalConnect
+      ];
 }
 
 class $AssetsImagesGen {
