@@ -1,0 +1,28 @@
+//  if (snapshot.hasData) {
+//                     Map data = snapshot.data["data"];
+//                     if (data.isNotEmpty) {
+//                       // ignore: unused_local_variable
+//                       List list = data["foods"];
+//                       if (list.isNotEmpty) {
+//                         return null
+//                       } else {
+//                         return const SizedBox.shrink();
+//                       }
+//                     } else {
+//                       return const SizedBox.shrink();
+//                     }
+//                   } else if (snapshot.hasError) {
+//                     return const SizedBox.shrink();
+//                   }
+//                   return SizedBox(
+//                     height: MediaQuery.of(context).size.height - 100,
+//                     width: MediaQuery.of(context).size.width,
+//                     child: Center(
+//                       child: loadingIndicatorCircle(context: context),
+//                     ),
+//                   );
+
+
+// WidgetsBinding.instance?.addPostFrameCallback((_){
+//     connectivity(context);
+//   });
