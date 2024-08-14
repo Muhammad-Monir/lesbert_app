@@ -54,6 +54,18 @@ class _DashboardScreenState extends State<DashboardScreen> {
               imagepath: Assets.icons.totalConnect.path,
               isThirdOption: false,
             ),
+            UIHelper.verticalSpaceMedium,
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Padding(
+                padding: const EdgeInsets.only(left: 12.0),
+                child: Text(
+                  "Your Photo",
+                  style: TextFontStyle.headline24w700C000000StyleInter,
+                ),
+              ),
+            ),
+            //  UIHelper.verticalSpaceSmall,
             Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -108,15 +120,100 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     color: AppColors.cffffff,
                   ),
                   child: Padding(
-                    padding: const EdgeInsets.all(8),
+                    padding: const EdgeInsets.all(24),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         UIHelper.verticalSpaceMedium,
-                        Text("About Me"),
+                        Text(
+                          "About Me",
+                          style: TextFontStyle.headline24w700C000000StyleInter,
+                        ),
                         UIHelper.verticalSpaceMedium,
                         Text(
-                            "Hello! My name is Andrew Hussy, and I am a dedicated and passionate PHP programmer with 5 years of experience in developing dynamic and robust web applications. My journey in the world of programming began with an innate curiosity about how the web works, which led me to specialize in PHP due to its versatility and widespread use.I have extensive experience in building and maintaining websites using PHP, HTML, CSS, and JavaScript. I am adept at creating responsive and user-friendly interfaces that enhance user experience. I am proficient in using popular PHP frameworks like Laravel, Symfony, and CodeIgniter, which help streamline the development process and ensure code quality and maintainability. I have a strong understanding of database management and have worked extensively with MySQL and PostgreSQL. I am skilled in designing efficient database schemas and writing complex queries.  I have experience in integrating third-party APIs as well as developing custom APIs to enhance the functionality of web applications.")
+                          "Hello! My name is Andrew Hussy, and I am a dedicated and passionate PHP programmer with 5 years of experience in developing dynamic and robust web applications. My journey in the world of programming began with an innate curiosity about how the web works, which led me to specialize in PHP due to its versatility and widespread use.I have extensive experience in building and maintaining websites using PHP, HTML, CSS, and JavaScript. I am adept at creating responsive and user-friendly interfaces that enhance user experience. I am proficient in using popular PHP frameworks like Laravel, Symfony, and CodeIgniter, which help streamline the development process and ensure code quality and maintainability. I have a strong understanding of database management and have worked extensively with MySQL and PostgreSQL. I am skilled in designing efficient database schemas and writing complex queries.  I have experience in integrating third-party APIs as well as developing custom APIs to enhance the functionality of web applications.",
+                          textAlign: TextAlign.justify,
+                          style: TextFontStyle.headline14w400C848484StyleInter
+                              .copyWith(color: AppColors.c5A5C5F),
+                        ),
+                        UIHelper.horizontalSpaceSmall,
+                      ],
+                    ),
+                  ),
+                ),
+                UIHelper.verticalSpaceMedium,
+                Container(
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(15.r),
+                    color: AppColors.cffffff,
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(24),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        UIHelper.verticalSpaceMedium,
+                        Text(
+                          "Experience",
+                          style: TextFontStyle.headline24w700C000000StyleInter,
+                        ),
+                        UIHelper.verticalSpaceMedium,
+                        Container(
+                          height: 80,
+                          width: double.infinity,
+                          //color: AppColors.allPrimaryColor,
+                          child: Stack(
+                            children: [
+                              Image.asset(
+                                Assets.icons.experience.path,
+                                height: 24,
+                                width: 24,
+                              ),
+                              Positioned(
+                                left: 40,
+                                child: Text("Abcd Pvt Ltd",
+                                    style: TextFontStyle
+                                        .headline16w600C00000StyleInter),
+                              ),
+                              Positioned(
+                                  top: 35,
+                                  left: 40,
+                                  child: Text(
+                                    "PHP Programmer",
+                                    style: TextFontStyle
+                                        .headline14w400C000000StyleInter,
+                                  )),
+                            ],
+                          ),
+                        ),
+                        Row(
+                          children: [
+                            Image.asset(
+                              Assets.icons.location.path,
+                              height: 24,
+                              width: 24,
+                            ),
+                            UIHelper.horizontalSpaceSmall,
+                            Text("USA"),
+                            UIHelper.horizontalSpaceMedium,
+                            Image.asset(
+                              Assets.icons.duration.path,
+                              height: 24,
+                              width: 24,
+                            ),
+                            UIHelper.horizontalSpaceSmall,
+                            Text("April 2023 - April 2024"),
+                          ],
+                        ),
+                        UIHelper.verticalSpaceMedium,
+                        Text(
+                          "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor.",
+                          textAlign: TextAlign.justify,
+                          style: TextFontStyle.headline14w400C848484StyleInter
+                              .copyWith(color: AppColors.c5A5C5F),
+                        ),
+                        UIHelper.horizontalSpaceSmall,
                       ],
                     ),
                   ),

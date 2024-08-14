@@ -24,13 +24,25 @@ class $AssetsIconsGen {
   AssetGenImage get dashboardIcon =>
       const AssetGenImage('assets/icons/dashboard_icon.png');
 
+  /// File path: assets/icons/duration.png
+  AssetGenImage get duration =>
+      const AssetGenImage('assets/icons/duration.png');
+
   /// File path: assets/icons/email_icon.png
   AssetGenImage get emailIcon =>
       const AssetGenImage('assets/icons/email_icon.png');
 
+  /// File path: assets/icons/experience.png
+  AssetGenImage get experience =>
+      const AssetGenImage('assets/icons/experience.png');
+
   /// File path: assets/icons/google_icon.png
   AssetGenImage get googleIcon =>
       const AssetGenImage('assets/icons/google_icon.png');
+
+  /// File path: assets/icons/location.png
+  AssetGenImage get location =>
+      const AssetGenImage('assets/icons/location.png');
 
   /// File path: assets/icons/lock_icon.png
   AssetGenImage get lockIcon =>
@@ -71,8 +83,11 @@ class $AssetsIconsGen {
         boostIcon,
         cameraIcon,
         dashboardIcon,
+        duration,
         emailIcon,
+        experience,
         googleIcon,
+        location,
         lockIcon,
         logo,
         messageIcon,
