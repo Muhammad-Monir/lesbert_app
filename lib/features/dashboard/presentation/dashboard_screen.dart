@@ -159,7 +159,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                           style: TextFontStyle.headline24w700C000000StyleInter,
                         ),
                         UIHelper.verticalSpaceMedium,
-                        Container(
+                        SizedBox(
                           height: 80,
                           width: double.infinity,
                           //color: AppColors.allPrimaryColor,
