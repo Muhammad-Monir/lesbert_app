@@ -16,6 +16,10 @@ class $AssetsIconsGen {
   AssetGenImage get boostIcon =>
       const AssetGenImage('assets/icons/boost_icon.png');
 
+  /// File path: assets/icons/camera_icon.png
+  AssetGenImage get cameraIcon =>
+      const AssetGenImage('assets/icons/camera_icon.png');
+
   /// File path: assets/icons/dashboard_icon.png
   AssetGenImage get dashboardIcon =>
       const AssetGenImage('assets/icons/dashboard_icon.png');
@@ -77,6 +81,7 @@ class $AssetsIconsGen {
   /// List of all assets
   List<dynamic> get values => [
         boostIcon,
+        cameraIcon,
         dashboardIcon,
         duration,
         emailIcon,
@@ -114,9 +119,18 @@ class $AssetsImagesGen {
   AssetGenImage get onboardingImage4 =>
       const AssetGenImage('assets/images/onboarding_image4.png');
 
+  /// File path: assets/images/otp_success_flower.png
+  AssetGenImage get otpSuccessFlower =>
+      const AssetGenImage('assets/images/otp_success_flower.png');
+
   /// List of all assets
-  List<AssetGenImage> get values =>
-      [onboardImage1, onboardingImage2, onboardingImage3, onboardingImage4];
+  List<AssetGenImage> get values => [
+        onboardImage1,
+        onboardingImage2,
+        onboardingImage3,
+        onboardingImage4,
+        otpSuccessFlower
+      ];
 }
 
 class Assets {
