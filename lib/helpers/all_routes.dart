@@ -13,6 +13,7 @@ import 'package:lsebert/features/intro/role_screen.dart';
 import 'package:lsebert/features/intro/splash_screen.dart';
 import 'package:lsebert/features/message/presentation/message_screen.dart';
 import 'package:lsebert/features/profile/presentation/profile_screen.dart';
+import 'package:lsebert/features/question/presentation/question_screen.dart';
 import 'package:lsebert/features/subscription/presentation/subscription_screen.dart';
 
 final class Routes {
@@ -33,6 +34,7 @@ final class Routes {
   static const String otpVerify = '/otpVerify';
   static const String resetPass = '/resetPass';
   static const String otpSuccess = '/otpSuccess';
+  static const String question = '/questionScreen';
 }
 
 final class RouteGenerator {
@@ -117,12 +119,19 @@ final class RouteGenerator {
                 widget: const ScreenTitle(widget: ResetPassScreen()),
                 settings: settings)
             : CupertinoPageRoute(builder: (context) => const ResetPassScreen());
-            case Routes.otpSuccess:
+      case Routes.otpSuccess:
         return Platform.isAndroid
             ? _FadedTransitionRoute(
                 widget: const ScreenTitle(widget: OtpSuccessScreen()),
                 settings: settings)
-            : CupertinoPageRoute(builder: (context) => const OtpSuccessScreen());
+            : CupertinoPageRoute(
+                builder: (context) => const OtpSuccessScreen());
+      case Routes.question:
+        return Platform.isAndroid
+            ? _FadedTransitionRoute(
+                widget: const ScreenTitle(widget: QuestionScreen()),
+                settings: settings)
+            : CupertinoPageRoute(builder: (context) => const QuestionScreen());
 
       // case Routes.sliderWebViewPage:
       //   final args = settings.arguments as Map;
