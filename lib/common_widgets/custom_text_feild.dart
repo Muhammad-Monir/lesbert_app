@@ -1,102 +1,5 @@
-// import 'package:flutter/material.dart';
-// import 'package:flutter_screenutil/flutter_screenutil.dart';
-// import '../constants/text_font_style.dart';
-// import '../gen/colors.gen.dart';
-
-// class CustomTextFormField extends StatelessWidget {
-//   final String? labelText;
-//   final String? hintText;
-//   final Widget? prefixIcon;
-//   final IconData? suffixIcon;
-//   final bool obscureText;
-//   final TextEditingController? controller;
-//   final TextInputType keyboardType;
-//   final Function(String)? onChanged;
-//   final String? Function(String?)? validator;
-//   final bool isPrefixIcon;
-//   final double borderRadius;
-//   final VoidCallback? onSuffixIconTap;
-//   final String? iconpath;
-
-//   const CustomTextFormField({
-//     super.key,
-//     this.labelText,
-//     this.hintText,
-//     this.prefixIcon,
-//     this.suffixIcon,
-//     this.obscureText = false,
-//     this.controller,
-//     this.keyboardType = TextInputType.text,
-//     this.onChanged,
-//     this.validator,
-//     this.borderRadius = 15.0,
-//     required this.isPrefixIcon,
-//     this.iconpath,
-//     this.onSuffixIconTap,
-//   });
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Container(
-//       decoration: BoxDecoration(
-//         color: AppColors.allPrimaryColor,
-//         borderRadius: BorderRadius.circular(borderRadius),
-//       ),
-//       child: TextFormField(
-//         controller: controller,
-//         keyboardType: keyboardType,
-//         obscureText: obscureText,
-//         onChanged: onChanged,
-//         validator: validator,
-//         decoration: InputDecoration(
-
 // ignore_for_file: library_private_types_in_public_api
 
-//           filled: true,
-//           fillColor: AppColors.cF4F5F7,
-//           labelText: labelText,
-//           hintText: hintText,
-//           hintStyle: TextFontStyle.headline16w400C848484StyleInter,
-//           prefixIcon: isPrefixIcon && iconpath != null
-//               ? Padding(
-//                   padding: EdgeInsets.only(left: 5.w, right: 11.w),
-//                   child: Container(
-//                     width: 51.w,
-//                     height: 46.h,
-//                     padding:
-//                         EdgeInsets.symmetric(vertical: 11.h, horizontal: 14.w),
-//                     decoration: BoxDecoration(
-//                       borderRadius: BorderRadius.circular(12.r),
-//                       color: AppColors.allPrimaryColor,
-//                     ),
-//                     child: Image.asset(
-//                       iconpath!,
-//                       width: 24.w,
-//                     ),
-//                   ),
-//                 )
-//               : null,
-//           suffixIcon: suffixIcon != null
-//               ? GestureDetector(
-//                   onTap: onSuffixIconTap,
-//                   child: Icon(
-//                     suffixIcon,
-//                     color: AppColors.c848484,
-//                   ),
-//                 )
-//               : null,
-//           border: InputBorder.none,
-//           enabledBorder: InputBorder.none,
-//           focusedBorder: InputBorder.none,
-//           errorBorder: InputBorder.none,
-//           disabledBorder: InputBorder.none,
-//           contentPadding:
-//               EdgeInsets.symmetric(horizontal: 16.w, vertical: 18.h),
-//         ),
-//       ),
-//     );
-//   }
-// }
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../constants/text_font_style.dart';
@@ -116,6 +19,7 @@ class CustomTextFormField extends StatefulWidget {
   final double borderRadius;
   final VoidCallback? onSuffixIconTap;
   final String? iconpath;
+  final int maxline;
 
   const CustomTextFormField({
     super.key,
@@ -132,6 +36,7 @@ class CustomTextFormField extends StatefulWidget {
     required this.isPrefixIcon,
     this.iconpath,
     this.onSuffixIconTap,
+    this.maxline = 1,
   });
 
   @override
@@ -166,6 +71,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
         borderRadius: BorderRadius.circular(widget.borderRadius),
       ),
       child: TextFormField(
+        maxLines: widget.maxline,
         focusNode: _focusNode,
         controller: widget.controller,
         keyboardType: widget.keyboardType,

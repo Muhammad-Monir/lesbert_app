@@ -73,6 +73,7 @@ class _OtpVerifyScreenState extends State<OtpVerifyScreen> {
                 return true;
               },
             ),
+           
             UIHelper.verticalSpace(37.h),
             AuthCustomeButton(
               borderRadius: 10.r,
