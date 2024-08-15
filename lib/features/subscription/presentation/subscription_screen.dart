@@ -30,38 +30,112 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
       appBar: AppBar(
         title: const Text('Subcription Screen'),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(20.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Text(
-              "All-Access Pass",
-              style: TextFontStyle.headline24w700C000000StyleInter,
-            ),
-            UIHelper.verticalSpaceMedium,
-            const Text(
-              "Boost your productivity with instant access to all 9,183 existing products and daily new releases.",
-              textAlign: TextAlign.center,
-            ),
-            UIHelper.verticalSpaceLarge,
-            SizedBox(
-              height: .6.sh,
-              child: ListView.separated(
-                shrinkWrap: true,
-                scrollDirection: Axis.horizontal,
-                separatorBuilder: (context, index) =>
-                    UIHelper.horizontalSpaceMedium,
-                itemCount: items.length,
-                itemBuilder: (context, index) {
-                  return items[index];
-                },
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Text(
+                "All-Access Pass",
+                style: TextFontStyle.headline24w700C000000StyleInter,
               ),
-            ),
-            UIHelper.verticalSpaceMedium,
-            //this will be optional based on if subscription purchased
-            UIHelper.verticalSpaceMedium,
-          ],
+              UIHelper.verticalSpaceMedium,
+              const Text(
+                "Boost your productivity with instant access to all 9,183 existing products and daily new releases.",
+                textAlign: TextAlign.center,
+              ),
+              UIHelper.verticalSpaceLarge,
+              SizedBox(
+                height: .6.sh,
+                child: ListView.separated(
+                  shrinkWrap: true,
+                  scrollDirection: Axis.horizontal,
+                  separatorBuilder: (context, index) =>
+                      UIHelper.horizontalSpaceMedium,
+                  itemCount: items.length,
+                  itemBuilder: (context, index) {
+                    return items[index];
+                  },
+                ),
+              ),
+              UIHelper.verticalSpaceMedium,
+              //this will be optional based on if subscription purchased
+              Container(
+                height: 280,
+                width: .9.sw,
+                decoration: const BoxDecoration(
+                    color: AppColors.cffffff,
+                    borderRadius: BorderRadius.all(Radius.circular(15))),
+                child: Column(
+                  children: [
+                    UIHelper.verticalSpaceMedium,
+                    CircleAvatar(
+                      radius: 45,
+                      child: ClipOval(
+                        child: Image.network(
+                          "https://images.unsplash.com/photo-1494790108377-be9c29b29330?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8cHJvZmlsZXxlbnwwfHwwfHx8MA%3D%3D",
+                          fit: BoxFit.cover,
+                          width: 100,
+                          height: 100,
+                        ),
+                      ),
+                    ),
+                    UIHelper.verticalSpaceMedium,
+                    Text("MIA HULULU"),
+                    UIHelper.verticalSpaceMedium,
+                    Text("Subscribed To - Basic Plan"),
+                    UIHelper.verticalSpaceMedium,
+                    AuthCustomeButton(
+                        name: "Change Suscription Plan",
+                        onCallBack: () {},
+                        height: .05.sh,
+                        minWidth: .4.sw,
+                        borderRadius: 20.r,
+                        color: AppColors.allPrimaryColor,
+                        textStyle: TextFontStyle.headline12w400C9E9E9EStyleInter
+                            .copyWith(color: AppColors.cffffff),
+                        context: context),
+                  ],
+                ),
+              ),
+              UIHelper.verticalSpaceMedium,
+              Container(
+                height: 240,
+                width: .9.sw,
+                decoration: const BoxDecoration(
+                    color: AppColors.cffffff,
+                    borderRadius: BorderRadius.all(Radius.circular(15))),
+                child: Column(
+                  children: [
+                    UIHelper.verticalSpaceMedium,
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Image.asset(
+                        Assets.icons.flameIcon.path,
+                        height: 71.sp,
+                        width: 70.sp,
+                      ),
+                    ),
+                    UIHelper.verticalSpaceMedium,
+                    Text("Get Boost"),
+                    UIHelper.verticalSpaceMedium,
+                    AuthCustomeButton(
+                        name: "Get More",
+                        onCallBack: () {},
+                        height: .05.sh,
+                        minWidth: .4.sw,
+                        borderRadius: 20.r,
+                        color: AppColors.allPrimaryColor,
+                        textStyle: TextFontStyle.headline12w400C9E9E9EStyleInter
+                            .copyWith(color: AppColors.cffffff),
+                        context: context),
+                  ],
+                ),
+              ),
+              UIHelper.verticalSpaceExtraLarge,
+            ],
+          ),
         ),
       ),
     );
