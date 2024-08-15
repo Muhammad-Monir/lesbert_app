@@ -9,6 +9,10 @@ class TextFontStyle {
 
   static final headline12w400C9E9E9EStyleInter = GoogleFonts.inter(
       color: AppColors.c9E9E9E, fontSize: 12.sp, fontWeight: FontWeight.w400);
+      static final headline12w600CprimaryStyleInter = GoogleFonts.inter(
+      color: AppColors.allPrimaryColor, fontSize: 12.sp, fontWeight: FontWeight.w600);
+      static final headline14w600C141414StyleInter = GoogleFonts.inter(
+      color: AppColors.c141414, fontSize: 14.sp, fontWeight: FontWeight.w600);
   static final headline48w600CFFFFFFFFStylePoppins = GoogleFonts.poppins(
       color: AppColors.cffffff, fontSize: 48.sp, fontWeight: FontWeight.w600);
   static final headline16w600CFFFFFFFFStyleintere = GoogleFonts.inter(

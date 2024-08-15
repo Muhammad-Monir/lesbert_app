@@ -20,6 +20,7 @@ class CustomTextFormField extends StatefulWidget {
   final VoidCallback? onSuffixIconTap;
   final String? iconpath;
   final int maxline;
+  final bool readOnly;
 
   const CustomTextFormField({
     super.key,
@@ -36,6 +37,7 @@ class CustomTextFormField extends StatefulWidget {
     required this.isPrefixIcon,
     this.iconpath,
     this.onSuffixIconTap,
+    this.readOnly = false,
     this.maxline = 1,
   });
 
@@ -71,6 +73,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
         borderRadius: BorderRadius.circular(widget.borderRadius),
       ),
       child: TextFormField(
+        readOnly: widget.readOnly,
         maxLines: widget.maxline,
         focusNode: _focusNode,
         controller: widget.controller,
