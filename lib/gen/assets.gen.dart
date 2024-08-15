@@ -36,6 +36,10 @@ class $AssetsIconsGen {
   AssetGenImage get experience =>
       const AssetGenImage('assets/icons/experience.png');
 
+  /// File path: assets/icons/flameIcon.png
+  AssetGenImage get flameIcon =>
+      const AssetGenImage('assets/icons/flameIcon.png');
+
   /// File path: assets/icons/google_icon.png
   AssetGenImage get googleIcon =>
       const AssetGenImage('assets/icons/google_icon.png');
@@ -86,6 +90,7 @@ class $AssetsIconsGen {
         duration,
         emailIcon,
         experience,
+        flameIcon,
         googleIcon,
         location,
         lockIcon,
