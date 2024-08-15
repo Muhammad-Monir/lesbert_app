@@ -55,6 +55,10 @@ class $AssetsIconsGen {
   /// File path: assets/icons/logo.png
   AssetGenImage get logo => const AssetGenImage('assets/icons/logo.png');
 
+  /// File path: assets/icons/menu_icon.png
+  AssetGenImage get menuIcon =>
+      const AssetGenImage('assets/icons/menu_icon.png');
+
   /// File path: assets/icons/message_icon.png
   AssetGenImage get messageIcon =>
       const AssetGenImage('assets/icons/message_icon.png');
@@ -95,6 +99,7 @@ class $AssetsIconsGen {
         location,
         lockIcon,
         logo,
+        menuIcon,
         messageIcon,
         notofocation,
         personIcon,
