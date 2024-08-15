@@ -179,7 +179,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 minWidth: double.infinity,
                 name: 'Sign Up',
                 onCallBack: () {
-                  // NavigationService.navigateToReplacement(Routes.role);
+                  NavigationService.navigateToReplacement(Routes.otpVerify);
                 },
                 textStyle: TextFontStyle.headline16w700CffffffStyleInter,
               ),

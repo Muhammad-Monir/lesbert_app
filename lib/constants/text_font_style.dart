@@ -29,6 +29,10 @@ class TextFontStyle {
       color: AppColors.c000000, fontSize: 14.sp, fontWeight: FontWeight.w400);
   static final headline16w600C00000StyleInter = GoogleFonts.inter(
       color: AppColors.c000000, fontSize: 16.sp, fontWeight: FontWeight.w600);
-  static final headline18w700C22252DStyleInter = GoogleFonts.inter(
-      color: AppColors.c22252D, fontSize: 18.sp, fontWeight: FontWeight.w700);
+      static final headline18w700C22252DStyleInter =
+      GoogleFonts.inter(color: AppColors.c22252D, fontSize: 18.sp, fontWeight: FontWeight.w700);
+      static final headline20w400C141414StyleInter =
+      GoogleFonts.inter(color: AppColors.c141414, fontSize: 20.sp, fontWeight: FontWeight.w400);
+      static final headline20w600C141414StyleInter =
+      GoogleFonts.inter(color: AppColors.c141414, fontSize: 20.sp, fontWeight: FontWeight.w600);
 }

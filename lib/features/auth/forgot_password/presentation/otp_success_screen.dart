@@ -45,7 +45,7 @@ class OtpSuccessScreen extends StatelessWidget {
               minWidth: double.infinity,
               name: 'Continue',
               onCallBack: () {
-                NavigationService.navigateToReplacement(Routes.login);
+                NavigationService.navigateToReplacement(Routes.question);
               },
               textStyle: TextFontStyle.headline16w700CffffffStyleInter,
             ),
