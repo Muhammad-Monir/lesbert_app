@@ -12,6 +12,11 @@ import 'package:lsebert/features/intro/onboarding_screen.dart';
 import 'package:lsebert/features/intro/role_screen.dart';
 import 'package:lsebert/features/intro/splash_screen.dart';
 import 'package:lsebert/features/message/presentation/message_screen.dart';
+import 'package:lsebert/features/profile/presentation/bio_edit_screen.dart';
+import 'package:lsebert/features/profile/presentation/change_pass_screen.dart';
+import 'package:lsebert/features/profile/presentation/experiance_edit_screen.dart';
+import 'package:lsebert/features/profile/presentation/other_details_edit.dart';
+import 'package:lsebert/features/profile/presentation/personal_details_edit_screen.dart';
 import 'package:lsebert/features/profile/presentation/profile_screen.dart';
 import 'package:lsebert/features/question/presentation/question_screen.dart';
 import 'package:lsebert/features/subscription/presentation/subscription_screen.dart';
@@ -35,6 +40,11 @@ final class Routes {
   static const String resetPass = '/resetPass';
   static const String otpSuccess = '/otpSuccess';
   static const String question = '/questionScreen';
+  static const String personalDetailsEdit = '/personalDetailsEdit';
+  static const String bioEdit = '/bioEdit';
+  static const String otherDetailsEdit = '/otherDetailsEdit';
+  static const String experianceEdit = '/experianceEdit';
+   static const String changePass = '/changePass';
 }
 
 final class RouteGenerator {
@@ -132,6 +142,40 @@ final class RouteGenerator {
                 widget: const ScreenTitle(widget: QuestionScreen()),
                 settings: settings)
             : CupertinoPageRoute(builder: (context) => const QuestionScreen());
+      case Routes.personalDetailsEdit:
+        return Platform.isAndroid
+            ? _FadedTransitionRoute(
+                widget: const ScreenTitle(widget: PersonalDetailsEditScreen()),
+                settings: settings)
+            : CupertinoPageRoute(
+                builder: (context) => const PersonalDetailsEditScreen());
+      case Routes.bioEdit:
+        return Platform.isAndroid
+            ? _FadedTransitionRoute(
+                widget: const ScreenTitle(widget: BioEditScreen()),
+                settings: settings)
+            : CupertinoPageRoute(builder: (context) => const BioEditScreen());
+      case Routes.otherDetailsEdit:
+        return Platform.isAndroid
+            ? _FadedTransitionRoute(
+                widget: const ScreenTitle(widget: OtherDetailsEditScreen()),
+                settings: settings)
+            : CupertinoPageRoute(
+                builder: (context) => const OtherDetailsEditScreen());
+      case Routes.experianceEdit:
+        return Platform.isAndroid
+            ? _FadedTransitionRoute(
+                widget: const ScreenTitle(widget: ExperianceEditScreen()),
+                settings: settings)
+            : CupertinoPageRoute(
+                builder: (context) => const ExperianceEditScreen());
+                case Routes.changePass:
+        return Platform.isAndroid
+            ? _FadedTransitionRoute(
+                widget: const ScreenTitle(widget: ChangePassScreen()),
+                settings: settings)
+            : CupertinoPageRoute(
+                builder: (context) => const ChangePassScreen());
 
       // case Routes.sliderWebViewPage:
       //   final args = settings.arguments as Map;

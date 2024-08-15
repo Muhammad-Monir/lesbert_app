@@ -16,6 +16,9 @@ class $AssetsIconsGen {
   AssetGenImage get boostIcon =>
       const AssetGenImage('assets/icons/boost_icon.png');
 
+  /// File path: assets/icons/box_icon.png
+  AssetGenImage get boxIcon => const AssetGenImage('assets/icons/box_icon.png');
+
   /// File path: assets/icons/camera_icon.png
   AssetGenImage get cameraIcon =>
       const AssetGenImage('assets/icons/camera_icon.png');
@@ -27,6 +30,10 @@ class $AssetsIconsGen {
   /// File path: assets/icons/duration.png
   AssetGenImage get duration =>
       const AssetGenImage('assets/icons/duration.png');
+
+  /// File path: assets/icons/edit_icon.png
+  AssetGenImage get editIcon =>
+      const AssetGenImage('assets/icons/edit_icon.png');
 
   /// File path: assets/icons/email_icon.png
   AssetGenImage get emailIcon =>
@@ -89,9 +96,11 @@ class $AssetsIconsGen {
   /// List of all assets
   List<dynamic> get values => [
         boostIcon,
+        boxIcon,
         cameraIcon,
         dashboardIcon,
         duration,
+        editIcon,
         emailIcon,
         experience,
         flameIcon,
@@ -133,13 +142,18 @@ class $AssetsImagesGen {
   AssetGenImage get otpSuccessFlower =>
       const AssetGenImage('assets/images/otp_success_flower.png');
 
+  /// File path: assets/images/user_image.png
+  AssetGenImage get userImage =>
+      const AssetGenImage('assets/images/user_image.png');
+
   /// List of all assets
   List<AssetGenImage> get values => [
         onboardImage1,
         onboardingImage2,
         onboardingImage3,
         onboardingImage4,
-        otpSuccessFlower
+        otpSuccessFlower,
+        userImage
       ];
 }
 
