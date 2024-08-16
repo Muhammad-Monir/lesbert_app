@@ -47,6 +47,10 @@ class $AssetsIconsGen {
   AssetGenImage get flameIcon =>
       const AssetGenImage('assets/icons/flameIcon.png');
 
+  /// File path: assets/icons/folder_icon.png
+  AssetGenImage get folderIcon =>
+      const AssetGenImage('assets/icons/folder_icon.png');
+
   /// File path: assets/icons/google_icon.png
   AssetGenImage get googleIcon =>
       const AssetGenImage('assets/icons/google_icon.png');
@@ -81,6 +85,18 @@ class $AssetsIconsGen {
   AssetGenImage get profileIcon =>
       const AssetGenImage('assets/icons/profile_icon.png');
 
+  /// File path: assets/icons/profile_view_icon.png
+  AssetGenImage get profileViewIcon =>
+      const AssetGenImage('assets/icons/profile_view_icon.png');
+
+  /// File path: assets/icons/search_icon.png
+  AssetGenImage get searchIcon =>
+      const AssetGenImage('assets/icons/search_icon.png');
+
+  /// File path: assets/icons/send_message_icon.png
+  AssetGenImage get sendMessageIcon =>
+      const AssetGenImage('assets/icons/send_message_icon.png');
+
   /// File path: assets/icons/subscription_icon.png
   AssetGenImage get subscriptionIcon =>
       const AssetGenImage('assets/icons/subscription_icon.png');
@@ -104,6 +120,7 @@ class $AssetsIconsGen {
         emailIcon,
         experience,
         flameIcon,
+        folderIcon,
         googleIcon,
         location,
         lockIcon,
@@ -113,6 +130,9 @@ class $AssetsIconsGen {
         notofocation,
         personIcon,
         profileIcon,
+        profileViewIcon,
+        searchIcon,
+        sendMessageIcon,
         subscriptionIcon,
         tickCircle,
         totalConnect
@@ -146,6 +166,10 @@ class $AssetsImagesGen {
   AssetGenImage get userImage =>
       const AssetGenImage('assets/images/user_image.png');
 
+  /// File path: assets/images/view_profile_image.png
+  AssetGenImage get viewProfileImage =>
+      const AssetGenImage('assets/images/view_profile_image.png');
+
   /// List of all assets
   List<AssetGenImage> get values => [
         onboardImage1,
@@ -153,7 +177,8 @@ class $AssetsImagesGen {
         onboardingImage3,
         onboardingImage4,
         otpSuccessFlower,
-        userImage
+        userImage,
+        viewProfileImage
       ];
 }
 

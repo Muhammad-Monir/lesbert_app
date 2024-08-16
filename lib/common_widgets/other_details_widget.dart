@@ -2,17 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lsebert/helpers/navigation_service.dart';
 
-import '../../../../constants/text_font_style.dart';
-import '../../../../gen/assets.gen.dart';
-import '../../../../helpers/all_routes.dart';
-import '../../../../helpers/ui_helpers.dart';
+import '../constants/text_font_style.dart';
+import '../gen/assets.gen.dart';
+import '../helpers/all_routes.dart';
+import '../helpers/ui_helpers.dart';
 
 class OtherDetailsWidget extends StatelessWidget {
   final String? skill;
   final String? language;
+  final bool isEdit;
   const OtherDetailsWidget({
     this.language,
     this.skill,
+    this.isEdit = true,
     super.key,
   });
 
@@ -30,25 +32,28 @@ class OtherDetailsWidget extends StatelessWidget {
                 style: TextFontStyle.headline16w600C000000tyleiPoppins,
               ),
               const Spacer(),
-              GestureDetector(
-                onTap: () {
-                  NavigationService.navigateTo(Routes.otherDetailsEdit);
-                },
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Image.asset(
-                      Assets.icons.editIcon.path,
-                      width: 12.w,
-                    ),
-                    UIHelper.horizontalSpace(8.w),
-                    Text(
-                      'Edit Details',
-                      style: TextFontStyle.headline12w600CprimaryStyleInter,
-                    ),
-                  ],
-                ),
-              ),
+              isEdit == true
+                  ? GestureDetector(
+                      onTap: () {
+                        NavigationService.navigateTo(Routes.otherDetailsEdit);
+                      },
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Image.asset(
+                            Assets.icons.editIcon.path,
+                            width: 12.w,
+                          ),
+                          UIHelper.horizontalSpace(8.w),
+                          Text(
+                            'Edit Details',
+                            style:
+                                TextFontStyle.headline12w600CprimaryStyleInter,
+                          ),
+                        ],
+                      ),
+                    )
+                  : const SizedBox.shrink()
             ],
           ),
           UIHelper.verticalSpace(20.h),

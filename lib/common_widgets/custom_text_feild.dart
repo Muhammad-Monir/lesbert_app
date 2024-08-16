@@ -21,6 +21,8 @@ class CustomTextFormField extends StatefulWidget {
   final String? iconpath;
   final int maxline;
   final bool readOnly;
+  final bool isBorder;
+  final Color fillColor;
 
   const CustomTextFormField({
     super.key,
@@ -39,6 +41,8 @@ class CustomTextFormField extends StatefulWidget {
     this.onSuffixIconTap,
     this.readOnly = false,
     this.maxline = 1,
+    this.isBorder = false,
+    this.fillColor = AppColors.cF4F5F7,
   });
 
   @override
@@ -83,7 +87,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
         validator: widget.validator,
         decoration: InputDecoration(
           filled: true,
-          fillColor: AppColors.cF4F5F7,
+          fillColor: widget.fillColor,
           labelText: widget.labelText,
           hintText: widget.hintText,
           hintStyle: TextFontStyle.headline16w400C848484StyleInter,
@@ -114,12 +118,16 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
                 )
               : null,
           border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(widget.borderRadius),
-            borderSide: BorderSide.none,
-          ),
+              borderRadius: BorderRadius.circular(widget.borderRadius),
+              borderSide: BorderSide.none),
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(widget.borderRadius),
-            borderSide: BorderSide.none,
+            borderSide: widget.isBorder == true
+                ? const BorderSide(
+                    color:
+                        AppColors.cDFE1E6, // Adjust the border width if needed
+                  )
+                : BorderSide.none,
           ),
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(widget.borderRadius),

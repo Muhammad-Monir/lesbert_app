@@ -10,7 +10,7 @@ import '../../../constants/text_font_style.dart';
 import '../../../gen/assets.gen.dart';
 import '../../../gen/colors.gen.dart';
 import '../../../helpers/navigation_service.dart';
-import 'widgets/divider_container.dart';
+import '../../../common_widgets/divider_container.dart';
 
 class PersonalDetailsEditScreen extends StatefulWidget {
   const PersonalDetailsEditScreen({super.key});

@@ -1,3 +1,5 @@
+// ignore_for_file: camel_case_types
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lsebert/common_widgets/auth_button.dart';
@@ -14,7 +16,7 @@ class SubscriptionScreen extends StatefulWidget {
 }
 
 class _SubscriptionScreenState extends State<SubscriptionScreen> {
-  List<Widget> items = [
+  List<Widget> items =const [
     SubscriptionPlan(),
     SubscriptionPlan(),
     SubscriptionPlan()
@@ -82,9 +84,9 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
                       ),
                     ),
                     UIHelper.verticalSpaceMedium,
-                    Text("MIA HULULU"),
+                   const Text("MIA HULULU"),
                     UIHelper.verticalSpaceMedium,
-                    Text("Subscribed To - Basic Plan"),
+                   const Text("Subscribed To - Basic Plan"),
                     UIHelper.verticalSpaceMedium,
                     AuthCustomeButton(
                         name: "Change Suscription Plan",
@@ -118,7 +120,7 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
                       ),
                     ),
                     UIHelper.verticalSpaceMedium,
-                    Text("Get Boost"),
+                   const Text("Get Boost"),
                     UIHelper.verticalSpaceMedium,
                     AuthCustomeButton(
                         name: "Get More",
@@ -150,7 +152,7 @@ class SubscriptionPlan extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(20),
+      padding: EdgeInsets.all(20.sp),
       width: .7.sw,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(15.r),
@@ -162,9 +164,9 @@ class SubscriptionPlan extends StatelessWidget {
           UIHelper.verticalSpaceMedium,
           Row(
             children: [
-              Text("Basic"),
+            const  Text("Basic"),
               UIHelper.horizontalSpaceSmall,
-              Text("Popular"),
+            const  Text("Popular"),
             ],
           ),
           UIHelper.verticalSpaceSmall,
