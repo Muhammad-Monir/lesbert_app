@@ -12,6 +12,8 @@ import 'package:lsebert/features/intro/onboarding_screen.dart';
 import 'package:lsebert/features/intro/role_screen.dart';
 import 'package:lsebert/features/intro/splash_screen.dart';
 import 'package:lsebert/features/message/presentation/message_screen.dart';
+import 'package:lsebert/features/notification/presentation/notification_screen.dart';
+import 'package:lsebert/features/paymnet_history/presentation/payment_history_screen.dart';
 import 'package:lsebert/features/profile/presentation/bio_edit_screen.dart';
 import 'package:lsebert/features/profile/presentation/change_pass_screen.dart';
 import 'package:lsebert/features/profile/presentation/experiance_edit_screen.dart';
@@ -20,7 +22,13 @@ import 'package:lsebert/features/profile/presentation/personal_details_edit_scre
 import 'package:lsebert/features/profile/presentation/profile_screen.dart';
 import 'package:lsebert/features/question/presentation/question_screen.dart';
 import 'package:lsebert/features/subscription/presentation/subscription_screen.dart';
+import 'package:lsebert/features_pro/pro_dashboard/presentation/pro_dashboard.dart';
+import 'package:lsebert/features_pro/pro_message/presentation/pro_message_screen.dart';
+import 'package:lsebert/features_pro/pro_navigation_screen.dart';
+import 'package:lsebert/features_pro/pro_subscription/presentation/pro_subscription_screen.dart';
+import 'package:lsebert/features_pro/view_profile/view_profile.dart';
 import 'package:lsebert/loading_screen.dart';
+
 
 final class Routes {
   static final Routes _routes = Routes._internal();
@@ -46,6 +54,19 @@ final class Routes {
   static const String bioEdit = '/bioEdit';
   static const String otherDetailsEdit = '/otherDetailsEdit';
   static const String experianceEdit = '/experianceEdit';
+  static const String changePass = '/changePass';
+  static const String notification = '/notification';
+  static const String paymentHistory = '/paymentHistory';
+  //========<>======<>=======<>=======<>=======<>=========
+  //===============<><><>==============<><><><>===============
+  // Pro Section
+  static const String proNavBar = '/proNavBar';
+  static const String proDashboard = '/proDashboard';
+  static const String proSubscription = '/proSubscription';
+  static const String proMessage = '/proMessage';
+  static const String proProfile = '/proProfile';
+  static const String viewProfile = '/viewProfile';
+}
    static const String changePass = '/changePass';
 
 
@@ -177,13 +198,73 @@ final class RouteGenerator {
                 settings: settings)
             : CupertinoPageRoute(
                 builder: (context) => const ExperianceEditScreen());
-                case Routes.changePass:
+      case Routes.changePass:
         return Platform.isAndroid
             ? _FadedTransitionRoute(
                 widget: const ScreenTitle(widget: ChangePassScreen()),
                 settings: settings)
             : CupertinoPageRoute(
                 builder: (context) => const ChangePassScreen());
+      case Routes.notification:
+        return Platform.isAndroid
+            ? _FadedTransitionRoute(
+                widget: const ScreenTitle(widget: NotificationScreen()),
+                settings: settings)
+            : CupertinoPageRoute(
+                builder: (context) => const NotificationScreen());
+      case Routes.paymentHistory:
+        return Platform.isAndroid
+            ? _FadedTransitionRoute(
+                widget: const ScreenTitle(widget: PaymentHistoryScreen()),
+                settings: settings)
+            : CupertinoPageRoute(
+                builder: (context) => const PaymentHistoryScreen());
+
+      //========<>======<>=======<>=======<>=======<>=========
+      //===============<><><>==============<><><><>===============
+      // Pro Section
+
+      case Routes.proNavBar:
+        return Platform.isAndroid
+            ? _FadedTransitionRoute(
+                widget: const ScreenTitle(widget: ProNavigationScreen()),
+                settings: settings)
+            : CupertinoPageRoute(
+                builder: (context) => const ProNavigationScreen());
+      case Routes.proDashboard:
+        return Platform.isAndroid
+            ? _FadedTransitionRoute(
+                widget: const ScreenTitle(widget: ProDashboardScreen()),
+                settings: settings)
+            : CupertinoPageRoute(
+                builder: (context) => const ProDashboardScreen());
+      case Routes.proSubscription:
+        return Platform.isAndroid
+            ? _FadedTransitionRoute(
+                widget: const ScreenTitle(widget: ProSubscriptionScreen()),
+                settings: settings)
+            : CupertinoPageRoute(
+                builder: (context) => const ProSubscriptionScreen());
+      case Routes.proMessage:
+        return Platform.isAndroid
+            ? _FadedTransitionRoute(
+                widget: const ScreenTitle(widget: ProMessageScreen()),
+                settings: settings)
+            : CupertinoPageRoute(
+                builder: (context) => const ProMessageScreen());
+      case Routes.proProfile:
+        return Platform.isAndroid
+            ? _FadedTransitionRoute(
+                widget: const ScreenTitle(widget: ProfileScreen()),
+                settings: settings)
+            : CupertinoPageRoute(builder: (context) => const ProfileScreen());
+      case Routes.viewProfile:
+        return Platform.isAndroid
+            ? _FadedTransitionRoute(
+                widget: const ScreenTitle(widget: ViewProfileScreen()),
+                settings: settings)
+            : CupertinoPageRoute(
+                builder: (context) => const ViewProfileScreen());
 
       // case Routes.sliderWebViewPage:
       //   final args = settings.arguments as Map;

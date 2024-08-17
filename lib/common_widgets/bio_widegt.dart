@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lsebert/helpers/navigation_service.dart';
 
-import '../../../../constants/text_font_style.dart';
-import '../../../../gen/assets.gen.dart';
-import '../../../../helpers/all_routes.dart';
-import '../../../../helpers/ui_helpers.dart';
+import '../constants/text_font_style.dart';
+import '../gen/assets.gen.dart';
+import '../helpers/all_routes.dart';
+import '../helpers/ui_helpers.dart';
 
 class BioWidget extends StatelessWidget {
   final String? bioDescription;
@@ -14,6 +14,7 @@ class BioWidget extends StatelessWidget {
   final String? industry;
   final String? prepredLocation;
   final String? endDate;
+  final bool isEdit;
 
   const BioWidget({
     this.bioDescription,
@@ -22,6 +23,7 @@ class BioWidget extends StatelessWidget {
     this.industry,
     this.prepredLocation,
     this.endDate,
+    this.isEdit = true,
     super.key,
   });
 
@@ -40,25 +42,28 @@ class BioWidget extends StatelessWidget {
                 style: TextFontStyle.headline16w600C000000tyleiPoppins,
               ),
               const Spacer(),
-              GestureDetector(
-                onTap: () {
-                  NavigationService.navigateTo(Routes.bioEdit);
-                },
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Image.asset(
-                      Assets.icons.editIcon.path,
-                      width: 12.w,
-                    ),
-                    UIHelper.horizontalSpace(8.w),
-                    Text(
-                      'Edit Details',
-                      style: TextFontStyle.headline12w600CprimaryStyleInter,
-                    ),
-                  ],
-                ),
-              ),
+              isEdit == true
+                  ? GestureDetector(
+                      onTap: () {
+                        NavigationService.navigateTo(Routes.bioEdit);
+                      },
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Image.asset(
+                            Assets.icons.editIcon.path,
+                            width: 12.w,
+                          ),
+                          UIHelper.horizontalSpace(8.w),
+                          Text(
+                            'Edit Details',
+                            style:
+                                TextFontStyle.headline12w600CprimaryStyleInter,
+                          ),
+                        ],
+                      ),
+                    )
+                  : const SizedBox.shrink()
             ],
           ),
           UIHelper.verticalSpace(20.h),

@@ -35,7 +35,7 @@ class _DottedContainerState extends State<DottedContainer> {
           borderType: BorderType.RRect,
           radius: const Radius.circular(12),
           // Dotted line border radius
-          dashPattern: const [4, 0, 4],
+          dashPattern: const [8, 0, 8],
           // Responsible for [- - - - - -]
           child: Container(
             width: 159.w,
@@ -44,10 +44,10 @@ class _DottedContainerState extends State<DottedContainer> {
             decoration: ShapeDecoration(
               color: AppColors.cffffff,
               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(6),
+                borderRadius: BorderRadius.circular(6.r),
               ),
             ),
-            padding: const EdgeInsets.all(36),
+            padding: EdgeInsets.all(36.sp),
             // Padding for the red container
 
             child: const Row(
@@ -70,8 +70,8 @@ class _DottedContainerState extends State<DottedContainer> {
           ),
         ),
         Positioned(
-          bottom: -12,
-          right: -10,
+          bottom: -12.h,
+          right: -10.w,
           child: GestureDetector(
             onTap: () async {
               Map<Permission, PermissionStatus> statuses = await [

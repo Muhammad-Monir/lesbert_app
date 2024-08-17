@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../../../constants/text_font_style.dart';
-import '../../../../gen/assets.gen.dart';
-import '../../../../helpers/ui_helpers.dart';
+import '../constants/text_font_style.dart';
+import '../gen/assets.gen.dart';
+import '../helpers/ui_helpers.dart';
 
 class PersonalDetailsWidget extends StatelessWidget {
+  final bool isEdit;
   final String? name;
   final String? email;
   final String? phoneNum;
@@ -18,6 +19,7 @@ class PersonalDetailsWidget extends StatelessWidget {
     this.gender,
     this.address,
     this.onTap,
+    this.isEdit = true,
     super.key,
   });
 
@@ -37,27 +39,29 @@ class PersonalDetailsWidget extends StatelessWidget {
                   style: TextFontStyle.headline16w600C000000tyleiPoppins,
                 ),
                 const Spacer(),
-                GestureDetector(
-                  onTap: () {},
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Image.asset(
-                        Assets.icons.editIcon.path,
-                        width: 12.w,
-                      ),
-                    ],
-                  ),
-                ),
-                UIHelper.horizontalSpace(8.w),
-                Text(
-                  'Edit Details',
-                  style: TextFontStyle.headline12w600CprimaryStyleInter,
-                ),
+                isEdit == true
+                    ? GestureDetector(
+                        onTap: () {},
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Image.asset(
+                              Assets.icons.editIcon.path,
+                              width: 12.w,
+                            ),
+                            UIHelper.horizontalSpace(8.w),
+                            Text(
+                              'Edit Details',
+                              style: TextFontStyle
+                                  .headline12w600CprimaryStyleInter,
+                            ),
+                          ],
+                        ),
+                      )
+                    : const SizedBox.shrink(),
               ],
             ),
           ),
-         
           UIHelper.verticalSpace(30.h),
           Row(
             children: [

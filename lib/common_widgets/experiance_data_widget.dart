@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lsebert/helpers/navigation_service.dart';
 
-import '../../../../common_widgets/auth_button.dart';
-import '../../../../constants/text_font_style.dart';
-import '../../../../gen/assets.gen.dart';
-import '../../../../gen/colors.gen.dart';
-import '../../../../helpers/all_routes.dart';
-import '../../../../helpers/ui_helpers.dart';
+import 'auth_button.dart';
+import '../constants/text_font_style.dart';
+import '../gen/assets.gen.dart';
+import '../gen/colors.gen.dart';
+import '../helpers/all_routes.dart';
+import '../helpers/ui_helpers.dart';
 
 class ExperiencesDataWidget extends StatelessWidget {
   final String? crntCompanyName;
@@ -16,6 +16,7 @@ class ExperiencesDataWidget extends StatelessWidget {
   final String? employeeType;
   final String? endDate;
   final String? jobLocation;
+  final bool isEdit;
 
   const ExperiencesDataWidget({
     this.crntCompanyName,
@@ -24,6 +25,7 @@ class ExperiencesDataWidget extends StatelessWidget {
     this.endDate,
     this.employeeType,
     this.jobLocation,
+    this.isEdit = true,
     super.key,
   });
 
@@ -41,25 +43,28 @@ class ExperiencesDataWidget extends StatelessWidget {
                 style: TextFontStyle.headline16w600C000000tyleiPoppins,
               ),
               const Spacer(),
-              GestureDetector(
-                onTap: () {
-                  NavigationService.navigateTo(Routes.experianceEdit);
-                },
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Image.asset(
-                      Assets.icons.editIcon.path,
-                      width: 12.w,
-                    ),
-                    UIHelper.horizontalSpace(8.w),
-                    Text(
-                      'Edit Details',
-                      style: TextFontStyle.headline12w600CprimaryStyleInter,
-                    ),
-                  ],
-                ),
-              ),
+              isEdit == true
+                  ? GestureDetector(
+                      onTap: () {
+                        NavigationService.navigateTo(Routes.experianceEdit);
+                      },
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Image.asset(
+                            Assets.icons.editIcon.path,
+                            width: 12.w,
+                          ),
+                          UIHelper.horizontalSpace(8.w),
+                          Text(
+                            'Edit Details',
+                            style:
+                                TextFontStyle.headline12w600CprimaryStyleInter,
+                          ),
+                        ],
+                      ),
+                    )
+                  : const SizedBox.shrink()
             ],
           ),
           UIHelper.verticalSpace(20.h),
@@ -137,16 +142,18 @@ class ExperiencesDataWidget extends StatelessWidget {
             style: TextFontStyle.headline12w400C9E9E9EStyleInter,
           ),
           UIHelper.verticalSpace(20.h),
-          AuthCustomeButton(
-              name: '+ Add New Experience',
-              onCallBack: () {},
-              height: 50.h,
-              minWidth: double.infinity,
-              borderRadius: 30.r,
-              color: AppColors.allPrimaryColor,
-              textStyle: TextFontStyle.headline14w600C141414StyleInter
-                  .copyWith(color: AppColors.cffffff),
-              context: context)
+          isEdit == true
+              ? AuthCustomeButton(
+                  name: '+ Add New Experience',
+                  onCallBack: () {},
+                  height: 50.h,
+                  minWidth: double.infinity,
+                  borderRadius: 30.r,
+                  color: AppColors.allPrimaryColor,
+                  textStyle: TextFontStyle.headline14w600C141414StyleInter
+                      .copyWith(color: AppColors.cffffff),
+                  context: context)
+              : const SizedBox.shrink(),
         ],
       ),
     );
