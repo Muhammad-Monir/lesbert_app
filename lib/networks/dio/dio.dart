@@ -19,7 +19,6 @@ final class DioSingleton {
         receiveTimeout: const Duration(milliseconds: 100000),
         headers: {
           NetworkConstants.ACCEPT: NetworkConstants.ACCEPT_TYPE,
-         
           NetworkConstants.APP_KEY: NetworkConstants.APP_KEY_VALUE,
         });
     dio = Dio(options)..interceptors.add(Logger());
@@ -34,7 +33,6 @@ final class DioSingleton {
       responseType: ResponseType.json,
       headers: {
         NetworkConstants.ACCEPT: NetworkConstants.ACCEPT_TYPE,
-        
         NetworkConstants.APP_KEY: NetworkConstants.APP_KEY_VALUE,
         NetworkConstants.AUTHORIZATION: "Bearer $auth",
       },
@@ -55,7 +53,6 @@ final class DioSingleton {
         NetworkConstants.ACCEPT: NetworkConstants.ACCEPT_TYPE,
         NetworkConstants.ACCEPT_LANGUAGE: countryCode,
         NetworkConstants.APP_KEY: NetworkConstants.APP_KEY_VALUE,
-       
       },
       connectTimeout: const Duration(milliseconds: 100000),
       receiveTimeout: const Duration(milliseconds: 100000),
@@ -65,15 +62,16 @@ final class DioSingleton {
 }
 
 Future<Response> postHttp(String path, [dynamic data]) =>
-    DioSingleton.instance.dio.post(path, data: data, cancelToken: DioSingleton.cancelToken);
+    DioSingleton.instance.dio
+        .post(path, data: data, cancelToken: DioSingleton.cancelToken);
 
 Future<Response> putHttp(String path, [dynamic data]) =>
-    DioSingleton.instance.dio.put(path, data: data, cancelToken: DioSingleton.cancelToken);
+    DioSingleton.instance.dio
+        .put(path, data: data, cancelToken: DioSingleton.cancelToken);
 
 Future<Response> getHttp(String path, [dynamic data]) =>
     DioSingleton.instance.dio.get(path, cancelToken: DioSingleton.cancelToken);
 
 Future<Response> deleteHttp(String path, [dynamic data]) =>
-    DioSingleton.instance.dio.delete(path, data: data, cancelToken: DioSingleton.cancelToken);
-
-
+    DioSingleton.instance.dio
+        .delete(path, data: data, cancelToken: DioSingleton.cancelToken);

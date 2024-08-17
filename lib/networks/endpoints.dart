@@ -1,6 +1,6 @@
 // ignore_for_file: constant_identifier_names
 
-const String url = String.fromEnvironment("BASE_URL");
+const String url = "https://lsebert.reigeeky.com";
 
 final class NetworkConstants {
   NetworkConstants._();
@@ -16,22 +16,30 @@ final class NetworkConstants {
 
 final class PaymentGateway {
   PaymentGateway._();
-  static String gateway(String orderId) => "https://demo.vivapayments.com/web/checkout?ref={$orderId}";
+  static String gateway(String orderId) =>
+      "https://demo.vivapayments.com/web/checkout?ref={$orderId}";
 }
 
 final class Endpoints {
   Endpoints._();
+
+//in use
+  static String signUp() => "/api/register";
+  static String logIn() => "/api/login";
+  static String verifyCode(String otp) => "/api/verify-otp/$otp";
+
   //backend_url
   static String appCategories() => "/api/product-categories";
   static String allShopCategories() => "/api/shop-categories";
-  static String getShopByCategories(String slug) => "/api/shop-categories/$slug/";
-  static String allShops(double lat, double lng) => "/api/shops?lat=$lat&lng=$lng";
+  static String getShopByCategories(String slug) =>
+      "/api/shop-categories/$slug/";
+  static String allShops(double lat, double lng) =>
+      "/api/shops?lat=$lat&lng=$lng";
   static String searchShops() => "/api/filter-shops";
-  static String signUp() => "/api/signup";
-  static String logIn() => "/api/login";
+
   static String logout() => "/api/logout";
   static String socialLogin() => "/api/social-login";
-  static String verifyCode() => "/api/verify-code";
+
   static String allShopSubCategories() => "/api/shop-sub-categories";
   static String shopDetails(String slug) => "/api/shops/$slug";
   static String productDetails(String slug) => "/api/products/$slug";
@@ -73,18 +81,25 @@ final class Endpoints {
   static String getCartRestaurant() => "/api/cart-restaurant";
   static String getFavouriteRestaurant() => "/api/favourite-restaurants";
   static String makeFavouriteRestaurant() => "/api/favourite-restaurant";
-  static String getDefaultDeliveryAddress() => "/api/get-default-delivery-address";
-  static String getProductByCategory(String slug) => "/api/product-categories/$slug/products";
-  static String getSubCategoryByCategory(String slug) => "/api/shop-categories/$slug/subs";
+  static String getDefaultDeliveryAddress() =>
+      "/api/get-default-delivery-address";
+  static String getProductByCategory(String slug) =>
+      "/api/product-categories/$slug/products";
+  static String getSubCategoryByCategory(String slug) =>
+      "/api/shop-categories/$slug/subs";
   static String postCancelOrder() => "/api/order-cancel";
-  static String getDeliveryAddressCategory() => "/api/delivery-address-categories";
+  static String getDeliveryAddressCategory() =>
+      "/api/delivery-address-categories";
   static String getCartProcessingTime(num time, num id) =>
       "/api/cart-food-processing-time?duration=$time&restaurant_id=$id";
   static String getFilteredProduct() => "/api/filter-products";
 
   //gloabal url
-  static String gDistanceApi() => "https://maps.googleapis.com/maps/api/distancematrix/json?origins=";
-  static String successfulPaymentUrlPrefix() => "https://wedeapp.eu/payment-success";
+  static String gDistanceApi() =>
+      "https://maps.googleapis.com/maps/api/distancematrix/json?origins=";
+  static String successfulPaymentUrlPrefix() =>
+      "https://wedeapp.eu/payment-success";
   static String failedPaymentUrlPrefix() => "https://wedeapp.eu/payment-fail";
-  static String paymentUrlProcessing() => "https://wedeapp.eu/payment-processing";
+  static String paymentUrlProcessing() =>
+      "https://wedeapp.eu/payment-processing";
 }

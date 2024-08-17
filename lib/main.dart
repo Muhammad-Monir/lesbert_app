@@ -14,6 +14,7 @@ import 'helpers/helper_methods.dart';
 import 'helpers/navigation_service.dart';
 import 'helpers/register_provider.dart';
 import 'navigation_screen.dart';
+import 'networks/dio/dio.dart';
 
 Future<void> backgroundHandler(RemoteMessage message) async {}
 void main() async {
@@ -21,7 +22,7 @@ void main() async {
   await GetStorage.init();
   diSetup();
   initiInternetChecker();
-  // DioSingleton.instance.create();
+  DioSingleton.instance.create();
   //await Firebase.initializeApp();
   //FirebaseMessaging.onBackgroundMessage(backgroundHandler);
   // LocalNotificationService.initialize();
@@ -84,7 +85,7 @@ class UtillScreenMobile extends StatelessWidget {
             },
             navigatorKey: NavigationService.navigatorKey,
             onGenerateRoute: RouteGenerator.generateRoute,
-            home: const NavigationScreen(),
+            home: const Loading(),
           ),
         );
       },

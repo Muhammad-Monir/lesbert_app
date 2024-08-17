@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:lsebert/features/intro/splash_screen.dart';
+import 'constants/app_constants.dart';
+import 'features/auth/presentatiom/login/login_screen.dart';
 import 'helpers/app_version_updater.dart';
+import 'helpers/di.dart';
 import 'helpers/helper_methods.dart';
+import 'navigation_screen.dart';
+import 'networks/dio/dio.dart';
 import 'welcome_screen.dart';
 
 final class Loading extends StatefulWidget {
@@ -28,14 +33,10 @@ class _LoadingState extends State<Loading> {
     // await getSliderRXObj.fetchSliderData();
     // await getAllSubCategoryRXObj.fetchGetAllSubCategoryData();
 
-    // if (appData.read(kKeyIsLoggedIn)) {
-    //   String token = appData.read(kKeyAccessToken);
-    //   DioSingleton.instance.update(token);
-    //   await getAllAddressRXObj.fetchAllDeliveryAddressData();
-    //   getProfileRXObj.fetchProfileData();
-    //   getCartRXObj.fetchCartData("0.0");
-    //   LocalNotificationService.getToken();
-    // }
+    if (appData.read(kKeyIsLoggedIn)) {
+      String token = appData.read(kKeyAccessToken);
+      DioSingleton.instance.update(token);
+    }
     setState(() {
       _isLoading = false;
     });
@@ -46,8 +47,9 @@ class _LoadingState extends State<Loading> {
     if (_isLoading) {
       return const WelcomeScreen();
     } else {
-      return const SplashScreen();
-      // return appData.read(kKeyIsLoggedIn) || appData.read(kKeyIsExploring) ? const NavigationScreen() : LogeinScreen();
+      return appData.read(kKeyIsLoggedIn)
+          ? const NavigationScreen()
+          : const LoginScreen();
     }
   }
 }

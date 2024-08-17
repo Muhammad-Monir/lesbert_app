@@ -143,11 +143,97 @@ class $AssetsImagesGen {
       ];
 }
 
+class $AssetsLottieGen {
+  const $AssetsLottieGen();
+
+  /// File path: assets/lottie/Wede_Animation.json
+  String get wedeAnimation => 'assets/lottie/Wede_Animation.json';
+
+  /// File path: assets/lottie/add_to_cart.json
+  String get addToCart => 'assets/lottie/add_to_cart.json';
+
+  /// File path: assets/lottie/bird_ring.lottie
+  String get birdRing => 'assets/lottie/bird_ring.lottie';
+
+  /// File path: assets/lottie/cart_is_empty.json
+  String get cartIsEmpty => 'assets/lottie/cart_is_empty.json';
+
+  /// File path: assets/lottie/favourite.json
+  String get favourite => 'assets/lottie/favourite.json';
+
+  /// File path: assets/lottie/hamburger.json
+  String get hamburger => 'assets/lottie/hamburger.json';
+
+  /// File path: assets/lottie/image_shimmer.json
+  String get imageShimmer => 'assets/lottie/image_shimmer.json';
+
+  /// File path: assets/lottie/item_not_found.json
+  String get itemNotFound => 'assets/lottie/item_not_found.json';
+
+  /// File path: assets/lottie/loading.json
+  String get loading => 'assets/lottie/loading.json';
+
+  /// File path: assets/lottie/loading_icecream.json
+  String get loadingIcecream => 'assets/lottie/loading_icecream.json';
+
+  /// File path: assets/lottie/loading_spinner.json
+  String get loadingSpinner => 'assets/lottie/loading_spinner.json';
+
+  /// File path: assets/lottie/loading_spinner_alt.json
+  String get loadingSpinnerAlt => 'assets/lottie/loading_spinner_alt.json';
+
+  /// File path: assets/lottie/lottie_food_loading.json
+  String get lottieFoodLoading => 'assets/lottie/lottie_food_loading.json';
+
+  /// File path: assets/lottie/lottie_list_loading.json
+  String get lottieListLoading => 'assets/lottie/lottie_list_loading.json';
+
+  /// File path: assets/lottie/lottie_round_food_loading.json
+  String get lottieRoundFoodLoading =>
+      'assets/lottie/lottie_round_food_loading.json';
+
+  /// File path: assets/lottie/rating.json
+  String get rating => 'assets/lottie/rating.json';
+
+  /// File path: assets/lottie/remove_from_cart.json
+  String get removeFromCart => 'assets/lottie/remove_from_cart.json';
+
+  /// File path: assets/lottie/restaurant_loading.json
+  String get restaurantLoading => 'assets/lottie/restaurant_loading.json';
+
+  /// File path: assets/lottie/success.json
+  String get success => 'assets/lottie/success.json';
+
+  /// List of all assets
+  List<String> get values => [
+        wedeAnimation,
+        addToCart,
+        birdRing,
+        cartIsEmpty,
+        favourite,
+        hamburger,
+        imageShimmer,
+        itemNotFound,
+        loading,
+        loadingIcecream,
+        loadingSpinner,
+        loadingSpinnerAlt,
+        lottieFoodLoading,
+        lottieListLoading,
+        lottieRoundFoodLoading,
+        rating,
+        removeFromCart,
+        restaurantLoading,
+        success
+      ];
+}
+
 class Assets {
   Assets._();
 
   static const $AssetsIconsGen icons = $AssetsIconsGen();
   static const $AssetsImagesGen images = $AssetsImagesGen();
+  static const $AssetsLottieGen lottie = $AssetsLottieGen();
 }
 
 class AssetGenImage {
