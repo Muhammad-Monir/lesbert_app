@@ -1,12 +1,12 @@
 import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
-import 'package:lsebert/features/auth/forgot_password/presentation/forgot_pass_screen.dart';
-import 'package:lsebert/features/auth/forgot_password/presentation/otp_success_screen.dart';
-import 'package:lsebert/features/auth/forgot_password/presentation/otp_verify_screen.dart';
-import 'package:lsebert/features/auth/forgot_password/presentation/reset_pass_screen.dart';
-import 'package:lsebert/features/auth/login/presentation/login_screen.dart';
-import 'package:lsebert/features/auth/signup/presentation/sign_up_screen.dart';
+import 'package:lsebert/features/auth/presentatiom/forgot_password/forgot_pass_screen.dart';
+import 'package:lsebert/features/auth/presentatiom/forgot_password/otp_success_screen.dart';
+import 'package:lsebert/features/auth/presentatiom/forgot_password/otp_verify_screen.dart';
+import 'package:lsebert/features/auth/presentatiom/forgot_password/reset_pass_screen.dart';
+import 'package:lsebert/features/auth/presentatiom/login/login_screen.dart';
+import 'package:lsebert/features/auth/presentatiom/sign_up/sign_up_screen.dart';
 import 'package:lsebert/features/dashboard/presentation/dashboard_screen.dart';
 import 'package:lsebert/features/intro/onboarding_screen.dart';
 import 'package:lsebert/features/intro/role_screen.dart';
@@ -27,6 +27,8 @@ import 'package:lsebert/features_pro/pro_message/presentation/pro_message_screen
 import 'package:lsebert/features_pro/pro_navigation_screen.dart';
 import 'package:lsebert/features_pro/pro_subscription/presentation/pro_subscription_screen.dart';
 import 'package:lsebert/features_pro/view_profile/view_profile.dart';
+import 'package:lsebert/loading_screen.dart';
+
 
 final class Routes {
   static final Routes _routes = Routes._internal();
@@ -47,6 +49,7 @@ final class Routes {
   static const String resetPass = '/resetPass';
   static const String otpSuccess = '/otpSuccess';
   static const String question = '/questionScreen';
+  static const String loading = '/loading_screen';
   static const String personalDetailsEdit = '/personalDetailsEdit';
   static const String bioEdit = '/bioEdit';
   static const String otherDetailsEdit = '/otherDetailsEdit';
@@ -64,6 +67,8 @@ final class Routes {
   static const String proProfile = '/proProfile';
   static const String viewProfile = '/viewProfile';
 }
+   static const String changePass = '/changePass';
+
 
 final class RouteGenerator {
   static final RouteGenerator _routeGenerator = RouteGenerator._internal();
@@ -154,6 +159,12 @@ final class RouteGenerator {
                 settings: settings)
             : CupertinoPageRoute(
                 builder: (context) => const OtpSuccessScreen());
+      case Routes.loading:
+        return Platform.isAndroid
+            ? _FadedTransitionRoute(
+                widget: const ScreenTitle(widget: Loading()),
+                settings: settings)
+            : CupertinoPageRoute(builder: (context) => const Loading());
       case Routes.question:
         return Platform.isAndroid
             ? _FadedTransitionRoute(

@@ -22,11 +22,13 @@ class DefaultResponse {
         message: message ?? this.message,
       );
 
-  factory DefaultResponse.fromRawJson(String str) => DefaultResponse.fromJson(json.decode(str));
+  factory DefaultResponse.fromRawJson(String str) =>
+      DefaultResponse.fromJson(json.decode(str));
 
   String toRawJson() => json.encode(toJson());
 
-  factory DefaultResponse.fromJson(Map<String, dynamic> json) => DefaultResponse(
+  factory DefaultResponse.fromJson(Map<String, dynamic> json) =>
+      DefaultResponse(
         success: json["success"],
         code: json["code"],
         message: json["message"],

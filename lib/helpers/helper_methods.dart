@@ -12,19 +12,20 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:http/http.dart' as http;
 import 'package:internet_connection_checker/internet_connection_checker.dart';
+import '../constants/app_constants.dart';
 import '/helpers/toast.dart';
 import '../common_widgets/custom_button.dart';
 import '../gen/colors.gen.dart';
+import 'di.dart';
 
 //final appData = locator.get<GetStorage>();
 // final plcaeMarkAddress = locator.get<PlcaeMarkAddress>();
 //declared for cart scrren calling bottom shit with this from reorder rx
 final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
-final GlobalKey<PopupMenuButtonState<String>> popUpGlobalkey = GlobalKey<PopupMenuButtonState<String>>();
+final GlobalKey<PopupMenuButtonState<String>> popUpGlobalkey =
+    GlobalKey<PopupMenuButtonState<String>>();
 
 enum StatusType { order, delivery }
-
-
 
 Future<String?> networkImageToBase64(String imageUrl) async {
   http.Response response = await http.get(Uri.parse(imageUrl));
@@ -35,8 +36,8 @@ Future<String?> networkImageToBase64(String imageUrl) async {
 }
 
 Future<void> setInitValue() async {
-  // await appData.writeIfNull(kKeyIsLoggedIn, false);
-  // await appData.writeIfNull(kKeyIsExploring, false);
+  await appData.writeIfNull(kKeyIsLoggedIn, false);
+
   // appData.writeIfNull(kKeyLanguage, kKeyPortuguese);
   // appData.writeIfNull(kKeyCountryCode, countriesCode[kKeyPortuguese]);
   // appData.writeIfNull(kKeySelectedLocation, false);
@@ -50,17 +51,14 @@ Future<void> setInitValue() async {
   var deviceInfo = DeviceInfoPlugin();
   if (Platform.isIOS) {
     var iosDeviceInfo = await deviceInfo.iosInfo;
-   // appData.writeIfNull(kKeyDeviceID, iosDeviceInfo.identifierForVendor); // unique ID on iOS
+    // appData.writeIfNull(kKeyDeviceID, iosDeviceInfo.identifierForVendor); // unique ID on iOS
   } else if (Platform.isAndroid) {
-    var androidDeviceInfo = await deviceInfo.androidInfo; // unique ID on Android
+    var androidDeviceInfo =
+        await deviceInfo.androidInfo; // unique ID on Android
     //appData.writeIfNull(kKeyDeviceID, androidDeviceInfo.id);
   }
   await Future.delayed(const Duration(seconds: 2));
 }
-
-
-
-
 
 // Future<void> getAddressFromPosition(LatLng latLng, BuildContext context) async {
 //   List<Placemark> addresses = await placemarkFromCoordinates(latLng.latitude, latLng.longitude);
@@ -80,7 +78,8 @@ Future<void> setInitValue() async {
 
 Future<void> initiInternetChecker() async {
   InternetConnectionChecker.createInstance(
-          checkTimeout: const Duration(seconds: 1), checkInterval: const Duration(seconds: 2))
+          checkTimeout: const Duration(seconds: 1),
+          checkInterval: const Duration(seconds: 2))
       .onStatusChange
       .listen((status) {
     switch (status) {
@@ -185,10 +184,10 @@ void showMaterialDialog(
   showDialog<bool>(
       context: context,
       builder: (context) => AlertDialog(
-            title:const Text(
+            title: const Text(
               "Do you want to exit the app?",
               textAlign: TextAlign.center,
-             // style: TextFontStyle.headline14StyleMontserrat,
+              // style: TextFontStyle.headline14StyleMontserrat,
             ),
             actions: <Widget>[
               customeButton(
@@ -201,7 +200,9 @@ void showMaterialDialog(
                   borderRadius: 30.r,
                   color: AppColors.allPrimaryColor,
                   textStyle: GoogleFonts.montserrat(
-                      fontSize: 17.sp, color: AppColors.allPrimaryColor, fontWeight: FontWeight.w700),
+                      fontSize: 17.sp,
+                      color: AppColors.allPrimaryColor,
+                      fontWeight: FontWeight.w700),
                   context: context),
               customeButton(
                   name: "Yes".tr,
@@ -216,7 +217,10 @@ void showMaterialDialog(
                   minWidth: .3.sw,
                   borderRadius: 30.r,
                   color: AppColors.allPrimaryColor,
-                  textStyle: GoogleFonts.montserrat(fontSize: 17.sp, color: Colors.white, fontWeight: FontWeight.w700),
+                  textStyle: GoogleFonts.montserrat(
+                      fontSize: 17.sp,
+                      color: Colors.white,
+                      fontWeight: FontWeight.w700),
                   context: context),
             ],
           ));
