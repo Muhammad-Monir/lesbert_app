@@ -13,6 +13,7 @@ import 'helpers/di.dart';
 import 'helpers/helper_methods.dart';
 import 'helpers/navigation_service.dart';
 import 'helpers/register_provider.dart';
+import 'loading_screen.dart';
 import 'navigation_screen.dart';
 import 'networks/dio/dio.dart';
 

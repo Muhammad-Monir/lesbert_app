@@ -1,3 +1,6 @@
+import 'dart:developer';
+
+import 'package:dio/dio.dart';
 import 'package:lsebert/helpers/toast.dart';
 import 'package:lsebert/networks/dio/dio.dart';
 import 'package:rxdart/rxdart.dart';
@@ -62,9 +65,12 @@ final class PostSignUpRX extends RxResponseInt {
 
   @override
   handleErrorWithReturn(error) {
-    dataFetcher.sink.addError(error);
-    message = error["message"];
+    log(error.runtimeType.toString());
+    DioException exception = error as DioException;
+    log(exception.message.toString());
+    message = exception.response!.data["message"];
     ToastUtil.showLongToast(message);
+    dataFetcher.sink.addError(error);
     return false;
   }
 }

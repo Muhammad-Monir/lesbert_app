@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:lsebert/features/intro/splash_screen.dart';
+import 'package:lsebert/features/question/presentation/question_screen.dart';
 import 'constants/app_constants.dart';
 import 'features/auth/presentatiom/login/login_screen.dart';
 import 'helpers/app_version_updater.dart';
 import 'helpers/di.dart';
 import 'helpers/helper_methods.dart';
 import 'navigation_screen.dart';
+import 'networks/api_acess.dart';
 import 'networks/dio/dio.dart';
 import 'welcome_screen.dart';
 
@@ -26,7 +28,7 @@ class _LoadingState extends State<Loading> {
   }
 
   loadInitialData() async {
-    AutoAppUpdateUtil.instance.checkAppUpdate();
+    //AutoAppUpdateUtil.instance.checkAppUpdate();
     await setInitValue();
     // await getAllShopCategoryRXObj.fetchAllShopCategoryData();
     // await getAllShopRXObj.fetchAllShopData();
@@ -36,6 +38,7 @@ class _LoadingState extends State<Loading> {
     if (appData.read(kKeyIsLoggedIn)) {
       String token = appData.read(kKeyAccessToken);
       DioSingleton.instance.update(token);
+      await getQuestionRx.fetchQuestionData();
     }
     setState(() {
       _isLoading = false;
@@ -48,7 +51,7 @@ class _LoadingState extends State<Loading> {
       return const WelcomeScreen();
     } else {
       return appData.read(kKeyIsLoggedIn)
-          ? const NavigationScreen()
+          ? const QuestionScreen()
           : const LoginScreen();
     }
   }

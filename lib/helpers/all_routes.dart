@@ -29,7 +29,6 @@ import 'package:lsebert/features_pro/pro_subscription/presentation/pro_subscript
 import 'package:lsebert/features_pro/view_profile/view_profile.dart';
 import 'package:lsebert/loading_screen.dart';
 
-
 final class Routes {
   static final Routes _routes = Routes._internal();
   Routes._internal();
@@ -57,6 +56,7 @@ final class Routes {
   static const String changePass = '/changePass';
   static const String notification = '/notification';
   static const String paymentHistory = '/paymentHistory';
+
   //========<>======<>=======<>=======<>=======<>=========
   //===============<><><>==============<><><><>===============
   // Pro Section
@@ -67,8 +67,6 @@ final class Routes {
   static const String proProfile = '/proProfile';
   static const String viewProfile = '/viewProfile';
 }
-   static const String changePass = '/changePass';
-
 
 final class RouteGenerator {
   static final RouteGenerator _routeGenerator = RouteGenerator._internal();
@@ -147,11 +145,16 @@ final class RouteGenerator {
                 settings: settings)
             : CupertinoPageRoute(builder: (context) => const OtpVerifyScreen());
       case Routes.resetPass:
+        final args = settings.arguments as Map;
         return Platform.isAndroid
             ? _FadedTransitionRoute(
-                widget: const ScreenTitle(widget: ResetPassScreen()),
+                widget: ScreenTitle(
+                    widget: ResetPassScreen(
+                  otp: args["otp"],
+                )),
                 settings: settings)
-            : CupertinoPageRoute(builder: (context) => const ResetPassScreen());
+            : CupertinoPageRoute(
+                builder: (context) => ResetPassScreen(otp: args["otp"]));
       case Routes.otpSuccess:
         return Platform.isAndroid
             ? _FadedTransitionRoute(

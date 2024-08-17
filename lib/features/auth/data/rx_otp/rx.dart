@@ -15,11 +15,10 @@ final class VerifyOtpRX extends RxResponseInt {
   String message = "Otp verification not successful.".tr;
   Future<bool> verifyOtp({
     required String code,
+    required String email,
   }) async {
     try {
-      Map data = await api.verifyOtp(
-        code: code,
-      );
+      Map data = await api.verifyOtp(code: code, email: email);
       return handleSuccessWithReturn(data);
     } catch (error) {
       return handleErrorWithReturn(error);

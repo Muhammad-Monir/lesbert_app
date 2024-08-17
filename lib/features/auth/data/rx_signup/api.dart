@@ -1,9 +1,11 @@
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:dio/dio.dart';
 
 import '../../../../../networks/dio/dio.dart';
 import '../../../../networks/exception_handler/data_source.dart';
+import '../../model/signup_response.dart';
 import '/networks/endpoints.dart';
 
 final class SignUpApi {
@@ -37,8 +39,8 @@ final class SignUpApi {
         // throw DataSource.DEFAULT.getFailure();
       }
     } catch (error) {
-      // Handle generic errors
-      throw ErrorHandler.handle(error).failure;
+      // SignUpResponse _signUpRes = SignUpResponse.fromJson(error);
+      rethrow;
     }
   }
 }

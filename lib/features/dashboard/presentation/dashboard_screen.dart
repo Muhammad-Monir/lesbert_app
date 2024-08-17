@@ -10,6 +10,11 @@ import 'package:lsebert/gen/assets.gen.dart';
 import 'package:lsebert/gen/colors.gen.dart';
 import 'package:lsebert/helpers/ui_helpers.dart';
 import 'package:provider/provider.dart';
+import '../../../common_widgets/delete_dilouge_widget.dart';
+import '../../../helpers/all_routes.dart';
+import '../../../helpers/navigation_service.dart';
+import '../../../networks/api_acess.dart';
+import '../../../networks/stream_cleaner.dart';
 import '../../../provider/image_picker_provider.dart';
 import 'widget/dashboard_card.dart';
 import 'widget/dotted_container.dart';
@@ -222,7 +227,16 @@ class _DashboardScreenState extends State<DashboardScreen> {
             ],
           ),
         ),
-        drawer: CustomDrawer(),
+        drawer: CustomDrawer(
+          onTapLogout: () {
+            deleteButtonDialouge(context, "You are about to Logout!", () {
+              //  getDeleteTokenRXObj.deleteTokenData();
+              getLogOutRXObj.fetchLogoutData();
+              totalDataClean();
+              NavigationService.navigateToReplacement(Routes.login);
+            });
+          },
+        ),
       ),
     );
   }

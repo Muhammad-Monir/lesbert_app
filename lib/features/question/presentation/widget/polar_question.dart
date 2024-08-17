@@ -5,8 +5,9 @@ import '../../../../constants/text_font_style.dart';
 import '../../../../gen/colors.gen.dart';
 import '../../../../helpers/ui_helpers.dart';
 
-class Step1Content extends StatelessWidget {
-  const Step1Content({super.key});
+class PolarQuestion extends StatelessWidget {
+  final String question;
+  const PolarQuestion({super.key, required this.question});
 
   @override
   Widget build(BuildContext context) {
@@ -15,14 +16,10 @@ class Step1Content extends StatelessWidget {
       children: [
         UIHelper.verticalSpace(27.h),
         Text(
-          "Do you have experience working in the trade industry or similar fields as indicated?",
+          question,
           style: TextFontStyle.headline20w400C141414StyleInter,
         ),
         UIHelper.verticalSpace(35.h),
-        Text(
-          "It is okay if you don’t; we just want to know your experience level for your match",
-          style: TextFontStyle.headline20w400C141414StyleInter,
-        ),
         UIHelper.verticalSpace(65.h),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
