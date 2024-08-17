@@ -3,10 +3,12 @@ import 'dart:ui';
 final class AppRegExpText {
   AppRegExpText._();
 // Regular Expression
-  static String kRegExpEmail = r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+";
+  static String kRegExpEmail =
+      r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+";
   static String kRegExpPhone =
       // ignore: prefer_adjacent_string_concatenation
-      "(\\+[0-9]+[\\- \\.]*)?(\\([0-9]+\\)[\\- \\.]*)?" + "([0-9][0-9\\- \\.]+[0-9])";
+      "(\\+[0-9]+[\\- \\.]*)?(\\([0-9]+\\)[\\- \\.]*)?" +
+          "([0-9][0-9\\- \\.]+[0-9])";
 
   static String patternMail =
       r"^(([^<>()[\]\\.,;:\s@\']+(\.[^<>()[\]\\.,;:\s@\']+)*)|(\'.+\'))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$";
@@ -67,6 +69,7 @@ const String kKeyMessage = 'message';
 const String kKeyData = 'data';
 const String kKeyCode = 'code';
 const String kKeyIsLoggedIn = 'is_logged_in';
+const String kKeyUserType = 'user_type';
 const String kKeyAccessToken = 'access_token';
 const String kPhone = 'phone_number';
 const String kKeySelectedLocation = 'selected_location';
