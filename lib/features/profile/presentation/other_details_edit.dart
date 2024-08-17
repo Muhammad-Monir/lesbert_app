@@ -40,6 +40,7 @@ class _OtherDetailsEditScreenState extends State<OtherDetailsEditScreen> {
           style: TextFontStyle.headline20w600C141414StyleInter,
         ),
       ),
+     
       body: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.all(25.sp),
@@ -59,7 +60,7 @@ class _OtherDetailsEditScreenState extends State<OtherDetailsEditScreen> {
               ),
               UIHelper.verticalSpace(12.h),
               Text(
-                ' Language Proficiency',
+                'Language Proficiency',
                 style: TextFontStyle.headline14w600C141414StyleInter,
               ),
               UIHelper.verticalSpace(4.h),

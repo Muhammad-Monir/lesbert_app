@@ -30,7 +30,7 @@ class ExperianceDataWidget extends StatelessWidget {
         color: AppColors.cffffff,
       ),
       child: Padding(
-        padding:  EdgeInsets.all(24.sp),
+        padding: EdgeInsets.all(24.sp),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

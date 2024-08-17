@@ -10,6 +10,8 @@ import 'package:lsebert/gen/assets.gen.dart';
 import 'package:lsebert/gen/colors.gen.dart';
 import 'package:lsebert/helpers/ui_helpers.dart';
 import 'package:provider/provider.dart';
+import '../../../helpers/all_routes.dart';
+import '../../../helpers/navigation_service.dart';
 import '../../../provider/image_picker_provider.dart';
 import 'widget/dashboard_card.dart';
 import 'widget/dotted_container.dart';
@@ -222,7 +224,16 @@ class _DashboardScreenState extends State<DashboardScreen> {
             ],
           ),
         ),
-        drawer: CustomDrawer(),
+        drawer: CustomDrawer(
+          onTapNotification: () {
+            _scaffoldKey.currentState!.closeDrawer();
+            NavigationService.navigateTo(Routes.notification);
+          },
+          onTapPaymnetHistory: () {
+            NavigationService.navigateTo(Routes.paymentHistory);
+            _scaffoldKey.currentState!.closeDrawer();
+          },
+        ),
       ),
     );
   }

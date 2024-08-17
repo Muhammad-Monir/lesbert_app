@@ -98,6 +98,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   ),
                 ),
               ),
+             
               UIHelper.verticalSpace(40.h),
               CustomTextFormField(
                 controller: _fullNameController,
