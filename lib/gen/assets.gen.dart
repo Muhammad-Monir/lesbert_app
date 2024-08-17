@@ -109,6 +109,10 @@ class $AssetsIconsGen {
   AssetGenImage get totalConnect =>
       const AssetGenImage('assets/icons/totalConnect.png');
 
+  /// File path: assets/icons/white_menu_icon.png
+  AssetGenImage get whiteMenuIcon =>
+      const AssetGenImage('assets/icons/white_menu_icon.png');
+
   /// List of all assets
   List<dynamic> get values => [
         boostIcon,
@@ -135,7 +139,8 @@ class $AssetsIconsGen {
         sendMessageIcon,
         subscriptionIcon,
         tickCircle,
-        totalConnect
+        totalConnect,
+        whiteMenuIcon
       ];
 }
 

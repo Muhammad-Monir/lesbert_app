@@ -12,11 +12,16 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:http/http.dart' as http;
 import 'package:internet_connection_checker/internet_connection_checker.dart';
+import '../common_widgets/auth_button.dart';
 import '../constants/app_constants.dart';
+import '../constants/text_font_style.dart';
+import '../gen/assets.gen.dart';
 import '/helpers/toast.dart';
 import '../common_widgets/custom_button.dart';
 import '../gen/colors.gen.dart';
 import 'di.dart';
+import 'navigation_service.dart';
+import 'ui_helpers.dart';
 
 //final appData = locator.get<GetStorage>();
 // final plcaeMarkAddress = locator.get<PlcaeMarkAddress>();

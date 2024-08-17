@@ -17,6 +17,7 @@ class ExperiencesDataWidget extends StatelessWidget {
   final String? endDate;
   final String? jobLocation;
   final bool isEdit;
+  final VoidCallback? onTapExperianceEdit;
 
   const ExperiencesDataWidget({
     this.crntCompanyName,
@@ -26,6 +27,7 @@ class ExperiencesDataWidget extends StatelessWidget {
     this.employeeType,
     this.jobLocation,
     this.isEdit = true,
+    this.onTapExperianceEdit,
     super.key,
   });
 
@@ -45,9 +47,7 @@ class ExperiencesDataWidget extends StatelessWidget {
               const Spacer(),
               isEdit == true
                   ? GestureDetector(
-                      onTap: () {
-                        NavigationService.navigateTo(Routes.experianceEdit);
-                      },
+                      onTap:onTapExperianceEdit,
                       child: Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
