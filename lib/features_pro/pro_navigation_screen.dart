@@ -81,7 +81,7 @@ class _ProNavigationScreenState extends State<ProNavigationScreen> {
                 ? screenPage
                 : _screens.elementAt(_currentIndex)),
         bottomNavigationBar: CustomNavigationBar(
-          iconSize: 24.r,
+          iconSize: 24.sp,
           selectedColor: Colors.red,
           strokeColor: AppColors.allPrimaryColor,
           unSelectedColor: Colors.black,
