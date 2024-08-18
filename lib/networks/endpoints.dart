@@ -26,7 +26,11 @@ final class Endpoints {
 //in use
   static String signUp() => "/api/register";
   static String logIn() => "/api/login";
-  static String verifyCode(String otp) => "/api/verify-otp/$otp";
+  static String verifyOtpCode() => "/api/verify-otp-password";
+  static String forgotPassword() => "/api/forget-password";
+  static String resendOtp() => "/api/resend-otp";
+  static String logout() => "/api/logout";
+  static String questions() => "/api/pro-questions";
 
   //backend_url
   static String appCategories() => "/api/product-categories";
@@ -37,7 +41,6 @@ final class Endpoints {
       "/api/shops?lat=$lat&lng=$lng";
   static String searchShops() => "/api/filter-shops";
 
-  static String logout() => "/api/logout";
   static String socialLogin() => "/api/social-login";
 
   static String allShopSubCategories() => "/api/shop-sub-categories";
@@ -64,7 +67,7 @@ final class Endpoints {
   static String addMultipleAddon() => "/api/cart-addons-multiple";
   static String paymentMethods() => "/api/payment-methods";
   static String timeSlots(String slug) => "/api/shops/$slug/time-slots";
-  static String forgotPassword() => "/api/forgot-password";
+
   static String resetPassword() => "/api/reset-password";
   static String changePassword() => "/api/change-password";
   static String sliders() => "/api/sliders";

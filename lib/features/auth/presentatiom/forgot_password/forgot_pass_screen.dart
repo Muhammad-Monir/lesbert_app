@@ -1,5 +1,9 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:lsebert/helpers/loading_helper.dart';
+import 'package:provider/provider.dart';
 
 import '../../../../common_widgets/auth_button.dart';
 import '../../../../common_widgets/custom_appbar.dart';
@@ -9,7 +13,11 @@ import '../../../../gen/assets.gen.dart';
 import '../../../../gen/colors.gen.dart';
 import '../../../../helpers/all_routes.dart';
 import '../../../../helpers/navigation_service.dart';
+import '../../../../helpers/toast.dart';
 import '../../../../helpers/ui_helpers.dart';
+import '../../../../networks/api_acess.dart';
+import '../../../../networks/exception_handler/error_response.dart';
+import '../../../../provider/email_provider.dart';
 
 class ForgotPassScreen extends StatefulWidget {
   const ForgotPassScreen({super.key});
@@ -20,8 +28,11 @@ class ForgotPassScreen extends StatefulWidget {
 
 class _ForgotPassScreenState extends State<ForgotPassScreen> {
   final _emailController = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
+    EmailProvider emailProvider =
+        Provider.of<EmailProvider>(context, listen: false);
     return Scaffold(
       appBar: const CustomAppBar(
         showBackButton: true,
@@ -37,12 +48,21 @@ class _ForgotPassScreenState extends State<ForgotPassScreen> {
               style: TextFontStyle.headline24w700C000000StyleInter,
             ),
             UIHelper.verticalSpace(30.h),
-            CustomTextFormField(
-              controller: _emailController,
-              isPrefixIcon: true,
-              iconpath: Assets.icons.emailIcon.path,
-              borderRadius: 10.r,
-              hintText: 'Email Address',
+            Form(
+              key: _formKey,
+              child: CustomTextFormField(
+                controller: _emailController,
+                isPrefixIcon: true,
+                iconpath: Assets.icons.emailIcon.path,
+                borderRadius: 10.r,
+                hintText: 'Email Address',
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Email Can\'t be empty';
+                  }
+                  return null;
+                },
+              ),
             ),
             UIHelper.verticalSpace(37.h),
             AuthCustomeButton(
@@ -52,8 +72,25 @@ class _ForgotPassScreenState extends State<ForgotPassScreen> {
               height: 50.h,
               minWidth: double.infinity,
               name: 'Submit',
-              onCallBack: () {
-                NavigationService.navigateTo(Routes.otpVerify);
+              onCallBack: () async {
+                try {
+                  if (_formKey.currentState!.validate()) {
+                    await postForgetEmailRXObj
+                        .postForgetEmail(email: _emailController.text)
+                        .waitingForFutureWithoutBg()
+                        .then(
+                      (value) {
+                        if (value) {
+                          NavigationService.navigateTo(Routes.otpVerify);
+                          emailProvider.changeemail(_emailController.text);
+                        }
+                      },
+                    );
+                  }
+                } catch (error) {
+                  log(error.toString());
+                  ToastUtil.showShortToast(ResponseMessage.DEFAULT);
+                }
               },
               textStyle: TextFontStyle.headline16w700CffffffStyleInter,
             ),

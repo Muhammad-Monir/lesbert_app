@@ -2,8 +2,10 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:lsebert/features/auth/presentatiom/forgot_password/reset_pass_screen.dart';
 import 'package:lsebert/helpers/loading_helper.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
+import 'package:provider/provider.dart';
 
 import '../../../../common_widgets/auth_button.dart';
 import '../../../../common_widgets/custom_appbar.dart';
@@ -15,6 +17,8 @@ import '../../../../helpers/toast.dart';
 import '../../../../helpers/ui_helpers.dart';
 import '../../../../networks/api_acess.dart';
 import '../../../../networks/exception_handler/error_response.dart';
+import '../../../../provider/email_provider.dart';
+import 'reset_pass_screen.dart';
 
 class OtpVerifyScreen extends StatefulWidget {
   const OtpVerifyScreen({super.key});
@@ -27,6 +31,8 @@ class _OtpVerifyScreenState extends State<OtpVerifyScreen> {
   final _otpController = TextEditingController();
   @override
   Widget build(BuildContext context) {
+    EmailProvider emailProvider =
+        Provider.of<EmailProvider>(context, listen: false);
     return Scaffold(
       appBar: const CustomAppBar(
         title: 'OTP',
@@ -96,12 +102,20 @@ class _OtpVerifyScreenState extends State<OtpVerifyScreen> {
                   String otpCode = _otpController.text;
 
                   bool success = await verifyOtpRX
-                      .verifyOtp(
-                        code: otpCode,
-                      )
+                      .verifyOtp(code: otpCode, email: emailProvider.email)
                       .waitingForFutureWithoutBg();
                   if (success) {
-                    NavigationService.navigateToReplacement(Routes.login);
+                    //   NavigationService.navigateToReplacement(Routes.login);
+                    NavigationService.navigateToWithArgs(
+                      Routes.resetPass,
+                      {"otp": otpCode},
+                    );
+                  } else {
+                    //remove it
+                    NavigationService.navigateToWithArgs(
+                      Routes.resetPass,
+                      {"otp": otpCode},
+                    );
                   }
                 } catch (error) {
                   log(error.toString());
@@ -122,7 +136,22 @@ class _OtpVerifyScreenState extends State<OtpVerifyScreen> {
             UIHelper.verticalSpace(6.h),
             Center(
               child: GestureDetector(
-                onTap: () {},
+                onTap: () async {
+                  try {
+                    bool success = await resendOtpRxObj
+                        .resendOtp(email: emailProvider.email)
+                        .waitingForFutureWithoutBg();
+                    if (success) {
+                      ToastUtil.showShortToast("Otp Sent");
+                    } else {
+                      ToastUtil.showShortToast("Otp Sent Failed");
+                    }
+                  } catch (error) {
+                    ToastUtil.showShortToast("Otp Sent Failed");
+                    log(error.toString());
+                    ToastUtil.showShortToast(ResponseMessage.DEFAULT);
+                  }
+                },
                 child: Text(
                   'Resend code',
                   style: TextFontStyle.headline16w700CffffffStyleInter

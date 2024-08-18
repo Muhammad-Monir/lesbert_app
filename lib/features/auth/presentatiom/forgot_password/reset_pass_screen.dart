@@ -1,6 +1,9 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lsebert/common_widgets/custom_appbar.dart';
+import 'package:provider/provider.dart';
 
 import '../../../../common_widgets/auth_button.dart';
 import '../../../../common_widgets/custom_text_feild.dart';
@@ -10,9 +13,12 @@ import '../../../../gen/colors.gen.dart';
 import '../../../../helpers/all_routes.dart';
 import '../../../../helpers/navigation_service.dart';
 import '../../../../helpers/ui_helpers.dart';
+import '../../../../networks/api_acess.dart';
+import '../../../../provider/email_provider.dart';
 
 class ResetPassScreen extends StatefulWidget {
-  const ResetPassScreen({super.key});
+  final String otp;
+  const ResetPassScreen({super.key, required this.otp});
 
   @override
   State<ResetPassScreen> createState() => _ResetPassScreenState();
@@ -23,8 +29,11 @@ class _ResetPassScreenState extends State<ResetPassScreen> {
   final _conPassController = TextEditingController();
   bool _pass = false;
   bool _confPass = false;
+
   @override
   Widget build(BuildContext context) {
+    EmailProvider emailProvider =
+        Provider.of<EmailProvider>(context, listen: false);
     return Scaffold(
       appBar: const CustomAppBar(title: 'Reset Password'),
       body: Padding(
@@ -76,7 +85,9 @@ class _ResetPassScreenState extends State<ResetPassScreen> {
               height: 50.h,
               minWidth: double.infinity,
               name: 'Save & Continue',
-              onCallBack: () {
+              onCallBack: () async {
+                postForgertPwRXObj.postForgetPasswordData(emailProvider.email,
+                    _passController.text, _conPassController.text, widget.otp);
                 NavigationService.navigateToReplacement(Routes.otpSuccess);
               },
               textStyle: TextFontStyle.headline16w700CffffffStyleInter,

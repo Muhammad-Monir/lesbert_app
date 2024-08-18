@@ -4,16 +4,18 @@ import '../../../../common_widgets/custom_checkbox.dart';
 import '../../../../constants/text_font_style.dart';
 import '../../../../helpers/ui_helpers.dart';
 
-class Step4Content extends StatelessWidget {
+class CheckBoxQuestion extends StatelessWidget {
   final List<String> title;
   final List<bool> isCheckedList;
   final ValueChanged<String?>? onChanged;
+  final String question;
 
-  const Step4Content({
+  const CheckBoxQuestion({
     super.key,
     required this.title,
     required this.isCheckedList,
     required this.onChanged,
+    required this.question,
   });
 
   @override
@@ -23,7 +25,7 @@ class Step4Content extends StatelessWidget {
       children: [
         UIHelper.verticalSpace(34.h),
         Text(
-          "Are you proficient in using online software and comfortable uploading/downloading and communicating through our Trade Pros Portal?",
+          question,
           style: TextFontStyle.headline20w400C141414StyleInter,
         ),
         UIHelper.verticalSpace(37.h),

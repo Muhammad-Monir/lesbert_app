@@ -1,0 +1,86 @@
+import 'dart:developer';
+
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import '../../../../constants/text_font_style.dart';
+import '../../../../gen/colors.gen.dart';
+import '../../../../helpers/ui_helpers.dart';
+import 'custom_radio_button.dart';
+
+class RadioQuestion extends StatefulWidget {
+  const RadioQuestion({
+    super.key,
+    required this.items1,
+    required this.selectValue1,
+    required this.question,
+  });
+
+  final List<String> items1;
+  final int selectValue1;
+  final String question;
+
+  @override
+  State<RadioQuestion> createState() => _RadioQuestionState();
+}
+
+class _RadioQuestionState extends State<RadioQuestion> {
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        UIHelper.verticalSpace(37.w),
+        Text(
+          widget.question,
+          style: TextFontStyle.headline18w500C848484StyleInter
+              .copyWith(color: AppColors.c141414),
+        ),
+        UIHelper.verticalSpace(27.h),
+        ListView.builder(
+          physics: const NeverScrollableScrollPhysics(),
+          shrinkWrap: true,
+          itemCount: widget.items1.length,
+          itemBuilder: (context, index) {
+            return CustomRadio(
+              value: index,
+              groupValue: widget.selectValue1,
+              onChanged: (value) {
+                setState(() {
+                  //  selectValue1 = value!;
+                  log('Selected value 1: $value');
+                });
+              },
+              label: widget.items1[index],
+            );
+          },
+        ),
+        UIHelper.verticalSpace(52.w),
+        // Text(
+        //   'What are your fees for professional services for this Trade?',
+        //   style: TextFontStyle.headline18w500C848484StyleInter
+        //       .copyWith(color: AppColors.c141414),
+        // ),
+        // UIHelper.verticalSpace(27.w),
+        // ListView.builder(
+        //   physics: const NeverScrollableScrollPhysics(),
+        //   shrinkWrap: true,
+        //   itemCount: items2.length,
+        //   itemBuilder: (context, index) {
+        //     return CustomRadio(
+        //       value: index,
+        //       groupValue: selectValue2,
+        //       onChanged: (value) {
+        //         setState(() {
+        //           selectValue2 = value!;
+        //           log('Selected value 2: $value');
+        //         });
+        //       },
+        //       label: items2[index],
+        //     );
+        //   },
+        // ),
+        // UIHelper.verticalSpace(50.h),
+      ],
+    );
+  }
+}

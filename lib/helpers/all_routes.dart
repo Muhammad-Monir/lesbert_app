@@ -60,7 +60,9 @@ final class Routes {
   static const String changePass = '/changePass';
   static const String notification = '/notification';
   static const String paymentHistory = '/paymentHistory';
+
   static const String profileEdit = '/profileEdit';
+
   //========<>======<>=======<>=======<>=======<>=========
   //===============<><><>==============<><><><>===============
   // Pro Section
@@ -152,11 +154,16 @@ final class RouteGenerator {
                 settings: settings)
             : CupertinoPageRoute(builder: (context) => const OtpVerifyScreen());
       case Routes.resetPass:
+        final args = settings.arguments as Map;
         return Platform.isAndroid
             ? _FadedTransitionRoute(
-                widget: const ScreenTitle(widget: ResetPassScreen()),
+                widget: ScreenTitle(
+                    widget: ResetPassScreen(
+                  otp: args["otp"],
+                )),
                 settings: settings)
-            : CupertinoPageRoute(builder: (context) => const ResetPassScreen());
+            : CupertinoPageRoute(
+                builder: (context) => ResetPassScreen(otp: args["otp"]));
       case Routes.otpSuccess:
         return Platform.isAndroid
             ? _FadedTransitionRoute(
