@@ -15,6 +15,7 @@ class BioWidget extends StatelessWidget {
   final String? prepredLocation;
   final String? endDate;
   final bool isEdit;
+  final VoidCallback? onTapBioEdit;
 
   const BioWidget({
     this.bioDescription,
@@ -24,6 +25,7 @@ class BioWidget extends StatelessWidget {
     this.prepredLocation,
     this.endDate,
     this.isEdit = true,
+    this.onTapBioEdit,
     super.key,
   });
 

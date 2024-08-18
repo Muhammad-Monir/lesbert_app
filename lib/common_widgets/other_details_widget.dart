@@ -11,10 +11,12 @@ class OtherDetailsWidget extends StatelessWidget {
   final String? skill;
   final String? language;
   final bool isEdit;
+  final VoidCallback? onTapOtherDetailsEdit;
   const OtherDetailsWidget({
     this.language,
     this.skill,
     this.isEdit = true,
+    this.onTapOtherDetailsEdit,
     super.key,
   });
 
@@ -34,9 +36,7 @@ class OtherDetailsWidget extends StatelessWidget {
               const Spacer(),
               isEdit == true
                   ? GestureDetector(
-                      onTap: () {
-                        NavigationService.navigateTo(Routes.otherDetailsEdit);
-                      },
+                      onTap: onTapOtherDetailsEdit,
                       child: Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [

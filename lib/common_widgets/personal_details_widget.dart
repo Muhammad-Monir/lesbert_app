@@ -12,6 +12,7 @@ class PersonalDetailsWidget extends StatelessWidget {
   final String? gender;
   final String? address;
   final VoidCallback? onTap;
+  final VoidCallback? onTapPersonalDetails;
   const PersonalDetailsWidget({
     this.name,
     this.email,
@@ -20,6 +21,7 @@ class PersonalDetailsWidget extends StatelessWidget {
     this.address,
     this.onTap,
     this.isEdit = true,
+     this.onTapPersonalDetails,
     super.key,
   });
 
@@ -41,7 +43,7 @@ class PersonalDetailsWidget extends StatelessWidget {
                 const Spacer(),
                 isEdit == true
                     ? GestureDetector(
-                        onTap: () {},
+                        onTap: onTapPersonalDetails,
                         child: Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [

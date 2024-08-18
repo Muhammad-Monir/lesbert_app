@@ -12,7 +12,7 @@ import '../../../common_widgets/divider_container.dart';
 import '../../../common_widgets/experiance_data_widget.dart';
 import '../../../common_widgets/other_details_widget.dart';
 import '../../../common_widgets/personal_details_widget.dart';
-import 'widgets/user_name_image_widget.dart';
+import '../../../common_widgets/user_name_image_widget.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -23,7 +23,6 @@ class ProfileScreen extends StatefulWidget {
 
 class _ProfileScreenState extends State<ProfileScreen> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
-
 
   @override
   Widget build(BuildContext context) {
@@ -63,6 +62,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 userImage: Assets.images.userImage.path,
                 userName: 'Andrew Hussy',
                 userSubtitle: 'Professional',
+                onTapProfileEdit: () =>
+                    NavigationService.navigateTo(Routes.profileEdit),
               ),
               const DividerContainer(),
               PersonalDetailsWidget(
@@ -76,7 +77,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 address: 'H#28, R#03, Block#H, City Name, Area, Area Code',
               ),
               const DividerContainer(),
-              const BioWidget(
+              BioWidget(
                 bioDescription:
                     'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tincidunt malesuada ornare. Proin sollicitudin eros mauris, non viverra ante fermentum sed. Aliquam efficitur, augue at condimentum elementum, turpis nisi tincidunt mi, ut finibus mi nibh nec mi. In auctor libero turpis, et placerat velit eleifend eget. Suspendisse congue hendrerit lacus id sodales. Morbi non nunc ipsum. ',
                 lstQualification: 'BSC in Computer Science',
@@ -84,38 +85,34 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 industry: 'IT/ Software',
                 prepredLocation: 'USA',
                 endDate: 'Currently Working Here',
+                onTapBioEdit: () =>
+                    NavigationService.navigateTo(Routes.bioEdit),
               ),
               const DividerContainer(),
-              const OtherDetailsWidget(
+              OtherDetailsWidget(
                 skill: 'Programming, Coding, Playing, Programming, Coding',
                 language: 'Bangla, English, Hindi',
+                onTapOtherDetailsEdit: () =>
+                    NavigationService.navigateTo(Routes.otherDetailsEdit),
               ),
               const DividerContainer(),
-              const ExperiencesDataWidget(
+              ExperiencesDataWidget(
                 crntCompanyName: 'Xbox',
                 designation: 'Abc Category',
                 employeeType: 'Abc Category',
                 endDate: 'Currently Working Here',
                 jobLocation: 'H#28, R#03, Block#H, City Name, Area, Area Code',
                 startDate: '20/10/2024',
+                onTapExperianceEdit: () =>
+                    NavigationService.navigateTo(Routes.experianceEdit),
               ),
               DividerContainer(
                 height: 40.h,
               ),
-            
             ],
           ),
         ),
-        drawer: CustomDrawer(
-          onTapNotification: () {
-            _scaffoldKey.currentState!.closeDrawer();
-            NavigationService.navigateTo(Routes.notification);
-          },
-          onTapPaymentHistory: () {
-            NavigationService.navigateTo(Routes.paymentHistory);
-            _scaffoldKey.currentState!.closeDrawer();
-          },
-        ),
+        drawer: const CustomDrawer(),
       ),
     );
   }

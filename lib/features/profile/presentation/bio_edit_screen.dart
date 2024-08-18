@@ -40,7 +40,7 @@ class _BioEditScreenState extends State<BioEditScreen> {
           ),
         ),
         title: Text(
-          'Edit Personal Details',
+          'Edit Your Bio',
           style: TextFontStyle.headline20w600C141414StyleInter,
         ),
       ),

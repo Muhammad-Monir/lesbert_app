@@ -19,12 +19,16 @@ import 'package:lsebert/features/profile/presentation/change_pass_screen.dart';
 import 'package:lsebert/features/profile/presentation/experiance_edit_screen.dart';
 import 'package:lsebert/features/profile/presentation/other_details_edit.dart';
 import 'package:lsebert/features/profile/presentation/personal_details_edit_screen.dart';
+import 'package:lsebert/features/profile/presentation/profile_edit_screen.dart';
 import 'package:lsebert/features/profile/presentation/profile_screen.dart';
 import 'package:lsebert/features/question/presentation/question_screen.dart';
 import 'package:lsebert/features/subscription/presentation/subscription_screen.dart';
+import 'package:lsebert/features_pro/pro_notification/notification.dart';
 import 'package:lsebert/features_pro/pro_dashboard/presentation/pro_dashboard.dart';
 import 'package:lsebert/features_pro/pro_message/presentation/pro_message_screen.dart';
 import 'package:lsebert/features_pro/pro_navigation_screen.dart';
+import 'package:lsebert/features_pro/pro_paymnet_history/pro_peyment_history_screen.dart';
+import 'package:lsebert/features_pro/pro_profile/presentation/pro_edit_profile.dart';
 import 'package:lsebert/features_pro/pro_subscription/presentation/pro_subscription_screen.dart';
 import 'package:lsebert/features_pro/view_profile/view_profile.dart';
 import 'package:lsebert/loading_screen.dart';
@@ -57,6 +61,8 @@ final class Routes {
   static const String notification = '/notification';
   static const String paymentHistory = '/paymentHistory';
 
+  static const String profileEdit = '/profileEdit';
+
   //========<>======<>=======<>=======<>=======<>=========
   //===============<><><>==============<><><><>===============
   // Pro Section
@@ -66,6 +72,9 @@ final class Routes {
   static const String proMessage = '/proMessage';
   static const String proProfile = '/proProfile';
   static const String viewProfile = '/viewProfile';
+  static const String proNotification = '/proNotification';
+  static const String proPaymnetHistory = '/proPaymnetHistory';
+  static const String proEditProfile = '/proEditProfile';
 }
 
 final class RouteGenerator {
@@ -222,6 +231,13 @@ final class RouteGenerator {
                 settings: settings)
             : CupertinoPageRoute(
                 builder: (context) => const PaymentHistoryScreen());
+      case Routes.profileEdit:
+        return Platform.isAndroid
+            ? _FadedTransitionRoute(
+                widget: const ScreenTitle(widget: ProfileEditScreen()),
+                settings: settings)
+            : CupertinoPageRoute(
+                builder: (context) => const ProfileEditScreen());
 
       //========<>======<>=======<>=======<>=======<>=========
       //===============<><><>==============<><><><>===============
@@ -268,6 +284,27 @@ final class RouteGenerator {
                 settings: settings)
             : CupertinoPageRoute(
                 builder: (context) => const ViewProfileScreen());
+      case Routes.proNotification:
+        return Platform.isAndroid
+            ? _FadedTransitionRoute(
+                widget: const ScreenTitle(widget: ProNotificationScreen()),
+                settings: settings)
+            : CupertinoPageRoute(
+                builder: (context) => const ProNotificationScreen());
+      case Routes.proPaymnetHistory:
+        return Platform.isAndroid
+            ? _FadedTransitionRoute(
+                widget: const ScreenTitle(widget: ProPaymnetHistoryScreen()),
+                settings: settings)
+            : CupertinoPageRoute(
+                builder: (context) => const ProPaymnetHistoryScreen());
+      case Routes.proEditProfile:
+        return Platform.isAndroid
+            ? _FadedTransitionRoute(
+                widget: const ScreenTitle(widget: ProEditProfileScreen()),
+                settings: settings)
+            : CupertinoPageRoute(
+                builder: (context) => const ProEditProfileScreen());
 
       // case Routes.sliderWebViewPage:
       //   final args = settings.arguments as Map;

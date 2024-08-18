@@ -1,21 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../../common_widgets/paymnet_data_widget.dart';
+import '../../constants/text_font_style.dart';
+import '../../gen/colors.gen.dart';
+import '../../helpers/navigation_service.dart';
+import '../../helpers/ui_helpers.dart';
 
-import '../../../common_widgets/paymnet_data_widget.dart';
-import '../../../constants/text_font_style.dart';
-import '../../../gen/assets.gen.dart';
-import '../../../gen/colors.gen.dart';
-import '../../../helpers/navigation_service.dart';
-import '../../../helpers/ui_helpers.dart';
-
-class PaymentHistoryScreen extends StatefulWidget {
-  const PaymentHistoryScreen({super.key});
+class ProPaymnetHistoryScreen extends StatefulWidget {
+  const ProPaymnetHistoryScreen({super.key});
 
   @override
-  State<PaymentHistoryScreen> createState() => _PaymentHistoryScreenState();
+  State<ProPaymnetHistoryScreen> createState() =>
+      _ProPaymnetHistoryScreenState();
 }
 
-class _PaymentHistoryScreenState extends State<PaymentHistoryScreen> {
+class _ProPaymnetHistoryScreenState extends State<ProPaymnetHistoryScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -65,7 +64,5 @@ class _PaymentHistoryScreenState extends State<PaymentHistoryScreen> {
             ),
           ),
         ));
-  
   }
 }
-

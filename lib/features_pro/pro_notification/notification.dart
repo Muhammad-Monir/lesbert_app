@@ -1,19 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../../constants/text_font_style.dart';
-import '../../../gen/colors.gen.dart';
-import '../../../helpers/navigation_service.dart';
-import '../../../helpers/ui_helpers.dart';
-import '../../../common_widgets/notification_widget.dart';
 
-class NotificationScreen extends StatefulWidget {
-  const NotificationScreen({super.key});
+import '../../common_widgets/notification_widget.dart';
+import '../../constants/text_font_style.dart';
+import '../../gen/colors.gen.dart';
+import '../../helpers/navigation_service.dart';
+import '../../helpers/ui_helpers.dart';
+
+class ProNotificationScreen extends StatefulWidget {
+  const ProNotificationScreen({super.key});
 
   @override
-  State<NotificationScreen> createState() => _NotificationScreenState();
+  State<ProNotificationScreen> createState() => _ProNotificationScreenState();
 }
 
-class _NotificationScreenState extends State<NotificationScreen> {
+class _ProNotificationScreenState extends State<ProNotificationScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,6 +36,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
           style: TextFontStyle.headline20w600C141414StyleInter,
         ),
       ),
+      
       body: ListView.separated(
         separatorBuilder: (context, index) => UIHelper.customDivider(),
         itemCount: 10,
@@ -49,7 +51,5 @@ class _NotificationScreenState extends State<NotificationScreen> {
         },
       ),
     );
-  
   }
 }
-
