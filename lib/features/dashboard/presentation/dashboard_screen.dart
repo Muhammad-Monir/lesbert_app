@@ -233,7 +233,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
           ),
         ),
         drawer: CustomDrawer(
-
           onTapLogout: () {
             deleteButtonDialouge(context, "You are about to Logout!", () {
               //  getDeleteTokenRXObj.deleteTokenData();
@@ -242,14 +241,15 @@ class _DashboardScreenState extends State<DashboardScreen> {
               NavigationService.navigateToReplacement(Routes.login);
             });
 
-          onTapNotification: () {
-            _scaffoldKey.currentState!.closeDrawer();
-            NavigationService.navigateTo(Routes.notification);
-          },
-          onTapPaymnetHistory: () {
-            NavigationService.navigateTo(Routes.paymentHistory);
-            _scaffoldKey.currentState!.closeDrawer();
-
+            () {
+              _scaffoldKey.currentState!.closeDrawer();
+              NavigationService.navigateTo(Routes.notification);
+            };
+            onTapPaymnetHistory:
+            () {
+              NavigationService.navigateTo(Routes.paymentHistory);
+              _scaffoldKey.currentState!.closeDrawer();
+            };
           },
         ),
       ),

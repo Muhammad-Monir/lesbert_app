@@ -8,6 +8,7 @@ import '../features/auth/data/rx_login/rx.dart';
 import '../features/auth/data/rx_resendotp/rx.dart';
 import '../features/auth/data/rx_signup/rx.dart';
 import '../features/auth/model/login_response.dart';
+import '../features/intro/role/data/rx.dart';
 import '../features/question/data/rx_get_questions/rx.dart';
 
 GetLoginRX getLoginRXObj = GetLoginRX(
@@ -26,3 +27,5 @@ PostForgertPwRX postForgertPwRXObj =
     PostForgertPwRX(empty: {}, dataFetcher: BehaviorSubject<Map>());
 ResendOtpRx resendOtpRxObj =
     ResendOtpRx(empty: {}, dataFetcher: BehaviorSubject<Map>());
+GetOccupationQuestionRx getOccupationQuestionRXObj =
+    GetOccupationQuestionRx(empty: {}, dataFetcher: BehaviorSubject<Map>());

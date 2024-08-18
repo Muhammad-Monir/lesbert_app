@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/gestures.dart';
@@ -20,7 +21,9 @@ import '../../../../helpers/ui_helpers.dart';
 import '../../../../networks/api_acess.dart';
 
 class SignUpScreen extends StatefulWidget {
-  const SignUpScreen({super.key});
+  final String? trade;
+  final String? tradeQuestion;
+  const SignUpScreen({super.key, required this.trade, this.tradeQuestion});
 
   @override
   State<SignUpScreen> createState() => _SignUpScreenState();
@@ -66,39 +69,39 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 'Log in to continue.',
                 style: TextFontStyle.headline16w400C848484StyleInter,
               ),
-              UIHelper.verticalSpace(23.h),
-              DottedBorder(
-                color: AppColors.c3B5998,
-                borderType: BorderType.Circle,
-                dashPattern: const [2, 0, 4],
-                child: CircleAvatar(
-                  radius: 50.r,
-                  backgroundColor: AppColors.cF4F5F7,
-                  child: ValueListenableBuilder<XFile?>(
-                    valueListenable: _imageFileNotifier,
-                    builder: (context, imageFile, child) {
-                      if (imageFile != null) {
-                        return ClipOval(
-                          child: Image.file(
-                            File(imageFile.path),
-                            fit: BoxFit.cover,
-                            height: 100.h,
-                          ),
-                        );
-                      } else {
-                        return Padding(
-                          padding: EdgeInsets.all(26.sp),
-                          child: Image.asset(
-                            Assets.icons.cameraIcon.path,
-                            width: 40.w,
-                          ),
-                        );
-                      }
-                    },
-                  ),
-                ),
-              ),
-             
+              // UIHelper.verticalSpace(23.h),
+              // DottedBorder(
+              //   color: AppColors.c3B5998,
+              //   borderType: BorderType.Circle,
+              //   dashPattern: const [2, 0, 4],
+              //   child: CircleAvatar(
+              //     radius: 50.r,
+              //     backgroundColor: AppColors.cF4F5F7,
+              //     child: ValueListenableBuilder<XFile?>(
+              //       valueListenable: _imageFileNotifier,
+              //       builder: (context, imageFile, child) {
+              //         if (imageFile != null) {
+              //           return ClipOval(
+              //             child: Image.file(
+              //               File(imageFile.path),
+              //               fit: BoxFit.cover,
+              //               height: 100.h,
+              //             ),
+              //           );
+              //         } else {
+              //           return Padding(
+              //             padding: EdgeInsets.all(26.sp),
+              //             child: Image.asset(
+              //               Assets.icons.cameraIcon.path,
+              //               width: 40.w,
+              //             ),
+              //           );
+              //         }
+              //       },
+              //     ),
+              //   ),
+              // ),
+
               UIHelper.verticalSpace(40.h),
               CustomTextFormField(
                 controller: _fullNameController,
@@ -187,6 +190,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           role: "pro",
                           termAccepted: _isCheck)
                       .waitingForFutureWithoutBg();
+                  // log("Selected Profile type : ${widget.trade}");
+                  // log("Selected Profile Question : ${widget.tradeQuestion}");
                 },
                 textStyle: TextFontStyle.headline16w700CffffffStyleInter,
               ),

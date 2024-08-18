@@ -135,11 +135,21 @@ final class RouteGenerator {
                 settings: settings)
             : CupertinoPageRoute(builder: (context) => const LoginScreen());
       case Routes.signup:
+        final args = settings.arguments as Map;
         return Platform.isAndroid
             ? _FadedTransitionRoute(
-                widget: const ScreenTitle(widget: SignUpScreen()),
+                widget: ScreenTitle(
+                  widget: SignUpScreen(
+                    trade: args['trade'],
+                    tradeQuestion: args['tradeQuestion'],
+                  ),
+                ),
                 settings: settings)
-            : CupertinoPageRoute(builder: (context) => const SignUpScreen());
+            : CupertinoPageRoute(
+                builder: (context) => SignUpScreen(
+                      trade: args['trade'],
+                      tradeQuestion: args['tradeQuestion'],
+                    ));
       case Routes.forgotPass:
         return Platform.isAndroid
             ? _FadedTransitionRoute(

@@ -1,4 +1,4 @@
-// ignore_for_file: use_build_context_synchronously
+// ignore_for_file: use_build_context_synchronously=
 import 'dart:developer';
 import 'package:flutter/cupertino.dart';
 import 'package:image_picker/image_picker.dart';
