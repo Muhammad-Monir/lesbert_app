@@ -17,7 +17,7 @@ final class GetQuestionRx extends RxResponseInt<Map> {
 
   ValueStream<Map> get getQuestionData => dataFetcher.stream;
 
-  Future<void> fetchQuestionData() async {
+  Future<Map> fetchQuestionData() async {
     try {
       Map allAddressData = await api.getQuestionData();
       return handleSuccessWithReturn(allAddressData);
