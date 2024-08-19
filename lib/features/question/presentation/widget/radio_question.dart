@@ -2,23 +2,26 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 
 import '../../../../constants/text_font_style.dart';
 import '../../../../gen/colors.gen.dart';
 import '../../../../helpers/ui_helpers.dart';
+import '../../../../provider/resault_provider.dart';
 import 'custom_radio_button.dart';
 
 class RadioQuestion extends StatefulWidget {
   const RadioQuestion({
     super.key,
     required this.items1,
-    required this.selectValue1,
     required this.question,
+    required this.qustionId,
   });
 
   final List<String> items1;
-  final int selectValue1;
+
   final String question;
+  final int qustionId;
 
   @override
   State<RadioQuestion> createState() => _RadioQuestionState();
@@ -27,6 +30,8 @@ class RadioQuestion extends StatefulWidget {
 class _RadioQuestionState extends State<RadioQuestion> {
   @override
   Widget build(BuildContext context) {
+    ResaultProvider resaultProvider =
+        Provider.of<ResaultProvider>(context, listen: true);
     return Column(
       children: [
         UIHelper.verticalSpace(37.w),
@@ -43,11 +48,15 @@ class _RadioQuestionState extends State<RadioQuestion> {
           itemBuilder: (context, index) {
             return CustomRadio(
               value: index,
-              groupValue: widget.selectValue1,
+              groupValue: resaultProvider.getradioValueByKey(widget.qustionId),
               onChanged: (value) {
                 setState(() {
-                  //  selectValue1 = value!;
                   log('Selected value 1: $value');
+                  log('Selected value 1: ${widget.items1[index]}');
+                  Map data = {value: widget.items1[index]};
+                  resaultProvider.removeByKey(widget.qustionId);
+                  resaultProvider.addAnswer({widget.qustionId: data});
+                  //resaultProvider.getradioValueByKey(widget.qustionId);
                 });
               },
               label: widget.items1[index],

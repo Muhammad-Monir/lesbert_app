@@ -3,6 +3,8 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lsebert/common_widgets/custom_text_feild.dart';
+import 'package:lsebert/helpers/all_routes.dart';
+import 'package:lsebert/helpers/navigation_service.dart';
 import '../../../common_widgets/auth_button.dart';
 import '../../../constants/text_font_style.dart';
 import '../../../gen/colors.gen.dart';
@@ -29,15 +31,20 @@ class _QuestionScreenState extends State<QuestionScreen> {
     super.initState();
   }
 
+  bool isFirsatBuild = true;
+
   final _detailsController1 = TextEditingController();
   final _detailsController2 = TextEditingController();
   List<dynamic> questions = [];
-  int currentStep = 1;
+
+  int currentStep = 0;
   dynamic question = "";
   String currentQustion = "";
   String questionType = "";
   double progressValue = 0;
   int totalSteps = 6;
+  int qustionId = 0;
+
   List<String> items1 = [
     'Full-Time',
     'Part-Time',
@@ -49,7 +56,6 @@ class _QuestionScreenState extends State<QuestionScreen> {
   int selectValue1 = -1;
   int selectValue2 = -1;
 
-  List<bool> isCheckedList;
   final List<String> titles = [
     'Full-Time',
     'Part-Time',
@@ -63,36 +69,36 @@ class _QuestionScreenState extends State<QuestionScreen> {
     'Volunteer'
   ];
 
-  _QuestionScreenState() : isCheckedList = List.generate(10, (index) => false);
+  // _QuestionScreenState() : isCheckedList = List.generate(10, (index) => false);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: currentStep == 1
-      //     ? null
-      //     : AppBar(
-      //         leading: GestureDetector(
-      //           onTap: () {
-      //             setState(() {
-      //               if (currentStep > 1) {
-      //                 currentStep -= 1;
-      //                 progressValue = currentStep / totalSteps;
-      //               }
-      //             });
-      //           },
-      //           child: Icon(
-      //             Icons.arrow_back_ios,
-      //             size: 24.sp,
-      //             color: AppColors.c000000,
-      //           ),
-      //         ),
-      //         elevation: 0,
-      //         backgroundColor: AppColors.cffffff,
-      //         title: Text(
-      //           'Back To Previous Page',
-      //           style: TextFontStyle.headline18w700C22252DStyleInter,
-      //         ),
-      //       ),
+      appBar: currentStep == 0
+          ? null
+          : AppBar(
+              leading: GestureDetector(
+                onTap: () {
+                  setState(() {
+                    if (currentStep > 0) {
+                      currentStep -= 1;
+                      progressValue = currentStep / totalSteps;
+                    }
+                  });
+                },
+                child: Icon(
+                  Icons.arrow_back_ios,
+                  size: 24.sp,
+                  color: AppColors.c000000,
+                ),
+              ),
+              elevation: 0,
+              backgroundColor: AppColors.cffffff,
+              title: Text(
+                'Back To Previous Page',
+                style: TextFontStyle.headline18w700C22252DStyleInter,
+              ),
+            ),
       body: SizedBox(
         height: 900,
         child: SingleChildScrollView(
@@ -102,15 +108,20 @@ class _QuestionScreenState extends State<QuestionScreen> {
               stream: getQuestionRx.dataFetcher,
               builder: (context, snapshot) {
                 if (snapshot.hasData) {
-                  Map? data = snapshot.data;
-                  questions = data!["data"]["questions"];
-                  totalSteps = questions.length;
-                  currentQustion = questions[currentStep]["question_text"];
-                  // questionType = questions[currentStep]["type"] == "radio"
-                  //     ? questions[currentStep]["options"].length == 2
-                  //         ? "polar"
-                  //         : "radio"
-                  //     : "radio";
+                  if (isFirsatBuild) {
+                    Map? data = snapshot.data;
+                    questions = data!["data"]["questions"];
+                    totalSteps = questions.length;
+                    currentQustion = questions[currentStep]["question_text"];
+                    questionType = questions[currentStep]["type"] == "radio"
+                        ? questions[currentStep]["options"].length == 2
+                            ? "polar"
+                            : "radio"
+                        : "radio";
+                    isFirsatBuild = false;
+                    qustionId = questions[currentStep]["id"];
+                  }
+
                   // for (var i = 0; i < questions.length; i++) {
                   //   log(questions[i]["type"]);
 
@@ -133,7 +144,7 @@ class _QuestionScreenState extends State<QuestionScreen> {
                   return Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      if (currentStep == 1) ...[
+                      if (currentStep == 0) ...[
                         UIHelper.verticalSpace(50.w),
                         Text(
                           textAlign: TextAlign.center,
@@ -189,7 +200,10 @@ class _QuestionScreenState extends State<QuestionScreen> {
                     ],
                   );
                 } else {
-                  return const Center(child: CircularProgressIndicator());
+                  return SizedBox(
+                    height: .8.sh,
+                    child: const Center(child: CircularProgressIndicator()),
+                  );
                 }
               },
             ),
@@ -206,12 +220,22 @@ class _QuestionScreenState extends State<QuestionScreen> {
             GestureDetector(
                 onTap: () {
                   setState(() {
-                    currentStep = 1;
-                    progressValue = 0.02;
+                    if (currentStep > 0) {
+                      currentStep -= 1;
+                      question = questions[currentStep];
+                      currentQustion = questions[currentStep]["question_text"];
+                      questionType = questions[currentStep]["type"] == "radio"
+                          ? questions[currentStep]["options"].length == 2
+                              ? "polar"
+                              : "radio"
+                          : questions[currentStep]["type"];
+                      progressValue = currentStep / totalSteps;
+                      qustionId = questions[currentStep]["id"];
+                    }
                   });
                 },
                 child: Text(
-                  'Skip',
+                  currentStep > 0 ? 'Previous' : "",
                   style: TextFontStyle.headline20w600C141414StyleInter,
                 )),
             GestureDetector(
@@ -227,7 +251,20 @@ class _QuestionScreenState extends State<QuestionScreen> {
                               : "radio"
                           : questions[currentStep]["type"];
                       progressValue = currentStep / totalSteps;
+                      qustionId = questions[currentStep]["id"];
                     } else {
+                      log("here");
+
+                      //     currentStep += 1;
+                      progressValue = 1;
+                      questionType = "none";
+                      Future.delayed(Duration(milliseconds: 500)).then(
+                        (value) {
+                          NavigationService.navigateToReplacement(
+                              Routes.loading);
+                        },
+                      );
+
                       // Handle when the last step is reached, e.g., navigate to another screen
                     }
                   });
@@ -243,54 +280,54 @@ class _QuestionScreenState extends State<QuestionScreen> {
   }
 
   Widget _getStepContent() {
-    log(questionType + " kon type");
     switch (questionType) {
       case "polar":
-        return PolarQuestion(question: currentQustion);
+        return PolarQuestion(
+          question: currentQustion,
+          qustionId: qustionId,
+        );
       case "file":
-        return PolarQuestion(question: currentQustion);
+        return PolarQuestion(question: currentQustion, qustionId: qustionId);
       case "radio":
         List<String> data = [];
         List<dynamic> options = question["options"];
-        options.forEach(
-          (element) {
-            data.add(element["option_text"]);
-          },
-        );
+        for (var element in options) {
+          data.add(element["option_text"]);
+        }
         return RadioQuestion(
+          qustionId: qustionId,
           items1: data,
-          selectValue1: selectValue1,
           question: currentQustion,
         );
       case "checkbox":
         List<String> data = [];
         List<dynamic> options = question["options"];
-        options.forEach(
-          (element) {
-            data.add(element["option_text"]);
-          },
-        );
+        for (var element in options) {
+          data.add(element["option_text"]);
+        }
 
         return CheckBoxQuestion(
+          qustionId: qustionId,
           question: currentQustion,
-          isCheckedList: isCheckedList,
+          //  isCheckedList: isCheckedList,
           title: data,
           onChanged: (value) {
             setState(() {
               final index = data.indexOf(value!);
               if (index != -1) {
-                isCheckedList[index] = !isCheckedList[index];
+                //    isCheckedList[index] = !isCheckedList[index];
               }
             });
           },
         );
       case "textarea":
         return TextAreaQuestion(
+          qustionId: qustionId,
           question: currentQustion,
-          controller: _detailsController2,
         );
       default:
-        return const Center(child: Text('Completed'));
+        return SizedBox(
+            height: .6.sh, child: const Center(child: Text('Completed')));
     }
   }
 }
