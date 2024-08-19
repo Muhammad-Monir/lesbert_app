@@ -229,6 +229,28 @@ class _DashboardScreenState extends State<DashboardScreen> {
             ),
           ],
         ),
+
+        drawer: CustomDrawer(
+          onTapLogout: () {
+            deleteButtonDialouge(context, "You are about to Logout!", () {
+              //  getDeleteTokenRXObj.deleteTokenData();
+              getLogOutRXObj.fetchLogoutData();
+              totalDataClean();
+              NavigationService.navigateToReplacement(Routes.login);
+            });
+
+            () {
+              _scaffoldKey.currentState!.closeDrawer();
+              NavigationService.navigateTo(Routes.notification);
+            };
+            onTapPaymnetHistory:
+            () {
+              NavigationService.navigateTo(Routes.paymentHistory);
+              _scaffoldKey.currentState!.closeDrawer();
+            };
+          },
+        ),
+
       ),
       drawer: CustomDrawer(
         onTapLogout: () {
@@ -250,6 +272,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
             _scaffoldKey.currentState!.closeDrawer();
           };
         },
+
       ),
     ));
   }

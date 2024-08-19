@@ -31,6 +31,7 @@ final class Endpoints {
   static String resendOtp() => "/api/resend-otp";
   static String logout() => "/api/logout";
   static String questions() => "/api/pro-questions";
+  static String occupationQuestions() => "/api/occupations";
 
   //backend_url
   static String appCategories() => "/api/product-categories";

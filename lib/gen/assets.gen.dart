@@ -109,6 +109,10 @@ class $AssetsIconsGen {
   AssetGenImage get totalConnect =>
       const AssetGenImage('assets/icons/totalConnect.png');
 
+  /// File path: assets/icons/upload_icon.png
+  AssetGenImage get uploadIcon =>
+      const AssetGenImage('assets/icons/upload_icon.png');
+
   /// File path: assets/icons/white_menu_icon.png
   AssetGenImage get whiteMenuIcon =>
       const AssetGenImage('assets/icons/white_menu_icon.png');
@@ -140,6 +144,7 @@ class $AssetsIconsGen {
         subscriptionIcon,
         tickCircle,
         totalConnect,
+        uploadIcon,
         whiteMenuIcon
       ];
 }
