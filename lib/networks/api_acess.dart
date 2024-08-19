@@ -10,6 +10,7 @@ import '../features/auth/data/rx_signup/rx.dart';
 import '../features/auth/model/login_response.dart';
 import '../features/intro/role/data/rx.dart';
 import '../features/question/data/rx_get_questions/rx.dart';
+import '../features/question/data/rx_post_questions/rx.dart';
 
 GetLoginRX getLoginRXObj = GetLoginRX(
     empty: LoginResponse(), dataFetcher: BehaviorSubject<LoginResponse>());
@@ -29,3 +30,5 @@ ResendOtpRx resendOtpRxObj =
     ResendOtpRx(empty: {}, dataFetcher: BehaviorSubject<Map>());
 GetOccupationQuestionRx getOccupationQuestionRXObj =
     GetOccupationQuestionRx(empty: {}, dataFetcher: BehaviorSubject<Map>());
+PostQuestionRx postQuestionRxObj =
+    PostQuestionRx(empty: {}, dataFetcher: BehaviorSubject<Map>());

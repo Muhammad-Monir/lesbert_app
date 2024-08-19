@@ -5,12 +5,15 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lsebert/common_widgets/custom_text_feild.dart';
 import 'package:lsebert/helpers/all_routes.dart';
 import 'package:lsebert/helpers/navigation_service.dart';
+import 'package:provider/provider.dart';
 import '../../../common_widgets/auth_button.dart';
 import '../../../constants/text_font_style.dart';
 import '../../../gen/colors.gen.dart';
 import '../../../helpers/ui_helpers.dart';
 import '../../../networks/api_acess.dart';
+import '../../../provider/resault_provider.dart';
 import 'widget/custom_radio_button.dart';
+import 'widget/file_upload_question.dart';
 import 'widget/polar_question.dart';
 import 'widget/radio_question.dart';
 import 'widget/step2.dart';
@@ -42,7 +45,7 @@ class _QuestionScreenState extends State<QuestionScreen> {
   String currentQustion = "";
   String questionType = "";
   double progressValue = 0;
-  int totalSteps = 6;
+  int totalSteps = 0;
   int qustionId = 0;
 
   List<String> items1 = [
@@ -111,7 +114,7 @@ class _QuestionScreenState extends State<QuestionScreen> {
                   if (isFirsatBuild) {
                     Map? data = snapshot.data;
                     questions = data!["data"]["questions"];
-                    totalSteps = questions.length;
+                    totalSteps = questions.length - 1;
                     currentQustion = questions[currentStep]["question_text"];
                     questionType = questions[currentStep]["type"] == "radio"
                         ? questions[currentStep]["options"].length == 2
@@ -254,16 +257,20 @@ class _QuestionScreenState extends State<QuestionScreen> {
                       qustionId = questions[currentStep]["id"];
                     } else {
                       log("here");
-
-                      //     currentStep += 1;
-                      progressValue = 1;
-                      questionType = "none";
-                      Future.delayed(Duration(milliseconds: 500)).then(
-                        (value) {
-                          NavigationService.navigateToReplacement(
-                              Routes.loading);
-                        },
-                      );
+                      // setState(() {
+                      //   currentStep = 0;
+                      //   progressValue = 0;
+                      //   questionType = "none";
+                      // });
+                      log(context.read<ResaultProvider>().answers.toString());
+                      postQuestionRxObj.postQuestionData(
+                          context.read<ResaultProvider>().answers);
+                      // Future.delayed(Duration(milliseconds: 500)).then(
+                      //   (value) {
+                      //     NavigationService.navigateToReplacement(
+                      //         Routes.loading);
+                      //   },
+                      // );
 
                       // Handle when the last step is reached, e.g., navigate to another screen
                     }
@@ -287,7 +294,8 @@ class _QuestionScreenState extends State<QuestionScreen> {
           qustionId: qustionId,
         );
       case "file":
-        return PolarQuestion(question: currentQustion, qustionId: qustionId);
+        return FileUploadQuestion(
+            question: currentQustion, qustionId: qustionId);
       case "radio":
         List<String> data = [];
         List<dynamic> options = question["options"];
@@ -305,14 +313,27 @@ class _QuestionScreenState extends State<QuestionScreen> {
         for (var element in options) {
           data.add(element["option_text"]);
         }
+        Map savedMap =
+            context.read<ResaultProvider>().findResautWithKey(qustionId);
+        context.read<ResaultProvider>().isCheckedList =
+            List.generate(data.length, (index) => false);
+        if (savedMap.isNotEmpty) {
+          log(savedMap.toString());
 
+          for (var innerMap in savedMap[qustionId]!) {
+            // Iterate over the key-value pairs in each inner map
+            innerMap.forEach((key, value) {
+              context.read<ResaultProvider>().isCheckedList[key] = true;
+            });
+          }
+        }
         return CheckBoxQuestion(
           qustionId: qustionId,
           question: currentQustion,
-          //  isCheckedList: isCheckedList,
           title: data,
           onChanged: (value) {
             setState(() {
+              log(value!);
               final index = data.indexOf(value!);
               if (index != -1) {
                 //    isCheckedList[index] = !isCheckedList[index];
