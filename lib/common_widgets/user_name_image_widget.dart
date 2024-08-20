@@ -29,7 +29,7 @@ class UserImageAndNameWidget extends StatelessWidget {
         children: [
           CircleAvatar(
             radius: 35.r,
-            backgroundImage: AssetImage(userImage ?? ''),
+            backgroundImage: NetworkImage(userImage ?? ''),
           ),
           UIHelper.horizontalSpace(14.w),
           Column(
