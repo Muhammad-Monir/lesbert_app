@@ -1,28 +1,43 @@
+import 'dart:developer';
 import 'dart:io';
 import 'package:dotted_border/dotted_border.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:lsebert/common_widgets/auth_button.dart';
 import 'package:lsebert/common_widgets/custom_text_feild.dart';
 import '../../../common_widgets/divider_container.dart';
+import '../../../common_widgets/image_picker_widget.dart';
 import '../../../constants/text_font_style.dart';
 import '../../../gen/assets.gen.dart';
 import '../../../gen/colors.gen.dart';
 import '../../../helpers/navigation_service.dart';
 import '../../../helpers/ui_helpers.dart';
+import '../../../networks/api_acess.dart';
 
 class ProfileEditScreen extends StatefulWidget {
-  const ProfileEditScreen({super.key});
+  final String name;
+  final String email;
+  final String? image;
+  final String proffession;
+  const ProfileEditScreen({
+    super.key,
+    required this.name,
+    required this.email,
+    this.image,
+    required this.proffession,
+  });
 
   @override
   State<ProfileEditScreen> createState() => _ProfileEditScreenState();
 }
 
 class _ProfileEditScreenState extends State<ProfileEditScreen> {
-  final ValueNotifier<XFile?> _imageFileNotifier = ValueNotifier<XFile?>(null);
+  final _imageFileNotifier = ValueNotifier<String?>(null);
   final _nameController = TextEditingController();
   final _professionController = TextEditingController();
+  final _emailController = TextEditingController();
   final _currentPassController = TextEditingController();
   final _newPassController = TextEditingController();
   final _reTypePassController = TextEditingController();
@@ -30,6 +45,15 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
   bool _isNewPass = false;
   bool _isRetypePass = false;
   bool _isCureentPass = false;
+
+  @override
+  void initState() {
+    _nameController.text = widget.name.toString();
+    _professionController.text = widget.proffession.toString();
+    _emailController.text = widget.email.toString();
+    // _imageFileNotifier = ValueNotifier<String?>(widget.image);
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -59,34 +83,58 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
             children: [
               const DividerContainer(),
               UIHelper.verticalSpace(20.h),
-              DottedBorder(
-                color: AppColors.c3B5998,
-                borderType: BorderType.Circle,
-                dashPattern: const [2, 0, 4],
-                child: CircleAvatar(
-                  radius: 50.r,
-                  backgroundColor: AppColors.cF4F5F7,
-                  child: ValueListenableBuilder<XFile?>(
-                    valueListenable: _imageFileNotifier,
-                    builder: (context, imageFile, child) {
-                      if (imageFile != null) {
-                        return ClipOval(
-                          child: Image.file(
-                            File(imageFile.path),
-                            fit: BoxFit.cover,
-                            height: 100.h,
-                          ),
-                        );
-                      } else {
-                        return Padding(
-                          padding: EdgeInsets.all(26.sp),
-                          child: Image.asset(
-                            Assets.icons.cameraIcon.path,
-                            width: 40.w,
-                          ),
-                        );
-                      }
-                    },
+              Center(
+                child: GestureDetector(
+                  onTap: () {
+                    _showImageSourceDialog(context);
+                  },
+                  child: DottedBorder(
+                    color: AppColors.c3B5998,
+                    borderType: BorderType.Circle,
+                    dashPattern: const [2, 0, 4],
+                    child: CircleAvatar(
+                      radius: 50.r,
+                      backgroundColor: AppColors.cF4F5F7,
+                      child: ValueListenableBuilder<String?>(
+                        valueListenable: _imageFileNotifier,
+                        builder: (context, imagePath, child) {
+                          if (imagePath != null) {
+                            return ClipRRect(
+                              borderRadius: BorderRadius.circular(50.r),
+                              child: Image.file(
+                                File(imagePath),
+                                fit: BoxFit.cover,
+                                height: 100.h,
+                              ),
+                            );
+                          } else {
+                            if (widget.image != null) {
+                              return Padding(
+                                padding: EdgeInsets.all(0.sp),
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(30.r),
+                                  child: CircleAvatar(
+                                    radius: 50.r,
+                                    backgroundImage:
+                                        NetworkImage(widget.image ?? ''),
+                                  ),
+                                ),
+                              );
+                            } else {
+                              return Padding(
+                                padding: EdgeInsets.all(26.sp),
+                                child: CircleAvatar(
+                                  radius: 35.r,
+                                  backgroundImage:
+                                      AssetImage(Assets.icons.cameraIcon.path),
+                                ),
+                              );
+                            }
+                            ;
+                          }
+                        },
+                      ),
+                    ),
                   ),
                 ),
               ),
@@ -198,7 +246,15 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
                 padding: EdgeInsets.all(25.sp),
                 child: AuthCustomeButton(
                     name: 'Update',
-                    onCallBack: () {},
+                    onCallBack: () async {
+                      File file = File(_imageFileNotifier.value!);
+                      await postProEditProfile.postEditProProfile(
+                          _nameController.text,
+                          file,
+                          _professionController.text);
+
+                      // log("image type name :  ")
+                    },
                     height: 56.h,
                     minWidth: double.infinity,
                     borderRadius: 28.r,
@@ -213,6 +269,17 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
             ],
           ),
         ),
+      ),
+    );
+  }
+
+  void _showImageSourceDialog(BuildContext context) {
+    showCupertinoModalPopup(
+      context: context,
+      builder: (_) => ImageSourceDialog(
+        onImageSelected: (String imagePath) {
+          _imageFileNotifier.value = imagePath;
+        },
       ),
     );
   }

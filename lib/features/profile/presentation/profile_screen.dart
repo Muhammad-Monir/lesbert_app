@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lsebert/helpers/navigation_service.dart';
-
+import 'package:lsebert/helpers/ui_helpers.dart';
+import 'package:lsebert/networks/api_acess.dart';
+import '../../../common_widgets/auth_button.dart';
 import '../../../common_widgets/custom_drawer.dart';
 import '../../../constants/text_font_style.dart';
 import '../../../gen/assets.gen.dart';
@@ -13,6 +15,7 @@ import '../../../common_widgets/experiance_data_widget.dart';
 import '../../../common_widgets/other_details_widget.dart';
 import '../../../common_widgets/personal_details_widget.dart';
 import '../../../common_widgets/user_name_image_widget.dart';
+import '../../../networks/endpoints.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -23,7 +26,12 @@ class ProfileScreen extends StatefulWidget {
 
 class _ProfileScreenState extends State<ProfileScreen> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+  @override
+  void initState() {
+    super.initState();
+  }
 
+  bool isEditButtonShow = false;
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -55,62 +63,130 @@ class _ProfileScreenState extends State<ProfileScreen> {
         ),
         body: SingleChildScrollView(
           physics: const BouncingScrollPhysics(),
-          child: Column(
-            children: [
-              const DividerContainer(),
-              UserImageAndNameWidget(
-                userImage: Assets.images.userImage.path,
-                userName: 'Andrew Hussy',
-                userSubtitle: 'Professional',
-                onTapProfileEdit: () =>
-                    NavigationService.navigateTo(Routes.profileEdit),
-              ),
-              const DividerContainer(),
-              PersonalDetailsWidget(
-                onTap: () {
-                  NavigationService.navigateTo(Routes.personalDetailsEdit);
-                },
-                name: 'Nasib Hasan',
-                phoneNum: '+01234567890',
-                email: 'youremail@email.com',
-                gender: 'Male',
-                address: 'H#28, R#03, Block#H, City Name, Area, Area Code',
-              ),
-              const DividerContainer(),
-              BioWidget(
-                bioDescription:
-                    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tincidunt malesuada ornare. Proin sollicitudin eros mauris, non viverra ante fermentum sed. Aliquam efficitur, augue at condimentum elementum, turpis nisi tincidunt mi, ut finibus mi nibh nec mi. In auctor libero turpis, et placerat velit eleifend eget. Suspendisse congue hendrerit lacus id sodales. Morbi non nunc ipsum. ',
-                lstQualification: 'BSC in Computer Science',
-                title: 'Abc Category',
-                industry: 'IT/ Software',
-                prepredLocation: 'USA',
-                endDate: 'Currently Working Here',
-                onTapBioEdit: () =>
-                    NavigationService.navigateTo(Routes.bioEdit),
-              ),
-              const DividerContainer(),
-              OtherDetailsWidget(
-                skill: 'Programming, Coding, Playing, Programming, Coding',
-                language: 'Bangla, English, Hindi',
-                onTapOtherDetailsEdit: () =>
-                    NavigationService.navigateTo(Routes.otherDetailsEdit),
-              ),
-              const DividerContainer(),
-              ExperiencesDataWidget(
-                crntCompanyName: 'Xbox',
-                designation: 'Abc Category',
-                employeeType: 'Abc Category',
-                endDate: 'Currently Working Here',
-                jobLocation: 'H#28, R#03, Block#H, City Name, Area, Area Code',
-                startDate: '20/10/2024',
-                onTapExperianceEdit: () =>
-                    NavigationService.navigateTo(Routes.experianceEdit),
-              ),
-              DividerContainer(
-                height: 40.h,
-              ),
-            ],
-          ),
+          child: StreamBuilder(
+              stream: getProProfileRxObj.dataFetcher,
+              builder: (context, snapshot) {
+                if (snapshot.hasData) {
+                  Map<String, dynamic> data = snapshot.data!['data']['user'];
+                  List? experianceData = data['experiences'];
+                  //List<Map<String, dynamic>> experiance = data['experiences'];
+                  return Column(
+                    children: [
+                      const DividerContainer(),
+                      UserImageAndNameWidget(
+                          userImage: imageUrl + data['avatar'],
+                          // userImage: Assets.images.userImage.path,
+                          userName: data['name'],
+                          userSubtitle: data['profession'],
+                          onTapProfileEdit: () =>
+                              // NavigationService.navigateTo(Routes.profileEdit),
+                              NavigationService.navigateToWithArgs(
+                                  Routes.profileEdit, {
+                                'name': data['name'],
+                                'email': data['email'],
+                                'image': "${imageUrl + data['avatar']}",
+                                //'image': imageUrl + data['avatar'],
+                                'proffession': data['profession'],
+                              })),
+                      const DividerContainer(),
+                      PersonalDetailsWidget(
+                        onTap: () {
+                          NavigationService.navigateTo(
+                              Routes.personalDetailsEdit);
+                        },
+                        name: data['name'],
+                        phoneNum: data['user_detail']['phone_number'],
+                        email: data['email'],
+                        // gender: 'Male',
+                        address: data['user_detail']['address'],
+                      ),
+                      const DividerContainer(),
+                      BioWidget(
+                        bioDescription: data['user_detail']['bio'],
+                        lstQualification: data['user_detail']['qualification'],
+                        title: data['user_detail']['current_designation'],
+                        industry: data['user_detail']['industry'],
+                        prepredLocation: data['user_detail']['location'],
+                        //  endDate: data['user_detail'][''],
+                        onTapBioEdit: () =>
+                            NavigationService.navigateTo(Routes.bioEdit),
+                      ),
+                      const DividerContainer(),
+                      OtherDetailsWidget(
+                        skill: data['user_detail']['key_skills'],
+                        language: data['user_detail']['languages'],
+                        onTapOtherDetailsEdit: () =>
+                            NavigationService.navigateTo(
+                                Routes.otherDetailsEdit),
+                      ),
+                      const DividerContainer(),
+                      if (experianceData != null)
+                        Container(
+                          padding: EdgeInsets.symmetric(
+                              vertical: 0.h, horizontal: 0.w),
+                          child: Column(
+                            children: [
+                              ListView.separated(
+                                separatorBuilder: (context, index) =>
+                                    UIHelper.customDivider(),
+                                physics: const NeverScrollableScrollPhysics(),
+                                shrinkWrap: true,
+                                itemCount: experianceData.length,
+                                itemBuilder: (context, index) {
+                                  // if (experianceData.length == 1) {
+                                  //   isEditButtonShow = true;
+                                  // }
+                                  return ExperiencesDataWidget(
+                                    isExperianceShow: index == 0,
+                                    crntCompanyName: experianceData[index]
+                                        ['company_name'],
+                                    designation: experianceData[index]
+                                        ['designation'],
+                                    employeeType: experianceData[index]
+                                        ['status'],
+                                    endDate: experianceData[index]
+                                        ['ending_date'],
+                                    jobLocation: experianceData[index]
+                                        ['company_location'],
+                                    startDate: experianceData[index]
+                                        ['starting_date'],
+                                    onTapExperianceEdit: () =>
+                                        NavigationService.navigateTo(
+                                            Routes.experianceEdit),
+                                  );
+                                },
+                              ),
+                              Padding(
+                                padding:
+                                    EdgeInsets.only(left: 25.w, right: 25.w),
+                                child: AuthCustomeButton(
+                                    name: '+ Add New Experience',
+                                    onCallBack: () {},
+                                    height: 50.h,
+                                    minWidth: double.infinity,
+                                    borderRadius: 30.r,
+                                    color: AppColors.allPrimaryColor,
+                                    textStyle: TextFontStyle
+                                        .headline14w600C141414StyleInter
+                                        .copyWith(color: AppColors.cffffff),
+                                    context: context),
+                              )
+                            ],
+                          ),
+                        ),
+                      DividerContainer(
+                        height: 40.h,
+                      ),
+                    ],
+                  );
+                } else if (snapshot.hasError) {
+                  return Text('No Data Avilable');
+                } else {
+                  return const Center(
+                    child: CircularProgressIndicator(),
+                  );
+                }
+              }),
         ),
         drawer: const CustomDrawer(),
       ),

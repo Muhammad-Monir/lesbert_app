@@ -1,3 +1,4 @@
+import 'package:lsebert/features/profile/data/rx_profile.dart';
 import 'package:rxdart/subjects.dart';
 
 import '../features/auth/data/rx_get_logout/rx.dart';
@@ -9,6 +10,7 @@ import '../features/auth/data/rx_resendotp/rx.dart';
 import '../features/auth/data/rx_signup/rx.dart';
 import '../features/auth/model/login_response.dart';
 import '../features/intro/role/data/rx.dart';
+import '../features/profile/data/edit_profile_rx.dart';
 import '../features/question/data/rx_get_questions/rx.dart';
 import '../features/question/data/rx_post_questions/rx.dart';
 
@@ -32,3 +34,7 @@ GetOccupationQuestionRx getOccupationQuestionRXObj =
     GetOccupationQuestionRx(empty: {}, dataFetcher: BehaviorSubject<Map>());
 PostQuestionRx postQuestionRxObj =
     PostQuestionRx(empty: {}, dataFetcher: BehaviorSubject<Map>());
+GetProfileRx getProProfileRxObj =
+    GetProfileRx(empty: {}, dataFetcher: BehaviorSubject<Map>());
+PostEditProProfileRx postProEditProfile =
+    PostEditProProfileRx(empty: {}, dataFetcher: BehaviorSubject<Map>());

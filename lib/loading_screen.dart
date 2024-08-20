@@ -39,6 +39,7 @@ class _LoadingState extends State<Loading> {
       String token = appData.read(kKeyAccessToken);
       DioSingleton.instance.update(token);
       await getQuestionRx.fetchQuestionData();
+      await getProProfileRxObj.fetchProfileData();
     }
     setState(() {
       _isLoading = false;
@@ -51,7 +52,7 @@ class _LoadingState extends State<Loading> {
       return const WelcomeScreen();
     } else {
       return appData.read(kKeyIsLoggedIn)
-          ? const QuestionScreen()
+          ? const NavigationScreen()
           : const LoginScreen();
     }
   }

@@ -21,7 +21,7 @@ class PersonalDetailsWidget extends StatelessWidget {
     this.address,
     this.onTap,
     this.isEdit = true,
-     this.onTapPersonalDetails,
+    this.onTapPersonalDetails,
     super.key,
   });
 
@@ -66,6 +66,7 @@ class PersonalDetailsWidget extends StatelessWidget {
           ),
           UIHelper.verticalSpace(30.h),
           Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Column(
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -107,15 +108,16 @@ class PersonalDetailsWidget extends StatelessWidget {
                     style: TextFontStyle.headline12w400C9E9E9EStyleInter,
                   ),
                   UIHelper.verticalSpace(20.h),
-                  Text(
-                    'Gender',
-                    style: TextFontStyle.headline14w600C141414StyleInter,
-                  ),
-                  UIHelper.verticalSpace(4.h),
-                  Text(
-                    gender ?? '',
-                    style: TextFontStyle.headline12w400C9E9E9EStyleInter,
-                  ),
+
+                  // Text(
+                  //   'Gender',
+                  //   style: TextFontStyle.headline14w600C141414StyleInter,
+                  // ),
+                  // UIHelper.verticalSpace(4.h),
+                  // Text(
+                  //   gender ?? '',
+                  //   style: TextFontStyle.headline12w400C9E9E9EStyleInter,
+                  // ),
                 ],
               )
             ],
