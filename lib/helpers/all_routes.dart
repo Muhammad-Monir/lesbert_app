@@ -32,6 +32,7 @@ import 'package:lsebert/features_pro/pro_profile/presentation/pro_edit_profile.d
 import 'package:lsebert/features_pro/pro_subscription/presentation/pro_subscription_screen.dart';
 import 'package:lsebert/features_pro/view_profile/view_profile.dart';
 import 'package:lsebert/loading_screen.dart';
+import 'package:lsebert/navigation_screen.dart';
 
 final class Routes {
   static final Routes _routes = Routes._internal();
@@ -42,6 +43,7 @@ final class Routes {
   static const String subscription = '/subscription';
   static const String message = '/message';
   static const String profile = '/profile';
+  static const String bottomNavScreen = '/bottomNavScreen';
   static const String splash = '/splash';
   static const String onboarding = '/onboarding';
   static const String role = '/role';
@@ -140,15 +142,15 @@ final class RouteGenerator {
             ? _FadedTransitionRoute(
                 widget: ScreenTitle(
                   widget: SignUpScreen(
-                    trade: args['trade'],
-                    tradeQuestion: args['tradeQuestion'],
+                    role: args['trade'],
+                    proffesion: args['tradeQuestion'],
                   ),
                 ),
                 settings: settings)
             : CupertinoPageRoute(
                 builder: (context) => SignUpScreen(
-                      trade: args['trade'],
-                      tradeQuestion: args['tradeQuestion'],
+                      role: args['trade'],
+                      proffesion: args['tradeQuestion'],
                     ));
       case Routes.forgotPass:
         return Platform.isAndroid
@@ -248,6 +250,13 @@ final class RouteGenerator {
                 settings: settings)
             : CupertinoPageRoute(
                 builder: (context) => const ProfileEditScreen());
+                case Routes.bottomNavScreen:
+        return Platform.isAndroid
+            ? _FadedTransitionRoute(
+                widget: const ScreenTitle(widget: NavigationScreen()),
+                settings: settings)
+            : CupertinoPageRoute(
+                builder: (context) => const NavigationScreen());
 
       //========<>======<>=======<>=======<>=======<>=========
       //===============<><><>==============<><><><>===============

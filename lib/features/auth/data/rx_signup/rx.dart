@@ -28,6 +28,7 @@ final class PostSignUpRX extends RxResponseInt {
     required String password_confirmation,
     required String role,
     required bool termAccepted,
+    required String profession,
   }) async {
     try {
       Map data = await api.signUp(
@@ -36,6 +37,7 @@ final class PostSignUpRX extends RxResponseInt {
           password: password,
           phone: password_confirmation,
           role: role,
+          profession: profession,
           termAccepted: termAccepted);
       return handleSuccessWithReturn(data);
     } catch (error) {

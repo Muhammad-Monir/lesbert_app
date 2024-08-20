@@ -19,6 +19,7 @@ final class SignUpApi {
     required String password,
     required String role,
     required bool termAccepted,
+    required String profession,
   }) async {
     try {
       Map data = {
@@ -27,7 +28,8 @@ final class SignUpApi {
         "password": phone,
         "password_confirmation": password,
         "role": role,
-        "terms_accepted": termAccepted
+        "terms_accepted": termAccepted,
+        "profession" : profession
       };
       Response response = await postHttp(Endpoints.signUp(), data);
       if (response.statusCode == 200) {

@@ -111,7 +111,8 @@ class _LoginScreenState extends State<LoginScreen> {
                   getLoginRXObj.login(
                       _emailController.text, _passController.text);
 
-                  // NavigationService.navigateToReplacement(Routes.role);
+                  NavigationService.navigateToReplacement(
+                      Routes.bottomNavScreen);
                 },
                 textStyle: TextFontStyle.headline16w700CffffffStyleInter,
               ),
