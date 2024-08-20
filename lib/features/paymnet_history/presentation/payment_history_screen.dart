@@ -65,7 +65,5 @@ class _PaymentHistoryScreenState extends State<PaymentHistoryScreen> {
             ),
           ),
         ));
-  
   }
 }
-

@@ -259,17 +259,18 @@ class _DashboardScreenState extends State<DashboardScreen> {
             totalDataClean();
             NavigationService.navigateToReplacement(Routes.login);
           });
-
-          onTapNotification:
-          () {
-            _scaffoldKey.currentState!.closeDrawer();
-            NavigationService.navigateTo(Routes.notification);
-          };
-          onTapPaymnetHistory:
-          () {
-            NavigationService.navigateTo(Routes.paymentHistory);
-            _scaffoldKey.currentState!.closeDrawer();
-          };
+        },
+        onTapNotification: () {
+          _scaffoldKey.currentState!.closeDrawer();
+          NavigationService.navigateTo(Routes.notification);
+        },
+        onTapPaymnetHistory: () {
+          NavigationService.navigateTo(Routes.paymentHistory);
+          _scaffoldKey.currentState!.closeDrawer();
+        },
+        onTapHelpAndSuport: () {
+          NavigationService.navigateTo(Routes.helpAndSupport);
+          _scaffoldKey.currentState!.closeDrawer();
         },
       ),
     ));
