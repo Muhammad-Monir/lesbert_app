@@ -1,13 +1,8 @@
-import 'dart:developer';
-import 'dart:io';
-import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:lsebert/features/auth/data/rx_login/rx.dart';
 import 'package:lsebert/helpers/loading_helper.dart';
-import 'package:lsebert/helpers/toast.dart';
 import '../../../../common_widgets/auth_button.dart';
 import '../../../../common_widgets/custom_text_feild.dart';
 import '../../../../common_widgets/or_divider.dart';
@@ -21,9 +16,9 @@ import '../../../../helpers/ui_helpers.dart';
 import '../../../../networks/api_acess.dart';
 
 class SignUpScreen extends StatefulWidget {
-  final String? trade;
-  final String? tradeQuestion;
-  const SignUpScreen({super.key, required this.trade, this.tradeQuestion});
+  final String? role;
+  final String? proffesion;
+  const SignUpScreen({super.key, required this.role, this.proffesion});
 
   @override
   State<SignUpScreen> createState() => _SignUpScreenState();
@@ -187,7 +182,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           email: _emailController.text,
                           password: _passController.text,
                           password_confirmation: _retypepassController.text,
-                          role: "pro",
+                          role: widget.role.toString(),
+                          profession: widget.proffesion.toString(),
                           termAccepted: _isCheck)
                       .waitingForFutureWithoutBg();
                   // log("Selected Profile type : ${widget.trade}");
