@@ -16,26 +16,8 @@ final class PostQuestionApi {
   static PostQuestionApi get instance => _singleton;
   Future<Map> postQuestionData(List<Map<int, dynamic>> ansquers) async {
     Map<String, List<dynamic>> groupedItems = {};
-
-    // for (Map<int, dynamic> map in ansquers) {
-    //   log(map.toString() + "/");
-    // }
-    // try {
-    //   Response response = await getHttp(Endpoints.questions());
-    //   if (response.statusCode == 200) {
-    //     Map data = json.decode(json.encode(response.data));
-    //     return data;
-    //   } else {
-    //     // Handle non-200 status code errors
-    //     throw DataSource.DEFAULT.getFailure();
-    //   }
-    // } catch (error) {
-    //   // Handle generic errors
-    //   throw ErrorHandler.handle(error).failure;
-    // }
-
+    FormData formData = FormData.fromMap({});
     try {
-      FormData formData = FormData.fromMap({});
       for (var map in ansquers) {
         map.forEach((key, value) {
           String type = value is PlatformFile
@@ -52,6 +34,7 @@ final class PostQuestionApi {
 
       // Print grouped items by type
       groupedItems.forEach((type, items) async {
+        log(type);
         if (type == "String") {
           print('Type: $type');
           for (var item in items) {
@@ -87,38 +70,32 @@ final class PostQuestionApi {
             );
             print('  Key: ${item['key']}, Value: ${item['value']}');
           }
-        } else if (type == "Map<int, String>") {
+        } else if (type == "_Map<dynamic, dynamic>") {
           print('Type: $type');
           for (var item in items) {
             print('  Key: ${item['key']}, Value: ${item['value']}');
+            Map d = item['value'];
+            log(d.toString());
+            log(d.values.first);
+            formData.fields.add(
+                MapEntry(item['key'].toString(), d.values.first.toString()));
           }
         }
-        // print('Type: $type');
-        // for (var item in items) {
-        //   print('  Key: ${item['key']}, Value: ${item['value']}');
-        // }
       });
-      //       "subject": subject,
-      // "message": message,
 
       log("This is from form data" + formData.toString());
-      //  log("This is from form data" + formData.files.toString());
-      //formData.fields.add(value)
-      // if (document != null && document.isNotEmpty) {
-      //   formData.files.add(
-      //     MapEntry(
-      //       "attachment",
-      //       await MultipartFile.fromFile(document.last.path),
-      //     ),
-      //   );
-      // }
-    } catch (e) {}
 
-    return {
-      "success": true,
-      "message": "Answers stored successfully",
-      "data": [],
-      "code": 200
-    };
+      Response response = await postHttp(Endpoints.answers(), formData);
+      if (response.statusCode == 200) {
+        Map data = json.decode(json.encode(response.data));
+        return data;
+      } else {
+        // Handle non-200 status code errors
+        throw DataSource.DEFAULT.getFailure();
+      }
+    } catch (error) {
+      // Handle generic errors
+      throw ErrorHandler.handle(error).failure;
+    }
   }
 }

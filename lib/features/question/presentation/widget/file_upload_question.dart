@@ -38,6 +38,8 @@ class _FileUploadQuestionState extends State<FileUploadQuestion> {
       PlatformFile file = savedFile[widget.qustionId] as PlatformFile;
       _filePath.value = file;
       log(file.path.toString());
+    } else {
+      _filePath = ValueNotifier<PlatformFile?>(null);
     }
     return Padding(
       padding: EdgeInsets.all(25.sp),

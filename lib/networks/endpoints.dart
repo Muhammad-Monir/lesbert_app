@@ -32,6 +32,7 @@ final class Endpoints {
   static String logout() => "/api/logout";
   static String questions() => "/api/pro-questions";
   static String occupationQuestions() => "/api/occupations";
+  static String answers() => "/api/pro-answers";
 
   //backend_url
   static String appCategories() => "/api/product-categories";
