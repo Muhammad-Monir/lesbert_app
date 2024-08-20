@@ -5,18 +5,21 @@ import 'package:flutter/material.dart';
 class ResaultProvider with ChangeNotifier {
   List<Map<int, dynamic>> answers = [];
 
+//for checkbox
+  List<bool> isCheckedList = [];
+
   addAnswer(Map<int, dynamic> answer) {
     answers.add(answer);
     notifyListeners();
   }
 
 //for polar type
-  // Map<int, dynamic> findResautWithKey(int keyToFind) {
-  //   return answers.firstWhere(
-  //     (map) => map.containsKey(keyToFind),
-  //     orElse: () => {},
-  //   );
-  // }
+  Map<int, dynamic> findResautWithKey(int keyToFind) {
+    return answers.firstWhere(
+      (map) => map.containsKey(keyToFind),
+      orElse: () => {},
+    );
+  }
 
   // bool findMapByKeyIfExists(int keyToFind) {
   //   return answers.any((map) => map.containsKey(keyToFind));
