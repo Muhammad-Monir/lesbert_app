@@ -253,12 +253,25 @@ final class RouteGenerator {
             : CupertinoPageRoute(
                 builder: (context) => const PaymentHistoryScreen());
       case Routes.profileEdit:
+        final args = settings.arguments as Map;
         return Platform.isAndroid
             ? _FadedTransitionRoute(
-                widget: const ScreenTitle(widget: ProfileEditScreen()),
+                widget: ScreenTitle(
+                    widget: ProfileEditScreen(
+                  name: args['name'],
+                  email: args['email'],
+                  image: args['image'],
+                  proffession: args['proffession'],
+                )),
                 settings: settings)
             : CupertinoPageRoute(
-                builder: (context) => const ProfileEditScreen());
+                builder: (context) => ProfileEditScreen(
+                      name: args['name'],
+                      email: args['email'],
+                      image: args['image'],
+                      proffession: args['proffession'],
+                    ));
+
       case Routes.bottomNavScreen:
         return Platform.isAndroid
             ? _FadedTransitionRoute(

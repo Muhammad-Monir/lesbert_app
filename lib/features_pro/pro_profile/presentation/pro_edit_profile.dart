@@ -91,6 +91,7 @@ class _ProEditProfileScreenState extends State<ProEditProfileScreen> {
                   ),
                 ),
               ),
+              
               UIHelper.verticalSpace(20.h),
               Text(
                 'Name',

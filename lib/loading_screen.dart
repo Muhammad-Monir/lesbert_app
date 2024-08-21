@@ -39,6 +39,7 @@ class _LoadingState extends State<Loading> {
       String token = appData.read(kKeyAccessToken);
       DioSingleton.instance.update(token);
       await getQuestionRx.fetchQuestionData();
+      await getProProfileRxObj.fetchProfileData();
     }
     setState(() {
       _isLoading = false;
