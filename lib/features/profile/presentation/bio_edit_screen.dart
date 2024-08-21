@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:lsebert/networks/api_acess.dart';
 
 import '../../../common_widgets/auth_button.dart';
 import '../../../common_widgets/custom_text_feild.dart';
@@ -9,7 +10,18 @@ import '../../../helpers/navigation_service.dart';
 import '../../../helpers/ui_helpers.dart';
 
 class BioEditScreen extends StatefulWidget {
-  const BioEditScreen({super.key});
+  final String? bioDescription;
+  final String? curntCompany;
+  final String? designation;
+  final String? industry;
+  final String? preferLocation;
+  const BioEditScreen(
+      {super.key,
+      this.bioDescription,
+      this.curntCompany,
+      this.designation,
+      this.industry,
+      this.preferLocation});
 
   @override
   State<BioEditScreen> createState() => _BioEditScreenState();
@@ -17,11 +29,22 @@ class BioEditScreen extends StatefulWidget {
 
 class _BioEditScreenState extends State<BioEditScreen> {
   final _bioDesController = TextEditingController();
-  final _lasQualificationController = TextEditingController();
-  final _titleController = TextEditingController();
+  final _curentCompanyController = TextEditingController();
+  final _designationController = TextEditingController();
   final _industryController = TextEditingController();
-  final _preferLocationController = TextEditingController();
-  final _endDateController = TextEditingController();
+  final _locationController = TextEditingController();
+  //final _endDateController = TextEditingController();
+
+  @override
+  void initState() {
+    _bioDesController.text = widget.bioDescription!;
+    _curentCompanyController.text = widget.curntCompany!;
+    _designationController.text = widget.designation!;
+    _industryController.text = widget.industry!;
+    _locationController.text = widget.preferLocation!;
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -63,25 +86,25 @@ class _BioEditScreenState extends State<BioEditScreen> {
               ),
               UIHelper.verticalSpace(12.h),
               Text(
-                'Last Qualification',
+                'Current Company',
                 style: TextFontStyle.headline14w600C141414StyleInter,
               ),
               UIHelper.verticalSpace(4.h),
               CustomTextFormField(
-                controller: _lasQualificationController,
+                controller: _curentCompanyController,
                 isPrefixIcon: false,
-                hintText: 'BSC in Computer Science',
+                hintText: 'Current Company',
               ),
               UIHelper.verticalSpace(12.h),
               Text(
-                'Title',
+                'Designation',
                 style: TextFontStyle.headline14w600C141414StyleInter,
               ),
               UIHelper.verticalSpace(4.h),
               CustomTextFormField(
-                controller: _titleController,
+                controller: _designationController,
                 isPrefixIcon: false,
-                hintText: 'Abc Category',
+                hintText: 'Designation',
               ),
               UIHelper.verticalSpace(12.h),
               Text(
@@ -101,25 +124,32 @@ class _BioEditScreenState extends State<BioEditScreen> {
               ),
               UIHelper.verticalSpace(4.h),
               CustomTextFormField(
-                controller: _preferLocationController,
+                controller: _locationController,
                 isPrefixIcon: false,
-                hintText: 'USA',
+                hintText: 'Preferred Location',
               ),
-              UIHelper.verticalSpace(12.h),
-              Text(
-                'End Date',
-                style: TextFontStyle.headline14w600C141414StyleInter,
-              ),
-              UIHelper.verticalSpace(4.h),
-              CustomTextFormField(
-                controller: _endDateController,
-                isPrefixIcon: false,
-                hintText: 'Currently Working Here',
-              ),
+              // UIHelper.verticalSpace(12.h),
+              // Text(
+              //   'End Date',
+              //   style: TextFontStyle.headline14w600C141414StyleInter,
+              // ),
+              // UIHelper.verticalSpace(4.h),
+              // CustomTextFormField(
+              //   controller: _endDateController,
+              //   isPrefixIcon: false,
+              //   hintText: 'Currently Working Here',
+              // ),
               UIHelper.verticalSpace(20.h),
               AuthCustomeButton(
                 name: 'Save & Continue',
-                onCallBack: () {},
+                onCallBack: () async {
+                  await postBioUpdateRxObj.postBioUpdate(
+                      _bioDesController.text,
+                      _curentCompanyController.text,
+                      _designationController.text,
+                      _locationController.text,
+                      _industryController.text);
+                },
                 height: 50.h,
                 minWidth: double.infinity,
                 borderRadius: 25.r,

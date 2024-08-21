@@ -36,6 +36,11 @@ final class Endpoints {
   static String answers() => "/api/pro-answers";
   static String proPrfofile() => "/api/pro-user-info";
   static String proProfileUpdate() => "/api/pro-update-user-info";
+  static String proBioUpdate() => "/api/change-bio-current-job-info";
+  static String proOtherSkill() => "/api/change-key-skill-info";
+  static String proExperinaceEdit(int id) => "/api/my-experence/edit/$id";
+  static String deleteExperiance(int id) => "/api/my-experence/delete/$id";
+  static String addNewExperiance() => "/api/my-experence";
 
   //backend_url
   static String appCategories() => "/api/product-categories";

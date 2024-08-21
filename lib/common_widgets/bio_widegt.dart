@@ -9,8 +9,8 @@ import '../helpers/ui_helpers.dart';
 
 class BioWidget extends StatelessWidget {
   final String? bioDescription;
-  final String? lstQualification;
-  final String? title;
+  final String? currentCompany;
+  final String? designation;
   final String? industry;
   final String? prepredLocation;
   final String? endDate;
@@ -19,8 +19,8 @@ class BioWidget extends StatelessWidget {
 
   const BioWidget({
     this.bioDescription,
-    this.lstQualification,
-    this.title,
+    this.currentCompany,
+    this.designation,
     this.industry,
     this.prepredLocation,
     this.endDate,
@@ -46,9 +46,7 @@ class BioWidget extends StatelessWidget {
               const Spacer(),
               isEdit == true
                   ? GestureDetector(
-                      onTap: () {
-                        NavigationService.navigateTo(Routes.bioEdit);
-                      },
+                      onTap: onTapBioEdit,
                       child: Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
@@ -74,43 +72,34 @@ class BioWidget extends StatelessWidget {
             style: TextFontStyle.headline12w400C9E9E9EStyleInter,
           ),
           UIHelper.verticalSpace(20.h),
-          Text(
-            'Last Qualification',
-            style: TextFontStyle.headline14w600C141414StyleInter,
-          ),
-          UIHelper.verticalSpace(4.h),
-          Text(
-            lstQualification ?? '',
-            style: TextFontStyle.headline12w400C9E9E9EStyleInter,
-          ),
-          UIHelper.verticalSpace(20.h),
           Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Title',
+                    'Current Company',
                     style: TextFontStyle.headline14w600C141414StyleInter,
                   ),
                   UIHelper.verticalSpace(4.h),
                   Text(
-                    title ?? '',
+                    currentCompany ?? '',
                     style: TextFontStyle.headline12w400C9E9E9EStyleInter,
                   ),
                   UIHelper.verticalSpace(20.h),
                   Text(
-                    'Industry',
+                    'Designation',
                     style: TextFontStyle.headline14w600C141414StyleInter,
                   ),
                   UIHelper.verticalSpace(4.h),
                   Text(
-                    industry ?? '',
+                    designation ?? '',
                     style: TextFontStyle.headline12w400C9E9E9EStyleInter,
                   ),
                 ],
               ),
-              const Spacer(),
+              UIHelper.verticalSpace(20.h),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -125,18 +114,18 @@ class BioWidget extends StatelessWidget {
                   ),
                   UIHelper.verticalSpace(20.h),
                   Text(
-                    'End Date',
+                    'Industry',
                     style: TextFontStyle.headline14w600C141414StyleInter,
                   ),
                   UIHelper.verticalSpace(4.h),
                   Text(
-                    endDate ?? '',
+                    industry ?? '',
                     style: TextFontStyle.headline12w400C9E9E9EStyleInter,
                   ),
                 ],
-              )
+              ),
             ],
-          )
+          ),
         ],
       ),
     );

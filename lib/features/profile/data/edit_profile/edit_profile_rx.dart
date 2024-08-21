@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:rxdart/rxdart.dart';
-import '../../../networks/rx_base.dart';
+import '../../../../networks/rx_base.dart';
 import 'edit_profile_api.dart';
 
 final class PostEditProProfileRx extends RxResponseInt<Map> {

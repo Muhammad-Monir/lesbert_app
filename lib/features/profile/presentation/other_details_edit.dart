@@ -7,9 +7,13 @@ import '../../../constants/text_font_style.dart';
 import '../../../gen/colors.gen.dart';
 import '../../../helpers/navigation_service.dart';
 import '../../../helpers/ui_helpers.dart';
+import '../../../networks/api_acess.dart';
 
 class OtherDetailsEditScreen extends StatefulWidget {
-  const OtherDetailsEditScreen({super.key});
+  final String? kkeySkill;
+  final String? language;
+  const OtherDetailsEditScreen(
+      {super.key, required this.kkeySkill, required this.language});
 
   @override
   State<OtherDetailsEditScreen> createState() => _OtherDetailsEditScreenState();
@@ -18,6 +22,14 @@ class OtherDetailsEditScreen extends StatefulWidget {
 class _OtherDetailsEditScreenState extends State<OtherDetailsEditScreen> {
   final _skillsController = TextEditingController();
   final _languageController = TextEditingController();
+
+  @override
+  void initState() {
+    _skillsController.text = widget.kkeySkill!;
+    _languageController.text = widget.language!;
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -40,7 +52,6 @@ class _OtherDetailsEditScreenState extends State<OtherDetailsEditScreen> {
           style: TextFontStyle.headline20w600C141414StyleInter,
         ),
       ),
-     
       body: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.all(25.sp),
@@ -73,7 +84,10 @@ class _OtherDetailsEditScreenState extends State<OtherDetailsEditScreen> {
               UIHelper.verticalSpace(30.h),
               AuthCustomeButton(
                 name: 'Save & Continue',
-                onCallBack: () {},
+                onCallBack: () async {
+                  await postOtherDetailsEdit.postOtherDetails(
+                      _skillsController.text, _languageController.text);
+                },
                 height: 50.h,
                 minWidth: double.infinity,
                 borderRadius: 25.r,

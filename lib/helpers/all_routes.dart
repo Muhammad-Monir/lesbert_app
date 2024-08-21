@@ -14,6 +14,7 @@ import 'package:lsebert/features/intro/splash_screen.dart';
 import 'package:lsebert/features/message/presentation/message_screen.dart';
 import 'package:lsebert/features/notification/presentation/notification_screen.dart';
 import 'package:lsebert/features/paymnet_history/presentation/payment_history_screen.dart';
+import 'package:lsebert/features/profile/presentation/add_new_experiance.dart';
 import 'package:lsebert/features/profile/presentation/bio_edit_screen.dart';
 import 'package:lsebert/features/profile/presentation/change_pass_screen.dart';
 import 'package:lsebert/features/profile/presentation/experiance_edit_screen.dart';
@@ -67,6 +68,7 @@ final class Routes {
 
   static const String profileEdit = '/profileEdit';
   static const String helpAndSupport = '/HelpSupport';
+  static const String addNewExperiance = '/addNewExperiance';
 
   //========<>======<>=======<>=======<>=======<>=========
   //===============<><><>==============<><><><>===============
@@ -212,25 +214,66 @@ final class RouteGenerator {
             : CupertinoPageRoute(
                 builder: (context) => const PersonalDetailsEditScreen());
       case Routes.bioEdit:
+        final args = settings.arguments as Map;
         return Platform.isAndroid
             ? _FadedTransitionRoute(
-                widget: const ScreenTitle(widget: BioEditScreen()),
+                widget: ScreenTitle(
+                    widget: BioEditScreen(
+                  bioDescription: args['bioDes'],
+                  curntCompany: args['curntCompany'],
+                  designation: args['designation'],
+                  industry: args['industry'],
+                  preferLocation: args['location'],
+                )),
                 settings: settings)
-            : CupertinoPageRoute(builder: (context) => const BioEditScreen());
+            : CupertinoPageRoute(
+                builder: (context) => BioEditScreen(
+                      bioDescription: args['bioDes'],
+                      curntCompany: args['curntCompany'],
+                      designation: args['designation'],
+                      industry: args['industry'],
+                      preferLocation: args['location'],
+                    ));
       case Routes.otherDetailsEdit:
+        final args = settings.arguments as Map;
         return Platform.isAndroid
             ? _FadedTransitionRoute(
-                widget: const ScreenTitle(widget: OtherDetailsEditScreen()),
+                widget: ScreenTitle(
+                    widget: OtherDetailsEditScreen(
+                  kkeySkill: args['skill'],
+                  language: args['language'],
+                )),
                 settings: settings)
             : CupertinoPageRoute(
-                builder: (context) => const OtherDetailsEditScreen());
+                builder: (context) => OtherDetailsEditScreen(
+                      kkeySkill: args['skill'],
+                      language: args['language'],
+                    ));
       case Routes.experianceEdit:
+        final args = settings.arguments as Map;
         return Platform.isAndroid
             ? _FadedTransitionRoute(
-                widget: const ScreenTitle(widget: ExperianceEditScreen()),
+                widget: ScreenTitle(
+                    widget: ExperianceEditScreen(
+                  id: args['id'],
+                  crntCompanyName: args['companyName'],
+                  designation: args['designation'],
+                  startDate: args['startDate'],
+                  endDate: args['endDate'],
+                  employeetype: args['employeeTaype'],
+                  jobLocation: args['location'],
+                )),
                 settings: settings)
             : CupertinoPageRoute(
-                builder: (context) => const ExperianceEditScreen());
+                builder: (context) => ExperianceEditScreen(
+                      id: args['id'],
+                      crntCompanyName: args['companyName'],
+                      designation: args['designation'],
+                      startDate: args['startDate'],
+                      endDate: args['endDate'],
+                      employeetype: args['employeeTaype'],
+                      jobLocation: args['location'],
+                    ));
       case Routes.changePass:
         return Platform.isAndroid
             ? _FadedTransitionRoute(
@@ -279,6 +322,13 @@ final class RouteGenerator {
                 settings: settings)
             : CupertinoPageRoute(
                 builder: (context) => const NavigationScreen());
+      case Routes.addNewExperiance:
+        return Platform.isAndroid
+            ? _FadedTransitionRoute(
+                widget: const ScreenTitle(widget: AddNewExperiance()),
+                settings: settings)
+            : CupertinoPageRoute(
+                builder: (context) => const AddNewExperiance());
 
       //========<>======<>=======<>=======<>=======<>=========
       //===============<><><>==============<><><><>===============
