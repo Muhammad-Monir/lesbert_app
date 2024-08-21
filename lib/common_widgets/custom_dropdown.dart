@@ -87,7 +87,7 @@ class _MyCustomDropdownState extends State<MyCustomDropdown> {
                 return DropdownMenuItem<String>(
                   value: value,
                   child: Text(
-                    value,
+                    value.toUpperCase(),
                     style: const TextStyle(color: Colors.black),
                     overflow: TextOverflow.ellipsis,
                   ),

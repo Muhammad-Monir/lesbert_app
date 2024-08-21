@@ -13,6 +13,9 @@ import '../features/intro/role/data/rx.dart';
 import '../features/profile/data/edit_profile_rx.dart';
 import '../features/question/data/rx_get_questions/rx.dart';
 import '../features/question/data/rx_post_questions/rx.dart';
+import '../features/support/data/rx_get_pending_list/rx.dart';
+import '../features/support/data/rx_get_resolved_list/rx.dart';
+import '../features/support/data/rx_post_issues/rx.dart';
 
 GetLoginRX getLoginRXObj = GetLoginRX(
     empty: LoginResponse(), dataFetcher: BehaviorSubject<LoginResponse>());
@@ -38,3 +41,9 @@ GetProfileRx getProProfileRxObj =
     GetProfileRx(empty: {}, dataFetcher: BehaviorSubject<Map>());
 PostEditProProfileRx postProEditProfile =
     PostEditProProfileRx(empty: {}, dataFetcher: BehaviorSubject<Map>());
+PostIssuesRX postTicketRXObj =
+    PostIssuesRX(empty: {}, dataFetcher: BehaviorSubject<Map>());
+GetResolvedListRX getResolvedListRXObj =
+    GetResolvedListRX(empty: {}, dataFetcher: BehaviorSubject<Map>());
+GetPendingListRX getPendingListRXObj =
+    GetPendingListRX(empty: {}, dataFetcher: BehaviorSubject<Map>());
