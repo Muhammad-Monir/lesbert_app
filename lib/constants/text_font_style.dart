@@ -9,9 +9,13 @@ class TextFontStyle {
 
   static final headline12w400C9E9E9EStyleInter = GoogleFonts.inter(
       color: AppColors.c9E9E9E, fontSize: 12.sp, fontWeight: FontWeight.w400);
-      static final headline12w600CprimaryStyleInter = GoogleFonts.inter(
-      color: AppColors.allPrimaryColor, fontSize: 12.sp, fontWeight: FontWeight.w600);
-      static final headline14w600C141414StyleInter = GoogleFonts.inter(
+  static final headline12w700C9E9E9EStyleInter = GoogleFonts.inter(
+      color: AppColors.c9E9E9E, fontSize: 12.sp, fontWeight: FontWeight.w700);
+  static final headline12w600CprimaryStyleInter = GoogleFonts.inter(
+      color: AppColors.allPrimaryColor,
+      fontSize: 12.sp,
+      fontWeight: FontWeight.w600);
+  static final headline14w600C141414StyleInter = GoogleFonts.inter(
       color: AppColors.c141414, fontSize: 14.sp, fontWeight: FontWeight.w600);
   static final headline48w600CFFFFFFFFStylePoppins = GoogleFonts.poppins(
       color: AppColors.cffffff, fontSize: 48.sp, fontWeight: FontWeight.w600);
@@ -33,12 +37,12 @@ class TextFontStyle {
       color: AppColors.c000000, fontSize: 14.sp, fontWeight: FontWeight.w400);
   static final headline16w600C00000StyleInter = GoogleFonts.inter(
       color: AppColors.c000000, fontSize: 16.sp, fontWeight: FontWeight.w600);
-      static final headline18w700C22252DStyleInter =
-      GoogleFonts.inter(color: AppColors.c22252D, fontSize: 18.sp, fontWeight: FontWeight.w700);
-      static final headline20w400C141414StyleInter =
-      GoogleFonts.inter(color: AppColors.c141414, fontSize: 20.sp, fontWeight: FontWeight.w400);
-      static final headline20w600C141414StyleInter =
-      GoogleFonts.inter(color: AppColors.c141414, fontSize: 20.sp, fontWeight: FontWeight.w600);
-      static final headline16w500C141414StyleInter =
-      GoogleFonts.inter(color: AppColors.c141414, fontSize: 16.sp, fontWeight: FontWeight.w500);
+  static final headline18w700C22252DStyleInter = GoogleFonts.inter(
+      color: AppColors.c22252D, fontSize: 18.sp, fontWeight: FontWeight.w700);
+  static final headline20w400C141414StyleInter = GoogleFonts.inter(
+      color: AppColors.c141414, fontSize: 20.sp, fontWeight: FontWeight.w400);
+  static final headline20w600C141414StyleInter = GoogleFonts.inter(
+      color: AppColors.c141414, fontSize: 20.sp, fontWeight: FontWeight.w600);
+  static final headline16w500C141414StyleInter = GoogleFonts.inter(
+      color: AppColors.c141414, fontSize: 16.sp, fontWeight: FontWeight.w500);
 }
