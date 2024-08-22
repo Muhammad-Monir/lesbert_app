@@ -36,6 +36,9 @@ final class Endpoints {
   static String answers() => "/api/pro-answers";
   static String proPrfofile() => "/api/pro-user-info";
   static String proProfileUpdate() => "/api/pro-update-user-info";
+  static String postIssues() => "/api/ticket-store";
+  static String getPendingTicketList() => "/api/tickets/pending-list";
+  static String getResolvedTicketList() => "/api/tickets/resolved-list";
 
   //backend_url
   static String appCategories() => "/api/product-categories";
@@ -63,7 +66,7 @@ final class Endpoints {
   static String deleteDeliveryAddress(int id) => "/api/delivery-addresses/$id";
   static String saveDeliveryAddress() => "/api/save-delivery-address";
   static String updateAddress() => "/api/update-address";
-  static String postIssues() => "/api/register-issue";
+
   static String defaultDeliveryAddress() => "/api/default-delivery-address";
   static String updateProfile() => "/api/update-profile";
   static String carts() => "/api/carts";

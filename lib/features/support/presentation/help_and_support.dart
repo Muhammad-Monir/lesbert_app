@@ -7,10 +7,16 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lsebert/common_widgets/auth_button.dart';
 import 'package:lsebert/helpers/ui_helpers.dart';
 
+import '../../../common_widgets/loading_indicators.dart';
+import '../../../helpers/dateuitl.dart';
+import '../../../networks/api_acess.dart';
+import 'widget/support_bottom_sheet.dart';
 import '../../../common_widgets/custom_switch.dart';
 import '../../../constants/text_font_style.dart';
 import '../../../gen/colors.gen.dart';
+import '../../../helpers/all_routes.dart';
 import '../../../helpers/navigation_service.dart';
+import 'widget/support_card.dart';
 
 class HelpSupport extends StatefulWidget {
   const HelpSupport({super.key});
@@ -21,6 +27,18 @@ class HelpSupport extends StatefulWidget {
 
 class _HelpSupportState extends State<HelpSupport> {
   bool _enable = false;
+  final TextEditingController _titleController = TextEditingController();
+  final TextEditingController _mailController = TextEditingController();
+  final TextEditingController _detailController = TextEditingController();
+  final TextEditingController _typeController = TextEditingController();
+  @override
+  void initState() {
+    _typeController.text = "subscription";
+    getResolvedListRXObj.fetchResolvedData();
+    getPendingListRXObj.fetchPendingListData();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,7 +56,7 @@ class _HelpSupportState extends State<HelpSupport> {
             ),
           ),
           title: Text(
-            'Payment History',
+            'Help & Support',
             style: TextFontStyle.headline20w600C141414StyleInter,
           ),
         ),
@@ -60,28 +78,75 @@ class _HelpSupportState extends State<HelpSupport> {
                 ),
               ),
               UIHelper.verticalSpaceMedium,
-              SizedBox(
-                height: .69.sh,
-                //    padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-                child: ListView.separated(
-                  //   physics: const NeverScrollableScrollPhysics(),
-                  separatorBuilder: (context, index) =>
-                      UIHelper.verticalSpace(10),
-                  shrinkWrap: true,
-                  itemCount: 10,
-                  itemBuilder: (context, index) => SupportCard(
-                    title: 'I want to connect my paypal account.',
-                    description:
-                        "Lorem ipsum dolor sit amet consectetur. Ac nullam lorem vel risus sed hendrerit.",
-                    date: "Fri, Mar 20, 2020, 02:40 PM ",
-                    type: _enable,
-                  ),
-                ),
-              ),
+              _enable
+                  ? StreamBuilder(
+                      stream: getResolvedListRXObj.dataFetcher,
+                      builder: (context, snapshot) {
+                        if (snapshot.hasData && !snapshot.hasError) {
+                          List data = snapshot.data['data'];
+                          return SizedBox(
+                            height: .69.sh,
+                            //    padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                            child: ListView.separated(
+                              //   physics: const NeverScrollableScrollPhysics(),
+                              separatorBuilder: (context, data) =>
+                                  UIHelper.verticalSpace(10),
+                              shrinkWrap: true,
+                              itemCount: data.length,
+                              itemBuilder: (context, index) => SupportCard(
+                                callback: () {
+                                  NavigationService.navigateTo(
+                                      Routes.supportHistory);
+                                },
+                                title: data[index]["title"],
+                                description: data[index]["message"],
+                                date: DateFormatedUtils()
+                                    .date12format(data[index]["created_at"]),
+                                type: _enable,
+                              ),
+                            ),
+                          );
+                        } else {
+                          return loadingIndicatorCircle(context: context);
+                        }
+                      })
+                  : StreamBuilder(
+                      stream: getPendingListRXObj.dataFetcher,
+                      builder: (context, snapshot) {
+                        if (snapshot.hasData && !snapshot.hasError) {
+                          List data = snapshot.data['data'];
+                          return SizedBox(
+                            height: .69.sh,
+                            //    padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                            child: ListView.separated(
+                              //   physics: const NeverScrollableScrollPhysics(),
+                              separatorBuilder: (context, data) =>
+                                  UIHelper.verticalSpace(10),
+                              shrinkWrap: true,
+                              itemCount: data.length,
+                              itemBuilder: (context, index) => SupportCard(
+                                callback: () {
+                                  NavigationService.navigateTo(
+                                      Routes.supportHistory);
+                                },
+                                title: data[index]["title"],
+                                description: data[index]["message"],
+                                date: DateFormatedUtils()
+                                    .date12format(data[index]["created_at"]),
+                                type: _enable,
+                              ),
+                            ),
+                          );
+                        } else {
+                          return loadingIndicatorCircle(context: context);
+                        }
+                      }),
               UIHelper.verticalSpaceSmall,
               AuthCustomeButton(
                   name: "Open New Ticket",
-                  onCallBack: () {},
+                  onCallBack: () {
+                    showBottomNav();
+                  },
                   height: .050.sh,
                   minWidth: .7.sw,
                   borderRadius: 15,
@@ -93,74 +158,29 @@ class _HelpSupportState extends State<HelpSupport> {
           ),
         ));
   }
-}
 
-class SupportCard extends StatelessWidget {
-  final String title;
-  final String description;
-  final String date;
-  final bool type;
-  const SupportCard({
-    super.key,
-    required this.title,
-    required this.description,
-    required this.date,
-    required this.type,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: .22.sh,
-      width: double.infinity,
-      padding: const EdgeInsets.all(15),
-      decoration: BoxDecoration(
-          color: AppColors.cffffff, borderRadius: BorderRadius.circular(10.r)),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          //UIHelper.verticalSpaceMedium,
-          Text(
-            title,
-            style: TextFontStyle.headline16w600C00000StyleInter
-                .copyWith(color: AppColors.c000000),
-          ),
-          UIHelper.verticalSpaceMedium,
-          Text(
-            description,
-            style: TextFontStyle.headline12w400C9E9E9EStyleInter
-                .copyWith(color: AppColors.c141414),
-          ),
-          UIHelper.verticalSpaceSmall,
-          Spacer(),
-          UIHelper.customDivider(width: .8.sw),
-          // UIHelper.verticalSpaceMedium,
-          // Text(
-          //   "Cameron Williamson",
-          //   style: TextFontStyle.headline16w600C00000StyleInter
-          //       .copyWith(color: AppColors.c000000),
-          // ),
-          UIHelper.verticalSpaceSmall,
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                date,
-                style: TextFontStyle.headline12w400C9E9E9EStyleInter
-                    .copyWith(color: AppColors.c5A5C5F),
-              ),
-              Text(
-                type ? "Resolved" : "Pending",
-                style: !type
-                    ? TextFontStyle.headline12w400C9E9E9EStyleInter
-                        .copyWith(color: AppColors.c9E9E9E)
-                    : TextFontStyle.headline12w700C9E9E9EStyleInter
-                        .copyWith(color: AppColors.allPrimaryColor),
-              ),
-            ],
-          ),
-        ],
-      ),
+  void showBottomNav() {
+    showModalBottomSheet(
+      // ignore: use_build_context_synchronously
+      elevation: 0,
+      // ignore: use_build_context_synchronously
+      context: context,
+      backgroundColor: Colors.transparent,
+      barrierColor: Colors.transparent,
+      isDismissible: true,
+      isScrollControlled: true, // Allow the bottom sheet to be expanded
+      builder: (builder) {
+        return Padding(
+          padding: EdgeInsets.only(
+            bottom: MediaQuery.of(context).viewInsets.bottom,
+          ), // Adjust the padding for the keyboard
+          child: BottomSheetWidget(
+              detailController: _detailController,
+              mailController: _mailController,
+              titleController: _titleController,
+              typeController: _typeController),
+        );
+      },
     );
   }
 }
