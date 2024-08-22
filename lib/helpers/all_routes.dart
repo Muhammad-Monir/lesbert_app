@@ -36,6 +36,7 @@ import 'package:lsebert/loading_screen.dart';
 import 'package:lsebert/navigation_screen.dart';
 
 import '../features/support/presentation/help_and_support.dart';
+import '../features/support/presentation/support_history.dart';
 
 final class Routes {
   static final Routes _routes = Routes._internal();
@@ -65,10 +66,12 @@ final class Routes {
   static const String changePass = '/changePass';
   static const String notification = '/notification';
   static const String paymentHistory = '/paymentHistory';
-
   static const String profileEdit = '/profileEdit';
   static const String helpAndSupport = '/HelpSupport';
   static const String addNewExperiance = '/addNewExperiance';
+  static const String helpAndSupport = '/selpSupport';
+  static const String supportHistory = '/supportHistory';
+
 
   //========<>======<>=======<>=======<>=======<>=========
   //===============<><><>==============<><><><>===============
@@ -147,6 +150,12 @@ final class RouteGenerator {
                 widget: const ScreenTitle(widget: HelpSupport()),
                 settings: settings)
             : CupertinoPageRoute(builder: (context) => const HelpSupport());
+      case Routes.supportHistory:
+        return Platform.isAndroid
+            ? _FadedTransitionRoute(
+                widget: const ScreenTitle(widget: SupportHistory()),
+                settings: settings)
+            : CupertinoPageRoute(builder: (context) => const SupportHistory());
       case Routes.signup:
         final args = settings.arguments as Map;
         return Platform.isAndroid

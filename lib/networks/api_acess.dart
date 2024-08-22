@@ -18,6 +18,9 @@ import '../features/profile/data/experiance_edit/rx_experiance_edit.dart';
 import '../features/profile/data/other_detials/rx_other_details_edit.dart';
 import '../features/question/data/rx_get_questions/rx.dart';
 import '../features/question/data/rx_post_questions/rx.dart';
+import '../features/support/data/rx_get_pending_list/rx.dart';
+import '../features/support/data/rx_get_resolved_list/rx.dart';
+import '../features/support/data/rx_post_issues/rx.dart';
 
 GetLoginRX getLoginRXObj = GetLoginRX(
     empty: LoginResponse(), dataFetcher: BehaviorSubject<LoginResponse>());
@@ -53,3 +56,10 @@ PsotAddNewExperianceRx postAddNewExperiance =
     PsotAddNewExperianceRx(empty: {}, dataFetcher: BehaviorSubject<Map>());
 PostDeleteExperianceRx postDeleterExperiance =
     PostDeleteExperianceRx(empty: {}, dataFetcher: BehaviorSubject<Map>());
+
+PostIssuesRX postTicketRXObj =
+    PostIssuesRX(empty: {}, dataFetcher: BehaviorSubject<Map>());
+GetResolvedListRX getResolvedListRXObj =
+    GetResolvedListRX(empty: {}, dataFetcher: BehaviorSubject<Map>());
+GetPendingListRX getPendingListRXObj =
+    GetPendingListRX(empty: {}, dataFetcher: BehaviorSubject<Map>());

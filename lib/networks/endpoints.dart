@@ -42,6 +42,11 @@ final class Endpoints {
   static String deleteExperiance(int id) => "/api/my-experence/delete/$id";
   static String addNewExperiance() => "/api/my-experence";
 
+  static String postIssues() => "/api/ticket-store";
+  static String getPendingTicketList() => "/api/tickets/pending-list";
+  static String getResolvedTicketList() => "/api/tickets/resolved-list";
+
+
   //backend_url
   static String appCategories() => "/api/product-categories";
   static String allShopCategories() => "/api/shop-categories";
@@ -68,7 +73,7 @@ final class Endpoints {
   static String deleteDeliveryAddress(int id) => "/api/delivery-addresses/$id";
   static String saveDeliveryAddress() => "/api/save-delivery-address";
   static String updateAddress() => "/api/update-address";
-  static String postIssues() => "/api/register-issue";
+
   static String defaultDeliveryAddress() => "/api/default-delivery-address";
   static String updateProfile() => "/api/update-profile";
   static String carts() => "/api/carts";
