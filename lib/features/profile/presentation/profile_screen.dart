@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lsebert/helpers/navigation_service.dart';
@@ -102,22 +104,35 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       ),
                       const DividerContainer(),
                       BioWidget(
-                        bioDescription: data['user_detail']['bio'],
-                        lstQualification: data['user_detail']['qualification'],
-                        title: data['user_detail']['current_designation'],
-                        industry: data['user_detail']['industry'],
-                        prepredLocation: data['user_detail']['location'],
-                        //  endDate: data['user_detail'][''],
-                        onTapBioEdit: () =>
-                            NavigationService.navigateTo(Routes.bioEdit),
-                      ),
+                          bioDescription: data['user_detail']['bio'],
+                          currentCompany: data['user_detail']
+                              ['current_company'],
+                          designation: data['user_detail']
+                              ['current_designation'],
+                          industry: data['user_detail']['industry'],
+                          prepredLocation: data['user_detail']['location'],
+                          onTapBioEdit: () {
+                            NavigationService.navigateToWithArgs(
+                                Routes.bioEdit, {
+                              'bioDes': data['user_detail']['bio'],
+                              'curntCompany': data['user_detail']
+                                  ['current_company'],
+                              'designation': data['user_detail']
+                                  ['current_designation'],
+                              'industry': data['user_detail']['industry'],
+                              'location': data['user_detail']['location'],
+                            });
+                          }),
                       const DividerContainer(),
                       OtherDetailsWidget(
                         skill: data['user_detail']['key_skills'],
                         language: data['user_detail']['languages'],
                         onTapOtherDetailsEdit: () =>
-                            NavigationService.navigateTo(
-                                Routes.otherDetailsEdit),
+                            NavigationService.navigateToWithArgs(
+                                Routes.otherDetailsEdit, {
+                          'skill': data['user_detail']['key_skills'],
+                          'language': data['user_detail']['languages'],
+                        }),
                       ),
                       const DividerContainer(),
                       if (experianceData != null)
@@ -137,23 +152,38 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   //   isEditButtonShow = true;
                                   // }
                                   return ExperiencesDataWidget(
-                                    isExperianceShow: index == 0,
-                                    crntCompanyName: experianceData[index]
-                                        ['company_name'],
-                                    designation: experianceData[index]
-                                        ['designation'],
-                                    employeeType: experianceData[index]
-                                        ['status'],
-                                    endDate: experianceData[index]
-                                        ['ending_date'],
-                                    jobLocation: experianceData[index]
-                                        ['company_location'],
-                                    startDate: experianceData[index]
-                                        ['starting_date'],
-                                    onTapExperianceEdit: () =>
-                                        NavigationService.navigateTo(
-                                            Routes.experianceEdit),
-                                  );
+                                      isExperianceShow: index == 0,
+                                      crntCompanyName: experianceData[index]
+                                          ['company_name'],
+                                      designation: experianceData[index]
+                                          ['designation'],
+                                      employeeType: experianceData[index]
+                                          ['status'],
+                                      endDate: experianceData[index]
+                                          ['ending_date'],
+                                      jobLocation: experianceData[index]
+                                          ['company_location'],
+                                      startDate: experianceData[index]
+                                          ['starting_date'],
+                                      onTapExperianceEdit: () {
+                                        log(experianceData[index].toString());
+                                        NavigationService.navigateToWithArgs(
+                                            Routes.experianceEdit, {
+                                          'id': experianceData[index]['id'],
+                                          'companyName': experianceData[index]
+                                              ['company_name'],
+                                          'designation': experianceData[index]
+                                              ['designation'],
+                                          'startDate': experianceData[index]
+                                              ['starting_date'],
+                                          'endDate': experianceData[index]
+                                              ['ending_date'],
+                                          'employeeTaype': experianceData[index]
+                                              ['status'],
+                                          'location': experianceData[index]
+                                              ['company_location'],
+                                        });
+                                      });
                                 },
                               ),
                               Padding(
@@ -161,7 +191,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     EdgeInsets.only(left: 25.w, right: 25.w),
                                 child: AuthCustomeButton(
                                     name: '+ Add New Experience',
-                                    onCallBack: () {},
+                                    onCallBack: () {
+                                      NavigationService.navigateTo(
+                                          Routes.addNewExperiance);
+                                    },
                                     height: 50.h,
                                     minWidth: double.infinity,
                                     borderRadius: 30.r,

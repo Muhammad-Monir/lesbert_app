@@ -73,8 +73,8 @@ class _ViewProfileScreenState extends State<ViewProfileScreen> {
               isEdit: false,
               bioDescription:
                   'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tincidunt malesuada ornare. Proin sollicitudin eros mauris, non viverra ante fermentum sed. Aliquam efficitur, augue at condimentum elementum, turpis nisi tincidunt mi, ut finibus mi nibh nec mi. In auctor libero turpis, et placerat velit eleifend eget. Suspendisse congue hendrerit lacus id sodales. Morbi non nunc ipsum. ',
-              lstQualification: 'BSC in Computer Science',
-              title: 'Abc Category',
+              currentCompany: 'BSC in Computer Science',
+              designation: 'Abc Category',
               industry: 'IT/ Software',
               prepredLocation: 'USA',
               endDate: 'Currently Working Here',

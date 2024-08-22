@@ -1,6 +1,6 @@
-import 'package:lsebert/features/profile/data/api_profile.dart';
+import 'package:lsebert/features/profile/data/profile/api_profile.dart';
 import 'package:rxdart/rxdart.dart';
-import '../../../../networks/rx_base.dart';
+import '../../../../../networks/rx_base.dart';
 
 final class GetProfileRx extends RxResponseInt<Map> {
   final api = GetProfileApi.instance;
