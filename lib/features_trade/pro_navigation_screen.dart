@@ -3,27 +3,27 @@
 import 'package:custom_navigation_bar/custom_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:lsebert/features_pro/dashboard/presentation/dashboard_screen.dart';
-import 'package:lsebert/features_pro/message/presentation/message_screen.dart';
-import 'package:lsebert/features_pro/profile/presentation/profile_screen.dart';
-import 'package:lsebert/features_pro/subscription/presentation/subscription_screen.dart';
+import 'package:lsebert/features_trade/pro_dashboard/presentation/pro_dashboard.dart';
+import 'package:lsebert/features_trade/pro_message/presentation/pro_message_screen.dart';
+import 'package:lsebert/features_trade/pro_profile/presentation/pro_profile_screen.dart';
+import 'package:lsebert/features_trade/pro_subscription/presentation/pro_subscription_screen.dart';
 import '/constants/text_font_style.dart';
 import '/gen/assets.gen.dart';
-import 'gen/colors.gen.dart';
-import 'helpers/helper_methods.dart';
+import '../gen/colors.gen.dart';
+import '../helpers/helper_methods.dart';
 
-final class NavigationScreen extends StatefulWidget {
+final class ProNavigationScreen extends StatefulWidget {
   final Widget? pageNum;
-  const NavigationScreen({
+  const ProNavigationScreen({
     super.key,
     this.pageNum,
   });
 
   @override
-  State<NavigationScreen> createState() => _NavigationScreenState();
+  State<ProNavigationScreen> createState() => _ProNavigationScreenState();
 }
 
-class _NavigationScreenState extends State<NavigationScreen> {
+class _ProNavigationScreenState extends State<ProNavigationScreen> {
   int _currentIndex = 0;
 
   int _colorIndex = 0;
@@ -32,10 +32,10 @@ class _NavigationScreenState extends State<NavigationScreen> {
   bool _navigationOn = true;
 
   final List<StatefulWidget> _screens = [
-    const DashboardScreen(),
-    const SubscriptionScreen(),
-    const MessageScreen(),
-    const ProfileScreen(),
+    const ProDashboardScreen(),
+    const ProSubscriptionScreen(),
+    const ProMessageScreen(),
+    const ProProfileScreen(),
   ];
 
   @override
@@ -81,24 +81,23 @@ class _NavigationScreenState extends State<NavigationScreen> {
                 ? screenPage
                 : _screens.elementAt(_currentIndex)),
         bottomNavigationBar: CustomNavigationBar(
-          iconSize: 24.r,
+          iconSize: 24.sp,
           selectedColor: Colors.red,
           strokeColor: AppColors.allPrimaryColor,
           unSelectedColor: Colors.black,
-          backgroundColor: Colors.white,
+          backgroundColor: AppColors.allPrimaryColor,
           items: [
             CustomNavigationBarItem(
-              
               icon: Image.asset(
                 Assets.icons.dashboardIcon.path,
                 color: (_currentIndex == 0)
-                    ? AppColors.allPrimaryColor
+                    ? AppColors.cffffff
                     : AppColors.c9E9E9E,
               ),
               title: Text("${"Home"} ",
                   style: TextFontStyle.headline12w400C9E9E9EStyleInter.copyWith(
                     color: (_currentIndex == 0)
-                        ? AppColors.allPrimaryColor
+                        ? AppColors.cffffff
                         : AppColors.c9E9E9E,
                   )),
             ),
@@ -106,14 +105,14 @@ class _NavigationScreenState extends State<NavigationScreen> {
               icon: Image.asset(
                 Assets.icons.subscriptionIcon.path,
                 color: (_currentIndex == 1)
-                    ? AppColors.allPrimaryColor
+                    ? AppColors.cffffff
                     : AppColors.c9E9E9E,
               ),
               title: Text(
                 "Subscription",
                 style: TextFontStyle.headline12w400C9E9E9EStyleInter.copyWith(
                   color: (_currentIndex == 1)
-                      ? AppColors.allPrimaryColor
+                      ? AppColors.cffffff
                       : AppColors.c9E9E9E,
                 ),
               ),
@@ -122,14 +121,14 @@ class _NavigationScreenState extends State<NavigationScreen> {
               icon: Image.asset(
                 Assets.icons.messageIcon.path,
                 color: (_currentIndex == 2)
-                    ? AppColors.allPrimaryColor
+                    ? AppColors.cffffff
                     : AppColors.c9E9E9E,
               ),
               title: Text(
                 "Message",
                 style: TextFontStyle.headline12w400C9E9E9EStyleInter.copyWith(
                   color: (_currentIndex == 2)
-                      ? AppColors.allPrimaryColor
+                      ? AppColors.cffffff
                       : AppColors.c9E9E9E,
                 ),
               ),
@@ -138,14 +137,14 @@ class _NavigationScreenState extends State<NavigationScreen> {
               icon: Image.asset(
                 Assets.icons.profileIcon.path,
                 color: (_currentIndex == 3)
-                    ? AppColors.allPrimaryColor
+                    ? AppColors.cffffff
                     : AppColors.c9E9E9E,
               ),
               title: Text(
                 "Profile",
                 style: TextFontStyle.headline12w400C9E9E9EStyleInter.copyWith(
                   color: (_currentIndex == 3)
-                      ? AppColors.allPrimaryColor
+                      ? AppColors.cffffff
                       : AppColors.c9E9E9E,
                 ),
               ),

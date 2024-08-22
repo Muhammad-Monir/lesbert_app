@@ -1,26 +1,30 @@
-import 'package:lsebert/features/profile/data/profile/rx_profile.dart';
+import 'package:lsebert/features_pro/profile/data/profile/rx_profile.dart';
 import 'package:rxdart/subjects.dart';
 
-import '../features/auth/data/rx_get_logout/rx.dart';
-import '../features/auth/data/rx_otp/rx.dart';
-import '../features/auth/data/rx_email/rx.dart';
-import '../features/auth/data/rx_forget_pw/rx.dart';
-import '../features/auth/data/rx_login/rx.dart';
-import '../features/auth/data/rx_resendotp/rx.dart';
-import '../features/auth/data/rx_signup/rx.dart';
-import '../features/auth/model/login_response.dart';
-import '../features/intro/role/data/rx.dart';
-import '../features/profile/data/add_new_experiance/rx_add_experiance.dart';
-import '../features/profile/data/bio_update/rx_bio_update.dart';
-import '../features/profile/data/delete_experiance/rx_delete_experiance.dart';
-import '../features/profile/data/edit_profile/edit_profile_rx.dart';
-import '../features/profile/data/experiance_edit/rx_experiance_edit.dart';
-import '../features/profile/data/other_detials/rx_other_details_edit.dart';
-import '../features/question/data/rx_get_questions/rx.dart';
-import '../features/question/data/rx_post_questions/rx.dart';
-import '../features/support/data/rx_get_pending_list/rx.dart';
-import '../features/support/data/rx_get_resolved_list/rx.dart';
-import '../features/support/data/rx_post_issues/rx.dart';
+import '../features_pro/auth/data/rx_get_logout/rx.dart';
+import '../features_pro/auth/data/rx_otp/rx.dart';
+import '../features_pro/auth/data/rx_email/rx.dart';
+import '../features_pro/auth/data/rx_forget_pw/rx.dart';
+import '../features_pro/auth/data/rx_login/rx.dart';
+import '../features_pro/auth/data/rx_resendotp/rx.dart';
+import '../features_pro/auth/data/rx_signup/rx.dart';
+import '../features_pro/auth/model/login_response.dart';
+import '../features_pro/dashboard/data/experiance/experiance_rx.dart';
+import '../features_pro/dashboard/data/images/image_rx.dart';
+import '../features_pro/intro/role/data/rx.dart';
+import '../features_pro/profile/data/add_new_experiance/rx_add_experiance.dart';
+import '../features_pro/profile/data/bio_update/rx_bio_update.dart';
+import '../features_pro/profile/data/delete_experiance/rx_delete_experiance.dart';
+import '../features_pro/profile/data/edit_profile/edit_profile_rx.dart';
+import '../features_pro/profile/data/experiance_edit/rx_experiance_edit.dart';
+import '../features_pro/profile/data/other_detials/rx_other_details_edit.dart';
+import '../features_pro/profile/data/personal_info_edit/rx_personal_info_edit.dart';
+import '../features_pro/question/data/rx_get_questions/rx.dart';
+import '../features_pro/question/data/rx_post_questions/rx.dart';
+import '../features_pro/security/data/security_rx.dart';
+import '../features_pro/support/data/rx_get_pending_list/rx.dart';
+import '../features_pro/support/data/rx_get_resolved_list/rx.dart';
+import '../features_pro/support/data/rx_post_issues/rx.dart';
 
 GetLoginRX getLoginRXObj = GetLoginRX(
     empty: LoginResponse(), dataFetcher: BehaviorSubject<LoginResponse>());
@@ -56,6 +60,14 @@ PsotAddNewExperianceRx postAddNewExperiance =
     PsotAddNewExperianceRx(empty: {}, dataFetcher: BehaviorSubject<Map>());
 PostDeleteExperianceRx postDeleterExperiance =
     PostDeleteExperianceRx(empty: {}, dataFetcher: BehaviorSubject<Map>());
+PostPersonalInfoEditRx postPersonalInfoEdit =
+    PostPersonalInfoEditRx(empty: {}, dataFetcher: BehaviorSubject<Map>());
+PostSecurityRx postChangePass =
+    PostSecurityRx(empty: {}, dataFetcher: BehaviorSubject<Map>());
+GetExperianceRx getExperianceRXObj =
+    GetExperianceRx(empty: {}, dataFetcher: BehaviorSubject<Map>());
+PostImageRx postImageRxObj =
+    PostImageRx(empty: {}, dataFetcher: BehaviorSubject<Map>());
 
 PostIssuesRX postTicketRXObj =
     PostIssuesRX(empty: {}, dataFetcher: BehaviorSubject<Map>());
