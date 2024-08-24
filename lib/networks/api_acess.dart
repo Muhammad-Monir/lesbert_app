@@ -1,6 +1,7 @@
 import 'package:lsebert/features_pro/profile/data/profile/rx_profile.dart';
 import 'package:rxdart/subjects.dart';
 import '../features/support/data/rx_get_issue_details/rx.dart';
+import '../features_pro/notification/data/rx.dart';
 import '../features_pro/support/data/rx_post_replay/rx.dart';
 import '../features_pro/auth/data/rx_get_logout/rx.dart';
 import '../features_pro/auth/data/rx_otp/rx.dart';
@@ -97,3 +98,5 @@ GetTradeDashboardRX getTradeDashboardRXObj =
     GetTradeDashboardRX(empty: {}, dataFetcher: BehaviorSubject<Map>());
 GetProProfileDataRX getTradeDetailsDataRXObj =
     GetProProfileDataRX(empty: {}, dataFetcher: BehaviorSubject<Map>());
+GetNotificationRX getNotificationRXObj =
+    GetNotificationRX(empty: {}, dataFetcher: BehaviorSubject<Map>());

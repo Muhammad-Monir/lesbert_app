@@ -56,7 +56,7 @@ class _LoadingState extends State<Loading> {
       return const WelcomeScreen();
     } else {
       return appData.read(kKeyIsLoggedIn)
-          ? const TardeNavigationScreen()
+          ? const NavigationScreen()
           : const LoginScreen();
     }
   }

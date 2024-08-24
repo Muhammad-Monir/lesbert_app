@@ -59,6 +59,8 @@ final class Endpoints {
   static String tradeEditProfile() => "/api/trade/update-profile";
   static String tradeDashboard() => "/api/trade/pro-profile-list";
   static String proProfileData(int id) => "/api/trade/pro-profile/$id";
+  static String getNotification() => "/api/my-notifications";
+  
 
   //backend_url
   static String appCategories() => "/api/product-categories";

@@ -5,6 +5,7 @@ import '../../../gen/colors.gen.dart';
 import '../../../helpers/navigation_service.dart';
 import '../../../helpers/ui_helpers.dart';
 import '../../../common_widgets/notification_widget.dart';
+import '../../../networks/api_acess.dart';
 
 class NotificationScreen extends StatefulWidget {
   const NotificationScreen({super.key});
@@ -14,6 +15,12 @@ class NotificationScreen extends StatefulWidget {
 }
 
 class _NotificationScreenState extends State<NotificationScreen> {
+  @override
+  void initState() {
+    getNotificationRXObj.fetchNotificationData();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,25 +38,35 @@ class _NotificationScreenState extends State<NotificationScreen> {
           ),
         ),
         title: Text(
-          'Notifications',
+          'Notif',
           style: TextFontStyle.headline20w600C141414StyleInter,
         ),
       ),
-      body: ListView.separated(
-        separatorBuilder: (context, index) => UIHelper.customDivider(),
-        itemCount: 10,
-        shrinkWrap: true,
-        physics: const BouncingScrollPhysics(),
-        itemBuilder: (context, index) {
-          return const NotificationWidget(
-            firstWord: "A",
-            time: '12.25 am',
-            title: 'This is the notification on every other placement.',
-          );
-        },
-      ),
+      body: StreamBuilder(
+          stream: getNotificationRXObj.dataFetcher,
+          builder: (context, snapshot) {
+            List data = snapshot.data?['data']['notifications'];
+
+            if (snapshot.hasData) {
+              return ListView.separated(
+                separatorBuilder: (context, index) => UIHelper.customDivider(),
+                itemCount: data.length,
+                shrinkWrap: true,
+                physics: const BouncingScrollPhysics(),
+                itemBuilder: (context, index) {
+                  return const NotificationWidget(
+                    firstWord: "A",
+                    time: '12.25 am',
+                    title: 'This is the notification on every other placement.',
+                  );
+                },
+              );
+            } else {
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
+            }
+          }),
     );
-  
   }
 }
-
