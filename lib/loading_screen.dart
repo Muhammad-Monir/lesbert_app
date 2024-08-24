@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:lsebert/features/intro/splash_screen.dart';
-import 'package:lsebert/features/question/presentation/question_screen.dart';
+import 'package:lsebert/features_pro/intro/splash_screen.dart';
+import 'package:lsebert/features_pro/question/presentation/question_screen.dart';
 import 'constants/app_constants.dart';
-import 'features/auth/presentatiom/login/login_screen.dart';
+import 'features_pro/auth/presentatiom/login/login_screen.dart';
 import 'helpers/app_version_updater.dart';
 import 'helpers/di.dart';
 import 'helpers/helper_methods.dart';
@@ -40,6 +40,7 @@ class _LoadingState extends State<Loading> {
       DioSingleton.instance.update(token);
       await getQuestionRx.fetchQuestionData();
       await getProProfileRxObj.fetchProfileData();
+      await getExperianceRXObj.fetchExperianceData();
     }
     setState(() {
       _isLoading = false;

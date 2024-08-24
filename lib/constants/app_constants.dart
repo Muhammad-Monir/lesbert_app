@@ -110,6 +110,10 @@ const String kKeycategoriesID = 'categoriesId';
 const String kKeyproductID = 'productId';
 const String kKeyShopSlug = 'shop_slug';
 const String kKeyRestaurantID = 'productId';
+const String bio = 'bio';
+const String userName = 'userName';
+const String userImage = 'userImage';
+const String images = 'images';
 const String kKeyIsExploring = 'exploring';
 //order statuses
 

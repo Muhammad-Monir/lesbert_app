@@ -12,6 +12,7 @@ class CustomDrawer extends StatelessWidget {
   final VoidCallback? onTapHelpAndSuport;
   final VoidCallback? onTapPrivacy;
   final VoidCallback? onTapLogout;
+  final VoidCallback? onTapSecurity;
   final bool isTextColor;
   const CustomDrawer({
     this.onTapNotification,
@@ -20,6 +21,7 @@ class CustomDrawer extends StatelessWidget {
     this.onTapHelpAndSuport,
     this.onTapPrivacy,
     this.onTapLogout,
+    this.onTapSecurity,
     this.isTextColor = false,
     super.key,
   });
@@ -59,6 +61,13 @@ class CustomDrawer extends StatelessWidget {
             onTap: onTapPaymnetHistory,
             widget: const SizedBox.shrink(),
             itemName: 'Payment History',
+          ),
+          UIHelper.verticalSpace(25.w),
+          DrawerItemWidget(
+            isColor: isTextColor,
+            onTap: onTapSecurity,
+            widget: const SizedBox.shrink(),
+            itemName: 'Security',
           ),
           UIHelper.verticalSpace(25.w),
           DrawerItemWidget(

@@ -1,42 +1,43 @@
 import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
-import 'package:lsebert/features/auth/presentatiom/forgot_password/forgot_pass_screen.dart';
-import 'package:lsebert/features/auth/presentatiom/forgot_password/otp_success_screen.dart';
-import 'package:lsebert/features/auth/presentatiom/forgot_password/otp_verify_screen.dart';
-import 'package:lsebert/features/auth/presentatiom/forgot_password/reset_pass_screen.dart';
-import 'package:lsebert/features/auth/presentatiom/login/login_screen.dart';
-import 'package:lsebert/features/auth/presentatiom/sign_up/sign_up_screen.dart';
-import 'package:lsebert/features/dashboard/presentation/dashboard_screen.dart';
-import 'package:lsebert/features/intro/onboarding_screen.dart';
-import 'package:lsebert/features/intro/role_screen.dart';
-import 'package:lsebert/features/intro/splash_screen.dart';
-import 'package:lsebert/features/message/presentation/message_screen.dart';
-import 'package:lsebert/features/notification/presentation/notification_screen.dart';
-import 'package:lsebert/features/paymnet_history/presentation/payment_history_screen.dart';
-import 'package:lsebert/features/profile/presentation/add_new_experiance.dart';
-import 'package:lsebert/features/profile/presentation/bio_edit_screen.dart';
-import 'package:lsebert/features/profile/presentation/change_pass_screen.dart';
-import 'package:lsebert/features/profile/presentation/experiance_edit_screen.dart';
-import 'package:lsebert/features/profile/presentation/other_details_edit.dart';
-import 'package:lsebert/features/profile/presentation/personal_details_edit_screen.dart';
-import 'package:lsebert/features/profile/presentation/profile_edit_screen.dart';
-import 'package:lsebert/features/profile/presentation/profile_screen.dart';
-import 'package:lsebert/features/question/presentation/question_screen.dart';
-import 'package:lsebert/features/subscription/presentation/subscription_screen.dart';
-import 'package:lsebert/features_pro/pro_notification/notification.dart';
-import 'package:lsebert/features_pro/pro_dashboard/presentation/pro_dashboard.dart';
-import 'package:lsebert/features_pro/pro_message/presentation/pro_message_screen.dart';
-import 'package:lsebert/features_pro/pro_navigation_screen.dart';
-import 'package:lsebert/features_pro/pro_paymnet_history/pro_peyment_history_screen.dart';
-import 'package:lsebert/features_pro/pro_profile/presentation/pro_edit_profile.dart';
-import 'package:lsebert/features_pro/pro_subscription/presentation/pro_subscription_screen.dart';
-import 'package:lsebert/features_pro/view_profile/view_profile.dart';
+import 'package:lsebert/features_pro/auth/presentatiom/forgot_password/forgot_pass_screen.dart';
+import 'package:lsebert/features_pro/auth/presentatiom/forgot_password/otp_success_screen.dart';
+import 'package:lsebert/features_pro/auth/presentatiom/forgot_password/otp_verify_screen.dart';
+import 'package:lsebert/features_pro/auth/presentatiom/forgot_password/reset_pass_screen.dart';
+import 'package:lsebert/features_pro/auth/presentatiom/login/login_screen.dart';
+import 'package:lsebert/features_pro/auth/presentatiom/sign_up/sign_up_screen.dart';
+import 'package:lsebert/features_pro/dashboard/presentation/dashboard_screen.dart';
+import 'package:lsebert/features_pro/intro/onboarding_screen.dart';
+import 'package:lsebert/features_pro/intro/role_screen.dart';
+import 'package:lsebert/features_pro/intro/splash_screen.dart';
+import 'package:lsebert/features_pro/message/presentation/message_screen.dart';
+import 'package:lsebert/features_pro/notification/presentation/notification_screen.dart';
+import 'package:lsebert/features_pro/paymnet_history/presentation/payment_history_screen.dart';
+import 'package:lsebert/features_pro/profile/presentation/add_new_experiance.dart';
+import 'package:lsebert/features_pro/profile/presentation/bio_edit_screen.dart';
+import 'package:lsebert/features_pro/profile/presentation/change_pass_screen.dart';
+import 'package:lsebert/features_pro/profile/presentation/experiance_edit_screen.dart';
+import 'package:lsebert/features_pro/profile/presentation/other_details_edit.dart';
+import 'package:lsebert/features_pro/profile/presentation/personal_details_edit_screen.dart';
+import 'package:lsebert/features_pro/profile/presentation/profile_edit_screen.dart';
+import 'package:lsebert/features_pro/profile/presentation/profile_screen.dart';
+import 'package:lsebert/features_pro/question/presentation/question_screen.dart';
+import 'package:lsebert/features_pro/security/presentation/security_screen.dart';
+import 'package:lsebert/features_pro/subscription/presentation/subscription_screen.dart';
+import 'package:lsebert/features_trade/pro_notification/notification.dart';
+import 'package:lsebert/features_trade/pro_dashboard/presentation/pro_dashboard.dart';
+import 'package:lsebert/features_trade/pro_message/presentation/pro_message_screen.dart';
+import 'package:lsebert/features_trade/pro_navigation_screen.dart';
+import 'package:lsebert/features_trade/pro_paymnet_history/pro_peyment_history_screen.dart';
+import 'package:lsebert/features_trade/pro_profile/presentation/pro_edit_profile.dart';
+import 'package:lsebert/features_trade/pro_subscription/presentation/pro_subscription_screen.dart';
+import 'package:lsebert/features_trade/view_profile/view_profile.dart';
 import 'package:lsebert/loading_screen.dart';
 import 'package:lsebert/navigation_screen.dart';
 
-import '../features/support/presentation/help_and_support.dart';
-import '../features/support/presentation/support_history.dart';
+import '../features_pro/support/presentation/help_and_support.dart';
+import '../features_pro/support/presentation/support_history.dart';
 
 final class Routes {
   static final Routes _routes = Routes._internal();
@@ -69,9 +70,8 @@ final class Routes {
   static const String profileEdit = '/profileEdit';
   static const String helpAndSupport = '/HelpSupport';
   static const String addNewExperiance = '/addNewExperiance';
-  static const String helpAndSupport = '/selpSupport';
   static const String supportHistory = '/supportHistory';
-
+  static const String securityScreen = '/securityScreen';
 
   //========<>======<>=======<>=======<>=======<>=========
   //===============<><><>==============<><><><>===============
@@ -216,12 +216,20 @@ final class RouteGenerator {
                 settings: settings)
             : CupertinoPageRoute(builder: (context) => const QuestionScreen());
       case Routes.personalDetailsEdit:
+        final args = settings.arguments as Map;
         return Platform.isAndroid
             ? _FadedTransitionRoute(
-                widget: const ScreenTitle(widget: PersonalDetailsEditScreen()),
+                widget: ScreenTitle(
+                    widget: PersonalDetailsEditScreen(
+                  phoneNum: args['phone'],
+                  address: args['address'],
+                )),
                 settings: settings)
             : CupertinoPageRoute(
-                builder: (context) => const PersonalDetailsEditScreen());
+                builder: (context) => PersonalDetailsEditScreen(
+                      phoneNum: args['phone'],
+                      address: args['address'],
+                    ));
       case Routes.bioEdit:
         final args = settings.arguments as Map;
         return Platform.isAndroid
@@ -338,6 +346,12 @@ final class RouteGenerator {
                 settings: settings)
             : CupertinoPageRoute(
                 builder: (context) => const AddNewExperiance());
+      case Routes.securityScreen:
+        return Platform.isAndroid
+            ? _FadedTransitionRoute(
+                widget: const ScreenTitle(widget: SecurityScreen()),
+                settings: settings)
+            : CupertinoPageRoute(builder: (context) => const SecurityScreen());
 
       //========<>======<>=======<>=======<>=======<>=========
       //===============<><><>==============<><><><>===============
