@@ -13,9 +13,11 @@ import '../features/intro/role/data/rx.dart';
 import '../features/profile/data/edit_profile_rx.dart';
 import '../features/question/data/rx_get_questions/rx.dart';
 import '../features/question/data/rx_post_questions/rx.dart';
+import '../features/support/data/rx_get_issue_details/rx.dart';
 import '../features/support/data/rx_get_pending_list/rx.dart';
 import '../features/support/data/rx_get_resolved_list/rx.dart';
 import '../features/support/data/rx_post_issues/rx.dart';
+import '../features/support/data/rx_post_replay/rx.dart';
 
 GetLoginRX getLoginRXObj = GetLoginRX(
     empty: LoginResponse(), dataFetcher: BehaviorSubject<LoginResponse>());
@@ -47,3 +49,7 @@ GetResolvedListRX getResolvedListRXObj =
     GetResolvedListRX(empty: {}, dataFetcher: BehaviorSubject<Map>());
 GetPendingListRX getPendingListRXObj =
     GetPendingListRX(empty: {}, dataFetcher: BehaviorSubject<Map>());
+GetIssueDetailsRX getIssueDetailsRXObj =
+    GetIssueDetailsRX(empty: {}, dataFetcher: BehaviorSubject<Map>());
+PostReplayRX postReplayRXObj =
+    PostReplayRX(empty: {}, dataFetcher: BehaviorSubject<Map>());
