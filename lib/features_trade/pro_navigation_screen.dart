@@ -3,27 +3,27 @@
 import 'package:custom_navigation_bar/custom_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:lsebert/features_trade/pro_dashboard/presentation/pro_dashboard.dart';
+import 'package:lsebert/features_trade/trade_dashboard/presentation/trade_dashboard.dart';
 import 'package:lsebert/features_trade/pro_message/presentation/pro_message_screen.dart';
-import 'package:lsebert/features_trade/pro_profile/presentation/pro_profile_screen.dart';
 import 'package:lsebert/features_trade/pro_subscription/presentation/pro_subscription_screen.dart';
 import '/constants/text_font_style.dart';
 import '/gen/assets.gen.dart';
 import '../gen/colors.gen.dart';
 import '../helpers/helper_methods.dart';
+import 'pro_profile/presentation/trade_profile_screen.dart';
 
-final class ProNavigationScreen extends StatefulWidget {
+final class TardeNavigationScreen extends StatefulWidget {
   final Widget? pageNum;
-  const ProNavigationScreen({
+  const TardeNavigationScreen({
     super.key,
     this.pageNum,
   });
 
   @override
-  State<ProNavigationScreen> createState() => _ProNavigationScreenState();
+  State<TardeNavigationScreen> createState() => _TardeNavigationScreenState();
 }
 
-class _ProNavigationScreenState extends State<ProNavigationScreen> {
+class _TardeNavigationScreenState extends State<TardeNavigationScreen> {
   int _currentIndex = 0;
 
   int _colorIndex = 0;
@@ -35,7 +35,7 @@ class _ProNavigationScreenState extends State<ProNavigationScreen> {
     const ProDashboardScreen(),
     const ProSubscriptionScreen(),
     const ProMessageScreen(),
-    const ProProfileScreen(),
+    const TradeProfileScreen(),
   ];
 
   @override

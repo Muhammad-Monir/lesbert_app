@@ -38,7 +38,6 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
   final _nameController = TextEditingController();
   final _professionController = TextEditingController();
   final _emailController = TextEditingController();
-  
 
   @override
   void initState() {
@@ -124,7 +123,6 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
                                 ),
                               );
                             }
-                            ;
                           }
                         },
                       ),

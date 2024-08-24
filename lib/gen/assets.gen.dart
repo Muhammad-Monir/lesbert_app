@@ -12,6 +12,9 @@ import 'package:flutter/widgets.dart';
 class $AssetsIconsGen {
   const $AssetsIconsGen();
 
+  /// File path: assets/icons/bag_icon.png
+  AssetGenImage get bagIcon => const AssetGenImage('assets/icons/bag_icon.png');
+
   /// File path: assets/icons/boost_icon.png
   AssetGenImage get boostIcon =>
       const AssetGenImage('assets/icons/boost_icon.png');
@@ -55,6 +58,10 @@ class $AssetsIconsGen {
   AssetGenImage get googleIcon =>
       const AssetGenImage('assets/icons/google_icon.png');
 
+  /// File path: assets/icons/home_icon.png
+  AssetGenImage get homeIcon =>
+      const AssetGenImage('assets/icons/home_icon.png');
+
   /// File path: assets/icons/location.png
   AssetGenImage get location =>
       const AssetGenImage('assets/icons/location.png');
@@ -89,6 +96,9 @@ class $AssetsIconsGen {
   AssetGenImage get profileViewIcon =>
       const AssetGenImage('assets/icons/profile_view_icon.png');
 
+  /// File path: assets/icons/search.png
+  AssetGenImage get search => const AssetGenImage('assets/icons/search.png');
+
   /// File path: assets/icons/search_icon.png
   AssetGenImage get searchIcon =>
       const AssetGenImage('assets/icons/search_icon.png');
@@ -119,6 +129,7 @@ class $AssetsIconsGen {
 
   /// List of all assets
   List<dynamic> get values => [
+        bagIcon,
         boostIcon,
         boxIcon,
         cameraIcon,
@@ -130,6 +141,7 @@ class $AssetsIconsGen {
         flameIcon,
         folderIcon,
         googleIcon,
+        homeIcon,
         location,
         lockIcon,
         logo,
@@ -139,6 +151,7 @@ class $AssetsIconsGen {
         personIcon,
         profileIcon,
         profileViewIcon,
+        search,
         searchIcon,
         sendMessageIcon,
         subscriptionIcon,
@@ -172,6 +185,10 @@ class $AssetsImagesGen {
   AssetGenImage get otpSuccessFlower =>
       const AssetGenImage('assets/images/otp_success_flower.png');
 
+  /// File path: assets/images/trade_image.png
+  AssetGenImage get tradeImage =>
+      const AssetGenImage('assets/images/trade_image.png');
+
   /// File path: assets/images/user_image.png
   AssetGenImage get userImage =>
       const AssetGenImage('assets/images/user_image.png');
@@ -187,6 +204,7 @@ class $AssetsImagesGen {
         onboardingImage3,
         onboardingImage4,
         otpSuccessFlower,
+        tradeImage,
         userImage,
         viewProfileImage
       ];
