@@ -3,10 +3,10 @@
 import 'package:custom_navigation_bar/custom_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:lsebert/features/dashboard/presentation/dashboard_screen.dart';
-import 'package:lsebert/features/message/presentation/message_screen.dart';
-import 'package:lsebert/features/profile/presentation/profile_screen.dart';
-import 'package:lsebert/features/subscription/presentation/subscription_screen.dart';
+import 'package:lsebert/features_pro/dashboard/presentation/dashboard_screen.dart';
+import 'package:lsebert/features_pro/message/presentation/message_screen.dart';
+import 'package:lsebert/features_pro/profile/presentation/profile_screen.dart';
+import 'package:lsebert/features_pro/subscription/presentation/subscription_screen.dart';
 import '/constants/text_font_style.dart';
 import '/gen/assets.gen.dart';
 import 'gen/colors.gen.dart';
