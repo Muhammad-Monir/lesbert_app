@@ -2,23 +2,22 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:lsebert/constants/app_constants.dart';
-import 'package:lsebert/helpers/di.dart';
 import 'package:lsebert/helpers/navigation_service.dart';
 import 'package:lsebert/helpers/ui_helpers.dart';
 import 'package:lsebert/networks/api_acess.dart';
+
 import '../../../common_widgets/auth_button.dart';
-import '../../../common_widgets/custom_drawer.dart';
-import '../../../constants/text_font_style.dart';
-import '../../../gen/assets.gen.dart';
-import '../../../gen/colors.gen.dart';
-import '../../../helpers/all_routes.dart';
 import '../../../common_widgets/bio_widegt.dart';
+import '../../../common_widgets/custom_drawer.dart';
 import '../../../common_widgets/divider_container.dart';
 import '../../../common_widgets/experiance_data_widget.dart';
 import '../../../common_widgets/other_details_widget.dart';
 import '../../../common_widgets/personal_details_widget.dart';
 import '../../../common_widgets/user_name_image_widget.dart';
+import '../../../constants/text_font_style.dart';
+import '../../../gen/assets.gen.dart';
+import '../../../gen/colors.gen.dart';
+import '../../../helpers/all_routes.dart';
 import '../../../networks/endpoints.dart';
 
 class ProfileScreen extends StatefulWidget {
@@ -67,9 +66,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 if (snapshot.hasData) {
                   Map<String, dynamic> data = snapshot.data!['data']['user'];
                   List? experianceData = data['experiences'];
-                  appData.write('bio', data['user_detail']['bio']);
-                  appData.write(userName, data['name']);
-                  appData.write(userImage, imageUrl + data['avatar']);
                   //List<Map<String, dynamic>> experiance = data['experiences'];
                   return Column(
                     children: [
