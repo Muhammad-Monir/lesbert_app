@@ -21,6 +21,7 @@ import '../../../common_widgets/experiance_data_widget.dart';
 import '../../../helpers/all_routes.dart';
 import '../../../helpers/navigation_service.dart';
 import '../../../networks/api_acess.dart';
+import '../../../networks/endpoints.dart';
 import '../../../networks/stream_cleaner.dart';
 import '../../../provider/image_picker_provider.dart';
 import 'widget/dashboard_card.dart';
@@ -68,20 +69,39 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   width: 2.w,
                 ),
               ),
-              child: CircleAvatar(
-                radius: 30.r, // Inner circle radius
-                backgroundImage: NetworkImage(
-                  appData.read(userImage),
-                ),
-              ),
+              child: StreamBuilder(
+                  stream: getProProfileRxObj.dataFetcher,
+                  builder: (context, snapshot) {
+                    if (snapshot.hasData) {
+                      Map<String, dynamic> data =
+                          snapshot.data!['data']['user'];
+                      String userImage = imageUrl + data['avatar'];
+                      return CircleAvatar(
+                        radius: 30.r, // Inner circle radius
+                        backgroundImage: NetworkImage(userImage),
+                      );
+                    } else {
+                      return SizedBox.shrink();
+                    }
+                  }),
             ),
           ),
         ),
-        title: Text(
-          appData.read(userName),
-          style: TextFontStyle.headline16w500C141414StyleInter
-              .copyWith(color: AppColors.allPrimaryColor),
-        ),
+        title: StreamBuilder(
+            stream: getProProfileRxObj.dataFetcher,
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                Map<String, dynamic> data = snapshot.data!['data']['user'];
+
+                return Text(
+                  data['name'],
+                  style: TextFontStyle.headline16w500C141414StyleInter
+                      .copyWith(color: AppColors.allPrimaryColor),
+                );
+              } else {
+                return SizedBox.shrink();
+              }
+            }),
         actions: [
           Padding(
             padding: EdgeInsets.only(right: 16.w),
@@ -226,12 +246,27 @@ class _DashboardScreenState extends State<DashboardScreen> {
                           style: TextFontStyle.headline24w700C000000StyleInter,
                         ),
                         UIHelper.verticalSpaceMedium,
-                        Text(
-                          appData.read(bio),
-                          textAlign: TextAlign.justify,
-                          style: TextFontStyle.headline14w400C848484StyleInter
-                              .copyWith(color: AppColors.c5A5C5F),
-                        ),
+                        StreamBuilder(
+                            stream: getProProfileRxObj.dataFetcher,
+                            builder: (context, snapshot) {
+                              if (snapshot.hasData) {
+                                Map<String, dynamic> data =
+                                    snapshot.data!['data']['user'];
+                                List? experianceData = data['experiences'];
+                                appData.write(
+                                    userImage, imageUrl + data['avatar']);
+
+                                return Text(
+                                  data['user_detail']['bio'],
+                                  textAlign: TextAlign.justify,
+                                  style: TextFontStyle
+                                      .headline14w400C848484StyleInter
+                                      .copyWith(color: AppColors.c5A5C5F),
+                                );
+                              } else {
+                                return SizedBox.shrink();
+                              }
+                            }),
                         UIHelper.horizontalSpaceSmall,
                       ],
                     ),
