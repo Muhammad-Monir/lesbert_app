@@ -45,6 +45,8 @@ final class Endpoints {
   static String postIssues() => "/api/ticket-store";
   static String getPendingTicketList() => "/api/tickets/pending-list";
   static String getResolvedTicketList() => "/api/tickets/resolved-list";
+  static String getTicketDetails(int id) => "/api/tickets/$id/details";
+  static String postTicketReplay() => "/api/pro-ticket-reply";
   static String postChangePass() => "/api/change-password";
   static String getExperiance() => "/api/my-experence";
   static String proImages() => "/api/pro-images";

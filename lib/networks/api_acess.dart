@@ -1,6 +1,24 @@
 import 'package:lsebert/features_pro/profile/data/profile/rx_profile.dart';
 import 'package:rxdart/subjects.dart';
 
+import '../features/auth/data/rx_get_logout/rx.dart';
+import '../features/auth/data/rx_otp/rx.dart';
+import '../features/auth/data/rx_email/rx.dart';
+import '../features/auth/data/rx_forget_pw/rx.dart';
+import '../features/auth/data/rx_login/rx.dart';
+import '../features/auth/data/rx_resendotp/rx.dart';
+import '../features/auth/data/rx_signup/rx.dart';
+import '../features/auth/model/login_response.dart';
+import '../features/intro/role/data/rx.dart';
+import '../features/profile/data/edit_profile_rx.dart';
+import '../features/question/data/rx_get_questions/rx.dart';
+import '../features/question/data/rx_post_questions/rx.dart';
+import '../features/support/data/rx_get_issue_details/rx.dart';
+import '../features/support/data/rx_get_pending_list/rx.dart';
+import '../features/support/data/rx_get_resolved_list/rx.dart';
+import '../features/support/data/rx_post_issues/rx.dart';
+import '../features/support/data/rx_post_replay/rx.dart';
+
 import '../features_pro/auth/data/rx_get_logout/rx.dart';
 import '../features_pro/auth/data/rx_otp/rx.dart';
 import '../features_pro/auth/data/rx_email/rx.dart';
@@ -75,3 +93,7 @@ GetResolvedListRX getResolvedListRXObj =
     GetResolvedListRX(empty: {}, dataFetcher: BehaviorSubject<Map>());
 GetPendingListRX getPendingListRXObj =
     GetPendingListRX(empty: {}, dataFetcher: BehaviorSubject<Map>());
+GetIssueDetailsRX getIssueDetailsRXObj =
+    GetIssueDetailsRX(empty: {}, dataFetcher: BehaviorSubject<Map>());
+PostReplayRX postReplayRXObj =
+    PostReplayRX(empty: {}, dataFetcher: BehaviorSubject<Map>());

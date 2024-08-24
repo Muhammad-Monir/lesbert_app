@@ -3,10 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../common_widgets/auth_button.dart';
+import '../../../common_widgets/loading_indicators.dart';
 import '../../../constants/text_font_style.dart';
 import '../../../gen/colors.gen.dart';
+import '../../../helpers/dateuitl.dart';
 import '../../../helpers/navigation_service.dart';
 import '../../../helpers/ui_helpers.dart';
+import '../../../networks/api_acess.dart';
 import 'widget/replay_bottom_sheet.dart';
 import 'widget/support_bottom_sheet.dart';
 
@@ -40,98 +43,168 @@ class _SupportHistoryState extends State<SupportHistory> {
           style: TextFontStyle.headline20w600C141414StyleInter,
         ),
       ),
-      body: Container(
-        padding: EdgeInsets.only(top: 25.sp, left: 25.sp, right: 25.sp),
-        width: double.infinity,
-        height: double.infinity,
-        decoration: const BoxDecoration(color: AppColors.cE7ECF1),
-        child: Column(
-          children: [
-            Container(
-              height: .13.sh,
-              width: double.infinity,
-              padding: const EdgeInsets.all(15),
-              decoration: BoxDecoration(
-                  color: AppColors.cffffff,
-                  borderRadius: BorderRadius.circular(10.r)),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    "I want to connect my paypal account.",
-                    style: TextFontStyle.headline16w600C00000StyleInter
-                        .copyWith(color: AppColors.c000000),
-                  ),
-                  const Spacer(),
-                  UIHelper.customDivider(width: .8.sw),
-                  UIHelper.verticalSpaceSmall,
-                  Text(
-                    "Cameron Williamson",
-                    style: TextFontStyle.headline16w600C00000StyleInter
-                        .copyWith(color: AppColors.c000000),
-                  ),
-                  Text("Resolved",
-                      style: TextFontStyle.headline12w400C9E9E9EStyleInter
-                          .copyWith(color: AppColors.c9E9E9E)),
-                ],
-              ),
-            ),
-            UIHelper.verticalSpaceMedium,
-            Flexible(
-              child: Container(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
-                decoration: BoxDecoration(
-                    color: true ? AppColors.allPrimaryColor : AppColors.cffffff,
-                    borderRadius: BorderRadius.circular(10.r)),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Text(
-                      "Hello,Lorem ipsum dolor sit amet consectetur. Cursus tortor bibendum blandit risus. Vitae etiam leo volutpat vestibulum massa eget eu massa. Magna sit lorem elementum posuere semper. Molestie vulputate rhoncus dui id a venenatis pellentesque. Magna sit lorem elementum posuere semper. Molestie vulputate rhoncus dui id a venenatis pellentesque.  Molestie vulputate rhoncus dui id a venenatis pellentesque.Molestie vulputate rhoncus dui id a venenatis pellentesque.  Molestie vulputate rhoncus dui id a venenatis pellentesque.",
-                      style: TextFontStyle.headline12w400C9E9E9EStyleInter
-                          .copyWith(color: AppColors.c141414),
-                    ),
-                    UIHelper.verticalSpaceSmall,
-                    UIHelper.customDivider(width: .8.sw),
-                    UIHelper.verticalSpaceSmall,
-                    Text(
-                      "Cameron Williamson",
-                      style: TextFontStyle.headline16w600C00000StyleInter
-                          .copyWith(color: AppColors.c000000),
-                    ),
-                    Text(
-                      "Fri, Mar 20, 2020, 02:40 PM ",
-                      style: TextFontStyle.headline12w400C9E9E9EStyleInter
-                          .copyWith(color: AppColors.c5A5C5F),
-                    ),
-                    UIHelper.verticalSpaceSmall,
-                  ],
-                ),
-              ),
-            ),
-            const Spacer(),
-            AuthCustomeButton(
-                name: "Replay",
-                onCallBack: () {
-                  showBottomNav();
-                },
-                height: .050.sh,
-                minWidth: .7.sw,
-                borderRadius: 15,
-                color: AppColors.allPrimaryColor,
-                textStyle: TextFontStyle.headline14w600C141414StyleInter
-                    .copyWith(color: AppColors.cffffff),
-                context: context),
-          ],
+      body: SingleChildScrollView(
+        child: Container(
+          padding: EdgeInsets.only(top: 25.sp, left: 25.sp, right: 25.sp),
+          width: double.infinity,
+          height: double.infinity,
+          decoration: const BoxDecoration(color: AppColors.cE7ECF1),
+          child: StreamBuilder(
+              stream: getIssueDetailsRXObj.dataFetcher,
+              builder: (context, snapshot) {
+                if (snapshot.hasData) {
+                  Map data = snapshot.data["data"];
+                  List list = data["replies"];
+                  if (data.isNotEmpty) {
+                    return Column(
+                      children: [
+                        Container(
+                          height: .13.sh,
+                          width: double.infinity,
+                          padding: const EdgeInsets.all(15),
+                          decoration: BoxDecoration(
+                              color: AppColors.cffffff,
+                              borderRadius: BorderRadius.circular(10.r)),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                data['title'],
+                                style: TextFontStyle
+                                    .headline16w600C00000StyleInter
+                                    .copyWith(color: AppColors.c000000),
+                              ),
+                              const Spacer(),
+                              UIHelper.customDivider(width: .8.sw),
+                              UIHelper.verticalSpaceSmall,
+                              Text(
+                                "Request ID",
+                                style: TextFontStyle
+                                    .headline14w400C000000StyleInter
+                                    .copyWith(color: AppColors.c000000),
+                              ),
+                              Text(data['random_ticket_id'],
+                                  style: TextFontStyle
+                                      .headline12w400C9E9E9EStyleInter
+                                      .copyWith(color: AppColors.c9E9E9E)),
+                            ],
+                          ),
+                        ),
+                        UIHelper.verticalSpaceSmall,
+                        Container(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 15, vertical: 15),
+                          decoration: BoxDecoration(
+                              color: AppColors.allPrimaryColor,
+                              borderRadius: BorderRadius.circular(10.r)),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Text(
+                                data['message'],
+                                style: TextFontStyle
+                                    .headline12w400C9E9E9EStyleInter
+                                    .copyWith(color: AppColors.c141414),
+                              ),
+                              UIHelper.verticalSpaceSmall,
+                              UIHelper.customDivider(width: .8.sw),
+                              UIHelper.verticalSpaceSmall,
+                              Text(
+                                data['email'],
+                                style: TextFontStyle
+                                    .headline16w600C00000StyleInter
+                                    .copyWith(color: AppColors.c000000),
+                              ),
+                              Text(
+                                DateFormatedUtils()
+                                    .date12format(data["created_at"]),
+                                style: TextFontStyle
+                                    .headline12w400C9E9E9EStyleInter
+                                    .copyWith(color: AppColors.c5A5C5F),
+                              ),
+                            ],
+                          ),
+                        ),
+                        UIHelper.verticalSpaceSmall,
+                        ListView.separated(
+                          physics: const NeverScrollableScrollPhysics(),
+                          separatorBuilder: (context, index) =>
+                              UIHelper.verticalSpaceSmall,
+                          shrinkWrap: true,
+                          itemCount: list.length,
+                          itemBuilder: (context, i) => Flexible(
+                            child: Container(
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 15.w, vertical: 15.h),
+                              decoration: BoxDecoration(
+                                  color: true
+                                      ? AppColors.allPrimaryColor
+                                      : AppColors.cffffff,
+                                  borderRadius: BorderRadius.circular(10.r)),
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    list[i]["content"],
+                                    style: TextFontStyle
+                                        .headline12w400C9E9E9EStyleInter
+                                        .copyWith(color: AppColors.c141414),
+                                  ),
+                                  UIHelper.verticalSpaceSmall,
+                                  UIHelper.customDivider(width: .8.sw),
+                                  UIHelper.verticalSpaceSmall,
+                                  Text(
+                                    "Cameron Williamson",
+                                    style: TextFontStyle
+                                        .headline16w600C00000StyleInter
+                                        .copyWith(color: AppColors.c000000),
+                                  ),
+                                  Text(
+                                    "Fri, Mar 20, 2020, 02:40 PM ",
+                                    style: TextFontStyle
+                                        .headline12w400C9E9E9EStyleInter
+                                        .copyWith(color: AppColors.c5A5C5F),
+                                  ),
+                                  UIHelper.verticalSpaceSmall,
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                        const Spacer(),
+                        AuthCustomeButton(
+                            name: "Replay",
+                            onCallBack: () {
+                              showBottomNav(data['id'].toString());
+                            },
+                            height: .050.sh,
+                            minWidth: .7.sw,
+                            borderRadius: 15,
+                            color: AppColors.allPrimaryColor,
+                            textStyle: TextFontStyle
+                                .headline14w600C141414StyleInter
+                                .copyWith(color: AppColors.cffffff),
+                            context: context),
+                        UIHelper.verticalSpaceSmall,
+                      ],
+                    );
+                  } else {
+                    return const SizedBox.shrink();
+                  }
+                } else {
+                  return loadingIndicatorCircle(context: context);
+                }
+              }),
         ),
       ),
     );
   }
 
-  void showBottomNav() {
+  void showBottomNav(String id) {
     showModalBottomSheet(
       // ignore: use_build_context_synchronously
       elevation: 0,
@@ -147,6 +220,7 @@ class _SupportHistoryState extends State<SupportHistory> {
             bottom: MediaQuery.of(context).viewInsets.bottom,
           ), // Adjust the padding for the keyboard
           child: ReplaySheetWidget(
+            id: id,
             detailController: _detailController,
           ),
         );

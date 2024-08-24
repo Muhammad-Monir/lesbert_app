@@ -2,19 +2,23 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lsebert/common_widgets/custom_text_feild.dart';
 import 'package:lsebert/helpers/navigation_service.dart';
+import 'package:lsebert/helpers/toast.dart';
 
 import '../../../../constants/text_font_style.dart';
 
 import '../../../../gen/colors.gen.dart';
 import '../../../../helpers/ui_helpers.dart';
 import '../../../../common_widgets/auth_button.dart';
+import '../../../../networks/api_acess.dart';
 
 class ReplaySheetWidget extends StatefulWidget {
+  final String id;
   final TextEditingController detailController;
 
   const ReplaySheetWidget({
     super.key,
     required this.detailController,
+    required this.id,
   });
 
   @override
@@ -71,8 +75,15 @@ class _ReplaySheetWidgetState extends State<ReplaySheetWidget> {
           AuthCustomeButton(
               name: "Submit Replay",
               onCallBack: () async {
-                //  await postTicketRXObj.postIssues(widget.detailController.text);
-                NavigationService.goBack;
+                if (widget.detailController.text.trim().isNotEmpty) {
+                  await postReplayRXObj.postReplay(
+                    widget.id,
+                    widget.detailController.text,
+                  );
+                  NavigationService.goBack;
+                } else {
+                  ToastUtil.showLongToast("Add Some Replay");
+                }
               },
               height: .050.sh,
               minWidth: .7.sw,

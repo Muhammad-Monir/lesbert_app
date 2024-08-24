@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lsebert/common_widgets/auth_button.dart';
+import 'package:lsebert/features/auth/presentatiom/forgot_password/otp_verify_screen.dart';
+import 'package:lsebert/helpers/loading_helper.dart';
 import 'package:lsebert/helpers/ui_helpers.dart';
 
 import '../../../common_widgets/loading_indicators.dart';
@@ -85,7 +87,7 @@ class _HelpSupportState extends State<HelpSupport> {
                         if (snapshot.hasData && !snapshot.hasError) {
                           List data = snapshot.data['data'];
                           return SizedBox(
-                            height: .69.sh,
+                            height: .65.sh,
                             //    padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
                             child: ListView.separated(
                               //   physics: const NeverScrollableScrollPhysics(),
@@ -94,7 +96,12 @@ class _HelpSupportState extends State<HelpSupport> {
                               shrinkWrap: true,
                               itemCount: data.length,
                               itemBuilder: (context, index) => SupportCard(
-                                callback: () {
+                                callback: () async {
+                                  await getIssueDetailsRXObj
+                                      .fetchIssueDetailsData(data[index]['id'])
+                                      .waitingForFuture();
+                                  NavigationService.navigateTo(
+                                      Routes.supportHistory);
                                   NavigationService.navigateTo(
                                       Routes.supportHistory);
                                 },
@@ -116,7 +123,7 @@ class _HelpSupportState extends State<HelpSupport> {
                         if (snapshot.hasData && !snapshot.hasError) {
                           List data = snapshot.data['data'];
                           return SizedBox(
-                            height: .69.sh,
+                            height: .65.sh,
                             //    padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
                             child: ListView.separated(
                               //   physics: const NeverScrollableScrollPhysics(),
@@ -125,7 +132,10 @@ class _HelpSupportState extends State<HelpSupport> {
                               shrinkWrap: true,
                               itemCount: data.length,
                               itemBuilder: (context, index) => SupportCard(
-                                callback: () {
+                                callback: () async {
+                                  await getIssueDetailsRXObj
+                                      .fetchIssueDetailsData(data[index]['id'])
+                                      .waitingForFuture();
                                   NavigationService.navigateTo(
                                       Routes.supportHistory);
                                 },
