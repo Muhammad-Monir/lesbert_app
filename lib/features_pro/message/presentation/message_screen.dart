@@ -45,7 +45,7 @@ class _MessageScreenState extends State<MessageScreen> {
                   },
                   child: Image.asset(
                     Assets.icons.menuIcon.path,
-                    width: 40.w,
+                     width: 38.w,
                   ),
                 ),
               )

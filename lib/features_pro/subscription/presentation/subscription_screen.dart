@@ -38,24 +38,19 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
     )
   ];
   @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
         key: _scaffoldKey,
-        backgroundColor: AppColors.cE7ECF1,
         appBar: AppBar(
           automaticallyImplyLeading: false,
           toolbarHeight: 75.h,
-          backgroundColor: AppColors.cE7ECF1,
+          backgroundColor: AppColors.cffffff,
           elevation: 0,
           title: Text(
-            'Subscription Plan',
-            style: TextFontStyle.headline20w600C141414StyleInter,
+            'Subscription',
+            style: TextFontStyle.headline20w600C141414StyleInter
+                .copyWith(color: AppColors.c000000),
           ),
           actions: [
             Padding(
@@ -66,7 +61,7 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
                 },
                 child: Image.asset(
                   Assets.icons.menuIcon.path,
-                  width: 40.w,
+                   width: 38.w,
                 ),
               ),
             )
@@ -74,7 +69,7 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
         ),
         body: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.all(20.0),
+            padding: EdgeInsets.all(20.sp),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
@@ -115,13 +110,11 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
                 //this will be optional based on if subscription purchased
                 Container(
                   height: 280.h,
-                  width: .9.w,
-                  // padding: EdgeInsets.symmetric(vertical: 0.h, horizontal: 0.w),
+                  width: .9.sw,
                   decoration: BoxDecoration(
                       color: AppColors.cffffff,
                       borderRadius: BorderRadius.all(Radius.circular(15.r))),
                   child: Column(
-                    // mainAxisSize: MainAxisSize.min,
                     children: [
                       UIHelper.verticalSpaceMedium,
                       CircleAvatar(
@@ -197,21 +190,15 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
           ),
         ),
         drawer: CustomDrawer(
-          onTapLogout: () {
-            deleteButtonDialouge(context, "You are about to Logout!", () {
-              //  getDeleteTokenRXObj.deleteTokenData();
-              getLogOutRXObj.fetchLogoutData();
-              totalDataClean();
-              NavigationService.navigateToReplacement(Routes.login);
-            });
-          },
+          isTextColor: false,
           onTapNotification: () {
-            _scaffoldKey.currentState!.closeDrawer();
             NavigationService.navigateTo(Routes.proNotification);
             _scaffoldKey.currentState!.closeDrawer();
           },
-          onTapPaymnetHistory: () {
-            NavigationService.navigateTo(Routes.paymentHistory);
+          onTapPaymnetHistory: () =>
+              NavigationService.navigateTo(Routes.proPaymnetHistory),
+          onTapSecurity: () {
+            NavigationService.navigateTo(Routes.securityScreen);
             _scaffoldKey.currentState!.closeDrawer();
           },
           onTapAboutus: () {
@@ -230,9 +217,13 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
             NavigationService.navigateTo(Routes.helpAndSupport);
             _scaffoldKey.currentState!.closeDrawer();
           },
-          onTapSecurity: () {
-            NavigationService.navigateTo(Routes.securityScreen);
-            _scaffoldKey.currentState!.closeDrawer();
+          onTapLogout: () {
+            deleteButtonDialouge(context, "You are about to Logout!", () {
+              //  getDeleteTokenRXObj.deleteTokenData();
+              getLogOutRXObj.fetchLogoutData();
+              totalDataClean();
+              NavigationService.navigateToReplacement(Routes.login);
+            });
           },
         ),
       ),

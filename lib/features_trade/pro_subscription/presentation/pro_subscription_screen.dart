@@ -93,7 +93,6 @@ class _ProSubscriptionScreenState extends State<ProSubscriptionScreen> {
                     itemBuilder: (context, index) {
                       return SubscriptionPlan(
                         onSelect: () {
-                          
                           setState(() {
                             selectedIndex = index;
                           });

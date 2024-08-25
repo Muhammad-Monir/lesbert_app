@@ -112,7 +112,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 },
                 child: Image.asset(
                   Assets.icons.menuIcon.path,
-                  width: 48.w,
+                  width: 38.w,
                 ),
               ),
             )

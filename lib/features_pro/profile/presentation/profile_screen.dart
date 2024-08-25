@@ -52,7 +52,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 },
                 child: Image.asset(
                   Assets.icons.menuIcon.path,
-                  width: 48.w,
+                  width: 38.w,
                 ),
               ),
             )
