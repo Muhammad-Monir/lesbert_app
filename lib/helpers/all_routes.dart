@@ -26,18 +26,18 @@ import 'package:lsebert/features_pro/question/presentation/question_screen.dart'
 import 'package:lsebert/features_pro/security/presentation/security_screen.dart';
 import 'package:lsebert/features_pro/subscription/presentation/subscription_screen.dart';
 import 'package:lsebert/features_trade/pro_notification/notification.dart';
-import 'package:lsebert/features_trade/pro_dashboard/presentation/pro_dashboard.dart';
+import 'package:lsebert/features_trade/trade_dashboard/presentation/trade_dashboard.dart';
 import 'package:lsebert/features_trade/pro_message/presentation/pro_message_screen.dart';
-import 'package:lsebert/features_trade/pro_navigation_screen.dart';
 import 'package:lsebert/features_trade/pro_paymnet_history/pro_peyment_history_screen.dart';
-import 'package:lsebert/features_trade/pro_profile/presentation/pro_edit_profile.dart';
 import 'package:lsebert/features_trade/pro_subscription/presentation/pro_subscription_screen.dart';
-import 'package:lsebert/features_trade/view_profile/view_profile.dart';
+import 'package:lsebert/features_trade/view_profile/presentation/view_profile.dart';
 import 'package:lsebert/loading_screen.dart';
 import 'package:lsebert/navigation_screen.dart';
 
 import '../features_pro/support/presentation/help_and_support.dart';
 import '../features_pro/support/presentation/support_history.dart';
+import '../features_trade/pro_navigation_screen.dart';
+import '../features_trade/pro_profile/presentation/trade_edit_profile.dart';
 
 final class Routes {
   static final Routes _routes = Routes._internal();
@@ -360,10 +360,10 @@ final class RouteGenerator {
       case Routes.proNavBar:
         return Platform.isAndroid
             ? _FadedTransitionRoute(
-                widget: const ScreenTitle(widget: ProNavigationScreen()),
+                widget: const ScreenTitle(widget: TardeNavigationScreen()),
                 settings: settings)
             : CupertinoPageRoute(
-                builder: (context) => const ProNavigationScreen());
+                builder: (context) => const TardeNavigationScreen());
       case Routes.proDashboard:
         return Platform.isAndroid
             ? _FadedTransitionRoute(
@@ -413,12 +413,28 @@ final class RouteGenerator {
             : CupertinoPageRoute(
                 builder: (context) => const ProPaymnetHistoryScreen());
       case Routes.proEditProfile:
+        final args = settings.arguments as Map;
         return Platform.isAndroid
             ? _FadedTransitionRoute(
-                widget: const ScreenTitle(widget: ProEditProfileScreen()),
+                widget: ScreenTitle(
+                    widget: TradeEditProfileScreen(
+                  name: args['name'],
+                  about: args['about'],
+                  address: args['address'],
+                  email: args['email'],
+                  image: args['image'],
+                  phoneNum: args['phone'],
+                )),
                 settings: settings)
             : CupertinoPageRoute(
-                builder: (context) => const ProEditProfileScreen());
+                builder: (context) => TradeEditProfileScreen(
+                      name: args['name'],
+                      about: args['about'],
+                      address: args['address'],
+                      email: args['email'],
+                      image: args['image'],
+                      phoneNum: args['phone'],
+                    ));
 
       // case Routes.sliderWebViewPage:
       //   final args = settings.arguments as Map;

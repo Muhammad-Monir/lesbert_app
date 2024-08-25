@@ -1,11 +1,12 @@
 import 'package:lsebert/features_pro/profile/data/profile/rx_profile.dart';
 import 'package:rxdart/subjects.dart';
-
 import '../features/support/data/rx_get_issue_details/rx.dart';
+
 import '../features_pro/dashboard/data/deleteimage/rx.dart';
 
-import '../features_pro/support/data/rx_post_replay/rx.dart';
+import '../features_pro/notification/data/rx.dart';
 
+import '../features_pro/support/data/rx_post_replay/rx.dart';
 import '../features_pro/auth/data/rx_get_logout/rx.dart';
 import '../features_pro/auth/data/rx_otp/rx.dart';
 import '../features_pro/auth/data/rx_email/rx.dart';
@@ -30,6 +31,10 @@ import '../features_pro/security/data/security_rx.dart';
 import '../features_pro/support/data/rx_get_pending_list/rx.dart';
 import '../features_pro/support/data/rx_get_resolved_list/rx.dart';
 import '../features_pro/support/data/rx_post_issues/rx.dart';
+import '../features_trade/pro_profile/data/rx.dart';
+import '../features_trade/pro_profile/data/rx_edit_trade_api.dart';
+import '../features_trade/trade_dashboard/data/rx.dart';
+import '../features_trade/view_profile/data/rx.dart';
 
 GetLoginRX getLoginRXObj = GetLoginRX(
     empty: LoginResponse(), dataFetcher: BehaviorSubject<LoginResponse>());
@@ -84,5 +89,23 @@ GetIssueDetailsRX getIssueDetailsRXObj =
     GetIssueDetailsRX(empty: {}, dataFetcher: BehaviorSubject<Map>());
 PostReplayRX postReplayRXObj =
     PostReplayRX(empty: {}, dataFetcher: BehaviorSubject<Map>());
+
 DeleteProfileImageRX deleteProfileImageRXObj =
     DeleteProfileImageRX(empty: {}, dataFetcher: BehaviorSubject<Map>());
+
+
+//<><><><><=======================<><>><><><><><================
+//=================<><><><===================<><>><><><>============
+// api access trade section
+
+GetTradeProfileRx getTradeProfileRXObj =
+    GetTradeProfileRx(empty: {}, dataFetcher: BehaviorSubject<Map>());
+PostTradeEditRX postTradeEditRXObj =
+    PostTradeEditRX(empty: {}, dataFetcher: BehaviorSubject<Map>());
+GetTradeDashboardRX getTradeDashboardRXObj =
+    GetTradeDashboardRX(empty: {}, dataFetcher: BehaviorSubject<Map>());
+GetProProfileDataRX getTradeDetailsDataRXObj =
+    GetProProfileDataRX(empty: {}, dataFetcher: BehaviorSubject<Map>());
+GetNotificationRX getNotificationRXObj =
+    GetNotificationRX(empty: {}, dataFetcher: BehaviorSubject<Map>());
+

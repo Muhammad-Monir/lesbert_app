@@ -8,7 +8,6 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:lsebert/features_pro/intro/role_screen.dart';
 import 'package:lsebert/features_pro/question/presentation/widget/file_upload_question.dart';
-import 'package:lsebert/features_trade/pro_navigation_screen.dart';
 import 'package:provider/provider.dart';
 import '/helpers/all_routes.dart';
 import 'constants/custome_theme.dart';
