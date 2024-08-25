@@ -13,18 +13,18 @@ class LoginResponse extends DefaultResponse {
   LoginResponse.fromJson(Map<String, dynamic> json) {
     success = json['success'];
     message = json['message'];
-    data = json['data'] != null ? Data.fromJson(json['data']) : null;
+    data = json['data'] != null ? new Data.fromJson(json['data']) : null;
     code = json['code'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['success'] = success;
-    data['message'] = message;
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['success'] = this.success;
+    data['message'] = this.message;
     if (this.data != null) {
       data['data'] = this.data!.toJson();
     }
-    data['code'] = code;
+    data['code'] = this.code;
     return data;
   }
 }
@@ -34,24 +34,36 @@ class Data {
   String? role;
   String? isSubscribed;
   String? isBoost;
+  Null? isVerified;
+  String? isAnswered;
 
-  Data({this.token, this.role, this.isSubscribed, this.isBoost});
+  Data(
+      {this.token,
+      this.role,
+      this.isSubscribed,
+      this.isBoost,
+      this.isVerified,
+      this.isAnswered});
 
   Data.fromJson(Map<String, dynamic> json) {
-    token = json['token'] != null ? Token.fromJson(json['token']) : null;
+    token = json['token'] != null ? new Token.fromJson(json['token']) : null;
     role = json['role'];
     isSubscribed = json['is_subscribed'];
     isBoost = json['is_boost'];
+    isVerified = json['is_verified'];
+    isAnswered = json['is_answered'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    if (token != null) {
-      data['token'] = token!.toJson();
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    if (this.token != null) {
+      data['token'] = this.token!.toJson();
     }
-    data['role'] = role;
-    data['is_subscribed'] = isSubscribed;
-    data['is_boost'] = isBoost;
+    data['role'] = this.role;
+    data['is_subscribed'] = this.isSubscribed;
+    data['is_boost'] = this.isBoost;
+    data['is_verified'] = this.isVerified;
+    data['is_answered'] = this.isAnswered;
     return data;
   }
 }
@@ -64,17 +76,18 @@ class Token {
 
   Token.fromJson(Map<String, dynamic> json) {
     original = json['original'] != null
-        ? Original.fromJson(json['original'])
+        ? new Original.fromJson(json['original'])
         : null;
     exception = json['exception'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    if (original != null) {
-      data['original'] = original!.toJson();
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+
+    if (this.original != null) {
+      data['original'] = this.original!.toJson();
     }
-    data['exception'] = exception;
+    data['exception'] = this.exception;
     return data;
   }
 }
@@ -93,10 +106,10 @@ class Original {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['access_token'] = accessToken;
-    data['token_type'] = tokenType;
-    data['expires_in'] = expiresIn;
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['access_token'] = this.accessToken;
+    data['token_type'] = this.tokenType;
+    data['expires_in'] = this.expiresIn;
     return data;
   }
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lsebert/navigation_screen.dart';
 import 'constants/app_constants.dart';
+import 'features/question/presentation/question_screen.dart';
 import 'features_pro/auth/presentatiom/login/login_screen.dart';
 import 'features_trade/pro_navigation_screen.dart';
 import 'helpers/di.dart';
@@ -26,22 +27,19 @@ class _LoadingState extends State<Loading> {
   }
 
   loadInitialData() async {
-    //AutoAppUpdateUtil.instance.checkAppUpdate();
     await setInitValue();
-    // await getAllShopCategoryRXObj.fetchAllShopCategoryData();
-    // await getAllShopRXObj.fetchAllShopData();
-    // await getSliderRXObj.fetchSliderData();
-    // await getAllSubCategoryRXObj.fetchGetAllSubCategoryData();
-
     if (appData.read(kKeyIsLoggedIn)) {
       String token = appData.read(kKeyAccessToken);
       DioSingleton.instance.update(token);
       await getQuestionRx.fetchQuestionData();
-      await getProProfileRxObj.fetchProfileData();
-      await getExperianceRXObj.fetchExperianceData();
-      // this will be for trade role
-      // await getTradeProfileRXObj.fetchTradeProfileData();
-      // await getTradeDashboardRXObj.fetchTradeDashboard();
+      if (appData.read(kKeyUserType) == "trade") {
+        await getTradeProfileRXObj.fetchTradeProfileData();
+        await getTradeDashboardRXObj.fetchTradeDashboard();
+      } else {
+        await getQuestionRx.fetchQuestionData();
+        await getProProfileRxObj.fetchProfileData();
+        await getExperianceRXObj.fetchExperianceData();
+      }
     }
     setState(() {
       _isLoading = false;
@@ -54,7 +52,11 @@ class _LoadingState extends State<Loading> {
       return const WelcomeScreen();
     } else {
       return appData.read(kKeyIsLoggedIn)
-          ? const NavigationScreen()
+          ? appData.read(kKeyisanswered) == false
+              ? const QuestionScreen()
+              : appData.read(kKeyUserType) == "trade"
+                  ? const TardeNavigationScreen()
+                  : const NavigationScreen()
           : const LoginScreen();
     }
   }

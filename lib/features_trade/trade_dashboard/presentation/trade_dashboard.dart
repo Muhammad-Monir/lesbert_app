@@ -83,36 +83,46 @@ class _ProDashboardScreenState extends State<ProDashboardScreen> {
                       if (snapshot.hasData) {
                         Map? data = snapshot.data?['data'];
                         List userData = data?['users'];
-                        return PageView.builder(
-                          scrollDirection: Axis.horizontal,
-                          itemCount: userData.length,
-                          itemBuilder: (context, index) {
-                            Map user = userData[index];
-                            log("User Data : $user");
-                            return HomeWidget(
-                              userName: userData[index]['name'] ?? '',
-                              location: userData[index]?['user_detail']
-                                      ?['location'] ??
-                                  '',
-                              skills: userData[index]?['user_detail']
-                                      ?['industry'] ??
-                                  '',
-                              expart: userData[index]['profession'] ?? '',
-                              imageLink: userData[index]?['user_detail']
-                                  ?['profile_picture'],
-                              onTapSendMessage: () {},
-                              onTapViewProfile: () async {
-                                await getTradeDetailsDataRXObj
-                                    .fetchTradeProfileDetailsData(
-                                        userData[index]['id'])
-                                    .waitingForFuture();
-                                NavigationService.navigateTo(
-                                  Routes.viewProfile,
-                                );
-                              },
-                            );
-                          },
-                        );
+                        if (userData.isEmpty) {
+                          return Center(
+                              child: Text(
+                            "You Need to Purchase a Subscription \n Plan to See Pro Users Profile",
+                            style:
+                                TextFontStyle.headline16w500C141414StyleInter,
+                            textAlign: TextAlign.center,
+                          ));
+                        } else {
+                          return PageView.builder(
+                            scrollDirection: Axis.horizontal,
+                            itemCount: userData.length,
+                            itemBuilder: (context, index) {
+                              Map user = userData[index];
+                              log("User Data : $user");
+                              return HomeWidget(
+                                userName: userData[index]['name'] ?? '',
+                                location: userData[index]?['user_detail']
+                                        ?['location'] ??
+                                    '',
+                                skills: userData[index]?['user_detail']
+                                        ?['industry'] ??
+                                    '',
+                                expart: userData[index]['profession'] ?? '',
+                                imageLink: userData[index]?['user_detail']
+                                    ?['profile_picture'],
+                                onTapSendMessage: () {},
+                                onTapViewProfile: () async {
+                                  await getTradeDetailsDataRXObj
+                                      .fetchTradeProfileDetailsData(
+                                          userData[index]['id']);
+
+                                  NavigationService.navigateTo(
+                                    Routes.viewProfile,
+                                  );
+                                },
+                              );
+                            },
+                          );
+                        }
                       } else {
                         return const Center(
                           child: CircularProgressIndicator(),
@@ -144,10 +154,10 @@ class _ProDashboardScreenState extends State<ProDashboardScreen> {
                       });
                       _scaffoldKey.currentState!.closeDrawer();
                     },
-                    onTapHelpAndSuport: () {
-                      NavigationService.navigateTo(Routes.helpAndSupport);
-                      _scaffoldKey.currentState!.closeDrawer();
-                    },
+                    // onTapHelpAndSuport: () {
+                    //   NavigationService.navigateTo(Routes.helpAndSupport);
+                    //   _scaffoldKey.currentState!.closeDrawer();
+                    // },
                     onTapLogout: () {
                       deleteButtonDialouge(context, "You are about to Logout!",
                           () {
@@ -158,7 +168,6 @@ class _ProDashboardScreenState extends State<ProDashboardScreen> {
                       });
                     },
                   ),
-                
                 );
               } else {
                 return const Text('No Data Available');

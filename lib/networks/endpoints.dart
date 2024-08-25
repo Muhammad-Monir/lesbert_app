@@ -31,9 +31,11 @@ final class Endpoints {
   static String forgotPassword() => "/api/forget-password";
   static String resendOtp() => "/api/resend-otp";
   static String logout() => "/api/logout";
-  static String questions() => "/api/pro-questions";
+  static String questionsPro() => "/api/pro-questions";
+  static String questionsTrade() => "/api/trade/questions";
+  static String answersPro() => "/api/pro-answers";
+  static String answersTrade() => "/api/trade/answers";
   static String occupationQuestions() => "/api/occupations";
-  static String answers() => "/api/pro-answers";
   static String proPrfofile() => "/api/pro-user-info";
   static String proProfileUpdate() => "/api/pro-update-user-info";
   static String proBioUpdate() => "/api/change-bio-current-job-info";
@@ -61,7 +63,6 @@ final class Endpoints {
   static String tradeDashboard() => "/api/trade/pro-profile-list";
   static String proProfileData(int id) => "/api/trade/pro-profile/$id";
   static String getNotification() => "/api/my-notifications";
-  
 
   //backend_url
   static String appCategories() => "/api/product-categories";

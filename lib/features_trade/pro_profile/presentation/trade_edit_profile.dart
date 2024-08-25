@@ -5,6 +5,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lsebert/common_widgets/auth_button.dart';
+import 'package:lsebert/features_pro/auth/presentatiom/forgot_password/otp_verify_screen.dart';
+import 'package:lsebert/helpers/all_routes.dart';
+import 'package:lsebert/helpers/loading_helper.dart';
 import '../../../common_widgets/custom_text_feild.dart';
 import '../../../common_widgets/image_picker_widget.dart';
 import '../../../constants/text_font_style.dart';
@@ -197,12 +200,15 @@ class _TradeEditProfileScreenState extends State<TradeEditProfileScreen> {
                   name: 'Update Profile',
                   onCallBack: () async {
                     File file = File(_imageFileNotifier.value!.path);
-                    await postTradeEditRXObj.postTradeEditData(
-                        _nameController.text,
-                        file,
-                        _phoneController.text,
-                        _addressController.text,
-                        _aboutController.text);
+                    await postTradeEditRXObj
+                        .postTradeEditData(
+                            _nameController.text,
+                            file,
+                            _phoneController.text,
+                            _addressController.text,
+                            _aboutController.text)
+                        .waitingForFuture();
+                    await getTradeProfileRXObj.fetchTradeProfileData();
 
                     log('Image Source : ${_imageFileNotifier}');
                     log('Image path : $file');

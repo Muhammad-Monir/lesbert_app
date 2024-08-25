@@ -43,9 +43,16 @@ final class GetLoginRX extends RxResponseInt<LoginResponse> {
       if (loginResponse.success == true) {
         String accesstoken = loginResponse.data!.token!.original!.accessToken!;
         String userType = loginResponse.data!.role!;
+        bool verified = loginResponse.data?.isVerified ?? false;
+        bool isAnswerd = loginResponse.data?.isAnswered == "1" ? true : false;
+        bool isSubscribed =
+            loginResponse.data?.isSubscribed == "1" ? true : false;
         await appData.write(kKeyIsLoggedIn, true);
         await appData.write(kKeyAccessToken, accesstoken);
         await appData.write(kKeyUserType, userType);
+        await appData.write(kKeyisanswered, isAnswerd);
+        await appData.write(kKeyisverified, verified);
+        await appData.write(kKeyissubscribed, isSubscribed);
         dataFetcher.sink.add(loginResponse);
         ToastUtil.showLongToast(loginResponse.message!);
         NavigationService.navigateToReplacement(Routes.loading);

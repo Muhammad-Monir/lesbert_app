@@ -25,8 +25,8 @@ import '../features_pro/profile/data/edit_profile/edit_profile_rx.dart';
 import '../features_pro/profile/data/experiance_edit/rx_experiance_edit.dart';
 import '../features_pro/profile/data/other_detials/rx_other_details_edit.dart';
 import '../features_pro/profile/data/personal_info_edit/rx_personal_info_edit.dart';
-import '../features_pro/question/data/rx_get_questions/rx.dart';
-import '../features_pro/question/data/rx_post_questions/rx.dart';
+import '../features/question/data/rx_get_questions/rx.dart';
+import '../features/question/data/rx_post_questions/rx.dart';
 import '../features_pro/security/data/security_rx.dart';
 import '../features_pro/support/data/rx_get_pending_list/rx.dart';
 import '../features_pro/support/data/rx_get_resolved_list/rx.dart';
@@ -93,7 +93,6 @@ PostReplayRX postReplayRXObj =
 DeleteProfileImageRX deleteProfileImageRXObj =
     DeleteProfileImageRX(empty: {}, dataFetcher: BehaviorSubject<Map>());
 
-
 //<><><><><=======================<><>><><><><><================
 //=================<><><><===================<><>><><><>============
 // api access trade section
@@ -108,4 +107,3 @@ GetProProfileDataRX getTradeDetailsDataRXObj =
     GetProProfileDataRX(empty: {}, dataFetcher: BehaviorSubject<Map>());
 GetNotificationRX getNotificationRXObj =
     GetNotificationRX(empty: {}, dataFetcher: BehaviorSubject<Map>());
-

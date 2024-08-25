@@ -17,7 +17,8 @@ import '../../../../networks/exception_handler/error_response.dart';
 import '../../../../provider/email_provider.dart';
 
 class OtpVerifyScreen extends StatefulWidget {
-  const OtpVerifyScreen({super.key});
+  final bool? isResetPw;
+  const OtpVerifyScreen({super.key, this.isResetPw = false});
 
   @override
   State<OtpVerifyScreen> createState() => _OtpVerifyScreenState();
@@ -101,17 +102,18 @@ class _OtpVerifyScreenState extends State<OtpVerifyScreen> {
                       .verifyOtp(code: otpCode, email: emailProvider.email)
                       .waitingForFutureWithoutBg();
                   if (success) {
+                    if (widget.isResetPw ?? false) {
+                      NavigationService.navigateToWithArgs(
+                        Routes.resetPass,
+                        {"otp": otpCode},
+                      );
+                    } else {
+                      NavigationService.navigateToReplacement(Routes.login);
+                    }
                     //   NavigationService.navigateToReplacement(Routes.login);
-                    NavigationService.navigateToWithArgs(
-                      Routes.resetPass,
-                      {"otp": otpCode},
-                    );
                   } else {
-                    //remove it
-                    NavigationService.navigateToWithArgs(
-                      Routes.resetPass,
-                      {"otp": otpCode},
-                    );
+                    ToastUtil.showLongToast(
+                        "Verification Failed,You can ask for Resend Code");
                   }
                 } catch (error) {
                   log(error.toString());

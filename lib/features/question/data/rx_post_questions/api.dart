@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'dart:developer';
 import 'package:dio/dio.dart';
 import 'package:file_picker/file_picker.dart';
+import 'package:lsebert/helpers/di.dart';
+import '../../../../constants/app_constants.dart';
 import '/networks/endpoints.dart';
 import '../../../../networks/dio/dio.dart';
 import '../../../../networks/exception_handler/data_source.dart';
@@ -81,7 +83,11 @@ final class PostQuestionApi {
 
       log("This is from form data" + formData.toString());
 
-      Response response = await postHttp(Endpoints.answers(), formData);
+      String path = appData.read(kKeyUserType) == "pro"
+          ? Endpoints.answersPro()
+          : Endpoints.answersTrade();
+
+      Response response = await postHttp(path, formData);
       if (response.statusCode == 200) {
         Map data = json.decode(json.encode(response.data));
         return data;

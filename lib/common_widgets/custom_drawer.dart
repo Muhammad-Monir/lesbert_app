@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:lsebert/constants/app_constants.dart';
+import 'package:lsebert/helpers/di.dart';
 import '../constants/text_font_style.dart';
 import '../gen/assets.gen.dart';
 import '../gen/colors.gen.dart';
@@ -69,13 +71,18 @@ class CustomDrawer extends StatelessWidget {
             widget: const SizedBox.shrink(),
             itemName: 'About Us',
           ),
-          UIHelper.verticalSpace(25.w),
-          DrawerItemWidget(
-            isColor: isTextColor,
-            onTap: onTapHelpAndSuport,
-            widget: const SizedBox.shrink(),
-            itemName: 'Help & Support',
-          ),
+          if (appData.read(kKeyUserType) == "pro")
+            Column(
+              children: [
+                UIHelper.verticalSpace(25.w),
+                DrawerItemWidget(
+                  isColor: isTextColor,
+                  onTap: onTapHelpAndSuport,
+                  widget: const SizedBox.shrink(),
+                  itemName: 'Help & Support',
+                ),
+              ],
+            ),
           UIHelper.verticalSpace(25.w),
           DrawerItemWidget(
             isColor: isTextColor,

@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:lsebert/helpers/loading_helper.dart';
+import 'package:provider/provider.dart';
 import '../../../../common_widgets/auth_button.dart';
 import '../../../../common_widgets/custom_text_feild.dart';
 import '../../../../common_widgets/or_divider.dart';
@@ -16,6 +17,7 @@ import '../../../../helpers/all_routes.dart';
 import '../../../../helpers/navigation_service.dart';
 import '../../../../helpers/ui_helpers.dart';
 import '../../../../networks/api_acess.dart';
+import '../../../../provider/email_provider.dart';
 
 class SignUpScreen extends StatefulWidget {
   final String? role;
@@ -44,6 +46,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   @override
   Widget build(BuildContext context) {
+    EmailProvider emailProvider =
+        Provider.of<EmailProvider>(context, listen: false);
     return Scaffold(
       body: SingleChildScrollView(
         physics: const BouncingScrollPhysics(),
@@ -66,39 +70,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 'Log in to continue.',
                 style: TextFontStyle.headline16w400C848484StyleInter,
               ),
-              // UIHelper.verticalSpace(23.h),
-              // DottedBorder(
-              //   color: AppColors.c3B5998,
-              //   borderType: BorderType.Circle,
-              //   dashPattern: const [2, 0, 4],
-              //   child: CircleAvatar(
-              //     radius: 50.r,
-              //     backgroundColor: AppColors.cF4F5F7,
-              //     child: ValueListenableBuilder<XFile?>(
-              //       valueListenable: _imageFileNotifier,
-              //       builder: (context, imageFile, child) {
-              //         if (imageFile != null) {
-              //           return ClipOval(
-              //             child: Image.file(
-              //               File(imageFile.path),
-              //               fit: BoxFit.cover,
-              //               height: 100.h,
-              //             ),
-              //           );
-              //         } else {
-              //           return Padding(
-              //             padding: EdgeInsets.all(26.sp),
-              //             child: Image.asset(
-              //               Assets.icons.cameraIcon.path,
-              //               width: 40.w,
-              //             ),
-              //           );
-              //         }
-              //       },
-              //     ),
-              //   ),
-              // ),
-
               UIHelper.verticalSpace(40.h),
               CustomTextFormField(
                 controller: _fullNameController,
@@ -178,6 +149,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 minWidth: double.infinity,
                 name: 'Sign Up',
                 onCallBack: () async {
+                  emailProvider.changeemail(_emailController.text);
                   bool success = await postSignUpRXObj
                       .signup(
                           firstName: _fullNameController.text,
@@ -188,8 +160,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           profession: widget.proffesion.toString(),
                           termAccepted: _isCheck)
                       .waitingForFutureWithoutBg();
-                  // log("Selected Profile type : ${widget.trade}");
-                  // log("Selected Profile Question : ${widget.tradeQuestion}");
                 },
                 textStyle: TextFontStyle.headline16w700CffffffStyleInter,
               ),

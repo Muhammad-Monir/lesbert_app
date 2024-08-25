@@ -87,7 +87,7 @@ class _TradeProfileScreenState extends State<TradeProfileScreen> {
                           'about': userDetail?['bio'] ?? 'N/A',
                           'address': userDetail?['address'] ?? 'N/A',
                           'email': data['user']['email'],
-                          'image': '$imageUrl${userDetail?['profile_picture']}',
+                          'image': '$imageUrl${data['user']['avatar']}',
                           'phone': userDetail?['phone_number'] ?? 'N/A',
                         }),
                       ),

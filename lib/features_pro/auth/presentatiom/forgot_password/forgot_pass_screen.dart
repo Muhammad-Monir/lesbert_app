@@ -81,8 +81,9 @@ class _ForgotPassScreenState extends State<ForgotPassScreen> {
                         .then(
                       (value) {
                         if (value) {
-                          NavigationService.navigateTo(Routes.otpVerify);
                           emailProvider.changeemail(_emailController.text);
+                          NavigationService.navigateToWithArgs(
+                              Routes.otpVerify, {"isrest": true});
                         }
                       },
                     );

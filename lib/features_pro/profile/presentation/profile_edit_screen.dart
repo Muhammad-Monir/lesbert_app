@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lsebert/common_widgets/auth_button.dart';
 import 'package:lsebert/common_widgets/custom_text_feild.dart';
+import 'package:lsebert/helpers/loading_helper.dart';
 import '../../../common_widgets/divider_container.dart';
 import '../../../common_widgets/image_picker_widget.dart';
 import '../../../constants/text_font_style.dart';
@@ -165,10 +166,10 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
                     name: 'Update',
                     onCallBack: () async {
                       File file = File(_imageFileNotifier.value!);
-                      await postProEditProfile.postEditProProfile(
-                          _nameController.text,
-                          file,
-                          _professionController.text);
+                      await postProEditProfile
+                          .postEditProProfile(_nameController.text, file,
+                              _professionController.text)
+                          .waitingForFuture();
 
                       // log("image type name :  ")
                     },

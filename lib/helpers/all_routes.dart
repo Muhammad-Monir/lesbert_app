@@ -22,7 +22,7 @@ import 'package:lsebert/features_pro/profile/presentation/other_details_edit.dar
 import 'package:lsebert/features_pro/profile/presentation/personal_details_edit_screen.dart';
 import 'package:lsebert/features_pro/profile/presentation/profile_edit_screen.dart';
 import 'package:lsebert/features_pro/profile/presentation/profile_screen.dart';
-import 'package:lsebert/features_pro/question/presentation/question_screen.dart';
+import 'package:lsebert/features/question/presentation/question_screen.dart';
 import 'package:lsebert/features_pro/security/presentation/security_screen.dart';
 import 'package:lsebert/features_pro/subscription/presentation/subscription_screen.dart';
 import 'package:lsebert/features_trade/pro_notification/notification.dart';
@@ -183,11 +183,19 @@ final class RouteGenerator {
             : CupertinoPageRoute(
                 builder: (context) => const ForgotPassScreen());
       case Routes.otpVerify:
+        final args = settings.arguments as Map<String, dynamic>?;
+
         return Platform.isAndroid
             ? _FadedTransitionRoute(
-                widget: const ScreenTitle(widget: OtpVerifyScreen()),
+                widget: ScreenTitle(
+                    widget: OtpVerifyScreen(
+                  isResetPw: args?["isrest"],
+                )),
                 settings: settings)
-            : CupertinoPageRoute(builder: (context) => const OtpVerifyScreen());
+            : CupertinoPageRoute(
+                builder: (context) => OtpVerifyScreen(
+                      isResetPw: args?["isrest"],
+                    ));
       case Routes.resetPass:
         final args = settings.arguments as Map;
         return Platform.isAndroid

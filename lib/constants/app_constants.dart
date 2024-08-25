@@ -115,6 +115,10 @@ const String userName = 'userName';
 const String userImage = 'userImage';
 const String images = 'images';
 const String kKeyIsExploring = 'exploring';
+const String kKeyissubscribed = "subscribed";
+const String kKeyisboost = "boost";
+const String kKeyisverified = "verified";
+const String kKeyisanswered = "answered";
 //order statuses
 
 const List<String> kLanguagesKey = [
