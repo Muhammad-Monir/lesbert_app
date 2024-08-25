@@ -69,7 +69,6 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
             )
           ],
         ),
-        
         body: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.all(20.0),
@@ -112,22 +111,24 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
                 UIHelper.verticalSpaceMedium,
                 //this will be optional based on if subscription purchased
                 Container(
-                  height: 280,
-                  width: .9.sw,
-                  decoration: const BoxDecoration(
+                  height: 280.h,
+                  width: .9.w,
+                  // padding: EdgeInsets.symmetric(vertical: 0.h, horizontal: 0.w),
+                  decoration: BoxDecoration(
                       color: AppColors.cffffff,
-                      borderRadius: BorderRadius.all(Radius.circular(15))),
+                      borderRadius: BorderRadius.all(Radius.circular(15.r))),
                   child: Column(
+                    // mainAxisSize: MainAxisSize.min,
                     children: [
                       UIHelper.verticalSpaceMedium,
                       CircleAvatar(
-                        radius: 45,
+                        radius: 45.r,
                         child: ClipOval(
                           child: Image.network(
                             "https://images.unsplash.com/photo-1494790108377-be9c29b29330?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8cHJvZmlsZXxlbnwwfHwwfHx8MA%3D%3D",
                             fit: BoxFit.cover,
-                            width: 100,
-                            height: 100,
+                            width: 100.w,
+                            height: 100.h,
                           ),
                         ),
                       ),
@@ -152,16 +153,16 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
                 ),
                 UIHelper.verticalSpaceMedium,
                 Container(
-                  height: 240,
+                  height: 240.h,
                   width: .9.sw,
-                  decoration: const BoxDecoration(
+                  decoration: BoxDecoration(
                       color: AppColors.cffffff,
-                      borderRadius: BorderRadius.all(Radius.circular(15))),
+                      borderRadius: BorderRadius.all(Radius.circular(15.r))),
                   child: Column(
                     children: [
                       UIHelper.verticalSpaceMedium,
                       Padding(
-                        padding: const EdgeInsets.all(8.0),
+                        padding: EdgeInsets.all(8.sp),
                         child: Image.asset(
                           Assets.icons.flameIcon.path,
                           height: 71.sp,
@@ -190,12 +191,12 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
                 UIHelper.verticalSpaceExtraLarge,
               ],
             ),
-          
           ),
         ),
       ),
     );
   }
+
   void _showAlertDialog(BuildContext context) {
     showDialog(
       context: context,
@@ -272,8 +273,6 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
       },
     );
   }
-
-
 }
 
 class SubscriptionPlan extends StatelessWidget {
@@ -290,8 +289,8 @@ class SubscriptionPlan extends StatelessWidget {
     return GestureDetector(
       onTap: onSelect,
       child: Container(
-        padding: EdgeInsets.all(20.sp),
-        width: .7.sw,
+        padding: EdgeInsets.symmetric(vertical: 15.h, horizontal: 15.w),
+        // width: .7.sw,
         decoration: BoxDecoration(
           border: Border.all(color: borderColor, width: 3.w),
           borderRadius: BorderRadius.circular(15.r),
@@ -332,7 +331,7 @@ class SubscriptionPlan extends StatelessWidget {
             ),
             UIHelper.verticalSpace(14.h),
             Container(
-              height: 50,
+              height: 50.h,
               width: .5.sw,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10.r),
@@ -368,7 +367,7 @@ class SubscriptionPlan extends StatelessWidget {
                       .copyWith(color: AppColors.cffffff),
                   context: context),
             ),
-            UIHelper.verticalSpaceMedium
+            UIHelper.verticalSpace(10.h)
           ],
         ),
       ),
@@ -386,7 +385,7 @@ class subscriptionFeatures extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 10),
+      padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 10.w),
       child: Row(
         children: [
           Image.asset(

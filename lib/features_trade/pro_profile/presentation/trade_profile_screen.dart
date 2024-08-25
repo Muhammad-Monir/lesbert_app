@@ -135,6 +135,8 @@ class _TradeProfileScreenState extends State<TradeProfileScreen> {
           },
           onTapPaymnetHistory: () =>
               NavigationService.navigateTo(Routes.proPaymnetHistory),
+          onTapSecurity: () =>
+              NavigationService.navigateTo(Routes.securityScreen),
         ),
       ),
     );
