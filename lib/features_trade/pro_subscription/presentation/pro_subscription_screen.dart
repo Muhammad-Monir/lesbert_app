@@ -60,10 +60,9 @@ class _ProSubscriptionScreenState extends State<ProSubscriptionScreen> {
           )
         ],
       ),
-      
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(20.0),
+          padding: EdgeInsets.all(20.sp),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
@@ -103,22 +102,22 @@ class _ProSubscriptionScreenState extends State<ProSubscriptionScreen> {
               UIHelper.verticalSpaceMedium,
               //this will be optional based on if subscription purchased
               Container(
-                height: 280,
+                height: 280.h,
                 width: .9.sw,
-                decoration: const BoxDecoration(
+                decoration: BoxDecoration(
                     color: AppColors.cffffff,
-                    borderRadius: BorderRadius.all(Radius.circular(15))),
+                    borderRadius: BorderRadius.all(Radius.circular(15.r))),
                 child: Column(
                   children: [
                     UIHelper.verticalSpaceMedium,
                     CircleAvatar(
-                      radius: 45,
+                      radius: 45.r,
                       child: ClipOval(
                         child: Image.network(
                           "https://images.unsplash.com/photo-1494790108377-be9c29b29330?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8cHJvZmlsZXxlbnwwfHwwfHx8MA%3D%3D",
                           fit: BoxFit.cover,
-                          width: 100,
-                          height: 100,
+                          width: 100.w,
+                          height: 100.h,
                         ),
                       ),
                     ),
@@ -142,16 +141,16 @@ class _ProSubscriptionScreenState extends State<ProSubscriptionScreen> {
               ),
               UIHelper.verticalSpaceMedium,
               Container(
-                height: 240,
+                height: 240.h,
                 width: .9.sw,
-                decoration: const BoxDecoration(
+                decoration: BoxDecoration(
                     color: AppColors.cffffff,
-                    borderRadius: BorderRadius.all(Radius.circular(15))),
+                    borderRadius: BorderRadius.all(Radius.circular(15.r))),
                 child: Column(
                   children: [
                     UIHelper.verticalSpaceMedium,
                     Padding(
-                      padding: const EdgeInsets.all(8.0),
+                      padding: EdgeInsets.all(8.sp),
                       child: Image.asset(
                         Assets.icons.flameIcon.path,
                         height: 71.sp,
