@@ -2,6 +2,7 @@ import 'package:lsebert/features_pro/profile/data/profile/rx_profile.dart';
 import 'package:rxdart/subjects.dart';
 
 import '../features/support/data/rx_get_issue_details/rx.dart';
+import '../features_pro/dashboard/data/deleteimage/rx.dart';
 
 import '../features_pro/support/data/rx_post_replay/rx.dart';
 
@@ -83,3 +84,5 @@ GetIssueDetailsRX getIssueDetailsRXObj =
     GetIssueDetailsRX(empty: {}, dataFetcher: BehaviorSubject<Map>());
 PostReplayRX postReplayRXObj =
     PostReplayRX(empty: {}, dataFetcher: BehaviorSubject<Map>());
+DeleteProfileImageRX deleteProfileImageRXObj =
+    DeleteProfileImageRX(empty: {}, dataFetcher: BehaviorSubject<Map>());

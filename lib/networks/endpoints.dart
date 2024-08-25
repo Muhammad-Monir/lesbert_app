@@ -1,7 +1,7 @@
 // ignore_for_file: constant_identifier_names
 
 const String url = "https://lsebert.reigeeky.com";
-const String imageUrl = "$url/public";
+const String imageUrl = "$url/";
 
 final class NetworkConstants {
   NetworkConstants._();
@@ -50,6 +50,7 @@ final class Endpoints {
   static String postChangePass() => "/api/change-password";
   static String getExperiance() => "/api/my-experence";
   static String proImages() => "/api/pro-images";
+  static String proImagesDelete() => "/api/pro-images-delete";
 
   //backend_url
   static String appCategories() => "/api/product-categories";
