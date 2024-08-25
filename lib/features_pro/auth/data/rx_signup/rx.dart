@@ -1,3 +1,5 @@
+// ignore_for_file: non_constant_identifier_names, no_leading_underscores_for_local_identifiers
+
 import 'dart:developer';
 
 import 'package:dio/dio.dart';
@@ -9,8 +11,6 @@ import '../../../../helpers/all_routes.dart';
 import '../../../../helpers/di.dart';
 import '../../../../helpers/navigation_service.dart';
 import '../../../../networks/rx_base.dart';
-
-import '../../../../networks/exception_handler/data_source.dart';
 import '../../model/signup_response.dart';
 import 'api.dart';
 

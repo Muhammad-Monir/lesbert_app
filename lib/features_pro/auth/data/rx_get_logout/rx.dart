@@ -1,9 +1,7 @@
-import 'package:lsebert/helpers/navigation_service.dart';
 import 'package:rxdart/rxdart.dart';
-import '../../../../networks/rx_base.dart';
-import '/helpers/di.dart';
-
 import '/constants/app_constants.dart';
+import '/helpers/di.dart';
+import '../../../../networks/rx_base.dart';
 import 'api.dart';
 
 final class GetLogOutRX extends RxResponseInt {

@@ -1,12 +1,9 @@
 import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:lsebert/features_pro/auth/presentatiom/forgot_password/reset_pass_screen.dart';
 import 'package:lsebert/helpers/loading_helper.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:provider/provider.dart';
-
 import '../../../../common_widgets/auth_button.dart';
 import '../../../../common_widgets/custom_appbar.dart';
 import '../../../../constants/text_font_style.dart';
@@ -18,7 +15,6 @@ import '../../../../helpers/ui_helpers.dart';
 import '../../../../networks/api_acess.dart';
 import '../../../../networks/exception_handler/error_response.dart';
 import '../../../../provider/email_provider.dart';
-import 'reset_pass_screen.dart';
 
 class OtpVerifyScreen extends StatefulWidget {
   const OtpVerifyScreen({super.key});

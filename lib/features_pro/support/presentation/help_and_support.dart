@@ -1,23 +1,18 @@
 import 'dart:core';
-
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lsebert/common_widgets/auth_button.dart';
-
 import 'package:lsebert/helpers/loading_helper.dart';
 import 'package:lsebert/helpers/ui_helpers.dart';
-
-import '../../../common_widgets/loading_indicators.dart';
-import '../../../helpers/dateuitl.dart';
-import '../../../networks/api_acess.dart';
-import 'widget/support_bottom_sheet.dart';
 import '../../../common_widgets/custom_switch.dart';
+import '../../../common_widgets/loading_indicators.dart';
 import '../../../constants/text_font_style.dart';
 import '../../../gen/colors.gen.dart';
 import '../../../helpers/all_routes.dart';
+import '../../../helpers/dateuitl.dart';
 import '../../../helpers/navigation_service.dart';
+import '../../../networks/api_acess.dart';
+import 'widget/support_bottom_sheet.dart';
 import 'widget/support_card.dart';
 
 class HelpSupport extends StatefulWidget {

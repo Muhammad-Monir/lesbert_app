@@ -1,5 +1,4 @@
 import 'dart:io';
-import 'package:get/get.dart';
 import 'package:rxdart/rxdart.dart';
 import '../../../../networks/rx_base.dart';
 import 'image_api.dart';

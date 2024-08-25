@@ -4,7 +4,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lsebert/common_widgets/custom_text_feild.dart';
 import 'package:lsebert/constants/text_font_style.dart';
 import 'package:lsebert/helpers/navigation_service.dart';
-import 'package:lsebert/helpers/toast.dart';
 import '../../../../common_widgets/auth_button.dart';
 import '../../../../common_widgets/or_divider.dart';
 import '../../../../common_widgets/social_icon.dart';
@@ -13,7 +12,6 @@ import '../../../../gen/colors.gen.dart';
 import '../../../../helpers/all_routes.dart';
 import '../../../../helpers/ui_helpers.dart';
 import '../../../../networks/api_acess.dart';
-import '../../model/login_response.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -137,7 +135,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                       recognizer: TapGestureRecognizer()
                         ..onTap = () {
-                          NavigationService.navigateTo(Routes.signup);
+                          NavigationService.navigateTo(Routes.role);
                         },
                     ),
                   ],

@@ -1,6 +1,4 @@
-// ignore_for_file: overridden_fields
-
-import 'dart:convert';
+// ignore_for_file: overridden_fields, annotate_overrides, unnecessary_question_mark
 
 import '../../../helpers/default_response_model.dart';
 
@@ -15,18 +13,18 @@ class LoginResponse extends DefaultResponse {
   LoginResponse.fromJson(Map<String, dynamic> json) {
     success = json['success'];
     message = json['message'];
-    data = json['data'] != null ? new Data.fromJson(json['data']) : null;
+    data = json['data'] != null ? Data.fromJson(json['data']) : null;
     code = json['code'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['success'] = this.success;
-    data['message'] = this.message;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['success'] = success;
+    data['message'] = message;
     if (this.data != null) {
       data['data'] = this.data!.toJson();
     }
-    data['code'] = this.code;
+    data['code'] = code;
     return data;
   }
 }
@@ -40,20 +38,20 @@ class Data {
   Data({this.token, this.role, this.isSubscribed, this.isBoost});
 
   Data.fromJson(Map<String, dynamic> json) {
-    token = json['token'] != null ? new Token.fromJson(json['token']) : null;
+    token = json['token'] != null ? Token.fromJson(json['token']) : null;
     role = json['role'];
     isSubscribed = json['is_subscribed'];
     isBoost = json['is_boost'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.token != null) {
-      data['token'] = this.token!.toJson();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    if (token != null) {
+      data['token'] = token!.toJson();
     }
-    data['role'] = this.role;
-    data['is_subscribed'] = this.isSubscribed;
-    data['is_boost'] = this.isBoost;
+    data['role'] = role;
+    data['is_subscribed'] = isSubscribed;
+    data['is_boost'] = isBoost;
     return data;
   }
 }
@@ -66,17 +64,17 @@ class Token {
 
   Token.fromJson(Map<String, dynamic> json) {
     original = json['original'] != null
-        ? new Original.fromJson(json['original'])
+        ? Original.fromJson(json['original'])
         : null;
     exception = json['exception'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.original != null) {
-      data['original'] = this.original!.toJson();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    if (original != null) {
+      data['original'] = original!.toJson();
     }
-    data['exception'] = this.exception;
+    data['exception'] = exception;
     return data;
   }
 }
@@ -95,10 +93,10 @@ class Original {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['access_token'] = this.accessToken;
-    data['token_type'] = this.tokenType;
-    data['expires_in'] = this.expiresIn;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['access_token'] = accessToken;
+    data['token_type'] = tokenType;
+    data['expires_in'] = expiresIn;
     return data;
   }
 }

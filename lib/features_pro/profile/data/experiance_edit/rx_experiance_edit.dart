@@ -1,3 +1,5 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:rxdart/streams.dart';
 import '../../../../networks/rx_base.dart';
 import 'api_experiance_edit.dart';

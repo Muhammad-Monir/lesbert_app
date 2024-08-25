@@ -3,12 +3,9 @@
 import 'package:custom_navigation_bar/custom_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:lsebert/features_trade/trade_dashboard/presentation/trade_dashboard.dart';
 import 'package:lsebert/features_trade/pro_message/presentation/pro_message_screen.dart';
 import 'package:lsebert/features_trade/pro_subscription/presentation/pro_subscription_screen.dart';
-import '../common_widgets/custom_drawer.dart';
-import '../helpers/all_routes.dart';
-import '../helpers/navigation_service.dart';
+import 'package:lsebert/features_trade/trade_dashboard/presentation/trade_dashboard.dart';
 import '/constants/text_font_style.dart';
 import '/gen/assets.gen.dart';
 import '../gen/colors.gen.dart';

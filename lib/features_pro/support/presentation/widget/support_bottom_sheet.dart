@@ -1,16 +1,12 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lsebert/common_widgets/custom_text_feild.dart';
 import 'package:lsebert/helpers/navigation_service.dart';
-
-import '../../../../constants/text_font_style.dart';
-import '../../../../gen/assets.gen.dart';
-import '../../../../gen/colors.gen.dart';
-import '../../../../helpers/ui_helpers.dart';
 import '../../../../common_widgets/auth_button.dart';
 import '../../../../common_widgets/custom_dropdown.dart';
+import '../../../../constants/text_font_style.dart';
+import '../../../../gen/colors.gen.dart';
+import '../../../../helpers/ui_helpers.dart';
 import '../../../../networks/api_acess.dart';
 
 class BottomSheetWidget extends StatefulWidget {

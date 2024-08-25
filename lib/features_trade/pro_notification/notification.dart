@@ -40,7 +40,7 @@ class _ProNotificationScreenState extends State<ProNotificationScreen> {
           ),
         ),
         title: Text(
-          'Notif',
+          'Notifications',
           style: TextFontStyle.headline20w600C141414StyleInter,
         ),
       ),

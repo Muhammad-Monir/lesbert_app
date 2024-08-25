@@ -1,18 +1,12 @@
-import 'package:flutter/material.dart';
 import 'package:lsebert/helpers/loading_helper.dart';
-import 'package:provider/provider.dart';
 import 'package:rxdart/rxdart.dart';
-
+import '/helpers/di.dart';
+import '../../../../constants/app_constants.dart';
 import '../../../../helpers/all_routes.dart';
 import '../../../../helpers/navigation_service.dart';
 import '../../../../helpers/toast.dart';
-import '../../model/login_response.dart';
-
-import '/helpers/di.dart';
 import '../../../../networks/rx_base.dart';
-
-import '../../../../constants/app_constants.dart';
-
+import '../../model/login_response.dart';
 import 'api.dart';
 
 final class GetLoginRX extends RxResponseInt<LoginResponse> {

@@ -9,6 +9,7 @@ class DashBoardCardProfessional extends StatelessWidget {
   final String imagepath;
   final bool darkMode;
   final bool isText;
+  final VoidCallback? onTap;
 
   const DashBoardCardProfessional({
     super.key,
@@ -17,6 +18,7 @@ class DashBoardCardProfessional extends StatelessWidget {
     required this.imagepath,
     required this.darkMode,
     required this.isText,
+    this.onTap,
   });
 
   @override
@@ -70,29 +72,32 @@ class DashBoardCardProfessional extends StatelessWidget {
                 ? Positioned(
                     bottom: 0.h,
                     right: 10.w,
-                    child: Container(
-                      decoration: BoxDecoration(
-                          border: Border(
-                              bottom: BorderSide(
-                        color: Colors.white,
-                        width: 2.w, // Underline thickness
-                      ))),
-                      child: Text(
-                        "+ Add Boost",
-                        style: TextStyle(
-                          fontSize: 16.sp,
-                          decoration: TextDecoration.underline,
-                          fontWeight: FontWeight.w600,
-                          color: darkMode
-                              ? AppColors.cffffff
-                              : AppColors.allPrimaryColor,
+                    child: GestureDetector(
+                      onTap: onTap,
+                      child: Container(
+                        decoration: BoxDecoration(
+                            border: Border(
+                                bottom: BorderSide(
+                          color: Colors.white,
+                          width: 2.w, // Underline thickness
+                        ))),
+                        child: Text(
+                          "+ Add Boost",
+                          style: TextStyle(
+                            fontSize: 16.sp,
+                            decoration: TextDecoration.underline,
+                            fontWeight: FontWeight.w600,
+                            color: darkMode
+                                ? AppColors.cffffff
+                                : AppColors.allPrimaryColor,
+                          ),
+                          // style: TextFontStyle.headline16w600CFFFFFFFFStyleintere
+                          //     .copyWith(
+                          //   color: darkMode
+                          //       ? AppColors.cffffff
+                          //       : AppColors.allPrimaryColor,
+                          // ),
                         ),
-                        // style: TextFontStyle.headline16w600CFFFFFFFFStyleintere
-                        //     .copyWith(
-                        //   color: darkMode
-                        //       ? AppColors.cffffff
-                        //       : AppColors.allPrimaryColor,
-                        // ),
                       ),
                     ),
                   )

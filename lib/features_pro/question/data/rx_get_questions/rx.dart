@@ -1,13 +1,5 @@
-import 'package:provider/provider.dart';
 import 'package:rxdart/rxdart.dart';
-
-import '../../../../constants/app_constants.dart';
-
-import '../../../../helpers/di.dart';
-import '../../../../helpers/navigation_service.dart';
-
 import '../../../../networks/rx_base.dart';
-
 import 'api.dart';
 
 final class GetQuestionRx extends RxResponseInt<Map> {

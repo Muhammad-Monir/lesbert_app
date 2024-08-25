@@ -1,9 +1,6 @@
 import 'dart:developer';
-
-import 'package:get/get.dart';
 import 'package:rxdart/rxdart.dart';
 import '../../../../networks/rx_base.dart';
-
 import 'api.dart';
 
 final class ResendOtpRx extends RxResponseInt {
