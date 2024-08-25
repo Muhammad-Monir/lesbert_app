@@ -1,12 +1,8 @@
-import 'dart:convert';
-
 import 'package:dio/dio.dart';
-
+import '/networks/endpoints.dart';
 import '../../../../networks/dio/dio.dart';
 import '../../../../networks/exception_handler/data_source.dart';
-
 import '../../model/login_response.dart';
-import '/networks/endpoints.dart';
 
 final class LoginApi {
   static final LoginApi _singleton = LoginApi._internal();

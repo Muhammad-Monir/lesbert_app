@@ -34,6 +34,7 @@ import 'package:lsebert/features_trade/view_profile/presentation/view_profile.da
 import 'package:lsebert/loading_screen.dart';
 import 'package:lsebert/navigation_screen.dart';
 
+import '../common_widgets/webview_helper.dart';
 import '../features_pro/support/presentation/help_and_support.dart';
 import '../features_pro/support/presentation/support_history.dart';
 import '../features_trade/pro_navigation_screen.dart';
@@ -44,6 +45,7 @@ final class Routes {
   Routes._internal();
   static Routes get instance => _routes;
 
+  static const String webview = '/webView';
   static const String dashboard = '/dashboard';
   static const String subscription = '/subscription';
   static const String message = '/message';
@@ -65,7 +67,7 @@ final class Routes {
   static const String otherDetailsEdit = '/otherDetailsEdit';
   static const String experianceEdit = '/experianceEdit';
   static const String changePass = '/changePass';
-  static const String notification = '/notification';
+  // static const String notification = '/notification';
   static const String paymentHistory = '/paymentHistory';
   static const String profileEdit = '/profileEdit';
   static const String helpAndSupport = '/HelpSupport';
@@ -85,6 +87,7 @@ final class Routes {
   static const String proNotification = '/proNotification';
   static const String proPaymnetHistory = '/proPaymnetHistory';
   static const String proEditProfile = '/proEditProfile';
+  static const String aboutUs = '/aboutUs';
 }
 
 final class RouteGenerator {
@@ -157,20 +160,20 @@ final class RouteGenerator {
                 settings: settings)
             : CupertinoPageRoute(builder: (context) => const SupportHistory());
       case Routes.signup:
-        final args = settings.arguments as Map;
+        final args = settings.arguments as Map<String, dynamic>?;
         return Platform.isAndroid
             ? _FadedTransitionRoute(
                 widget: ScreenTitle(
                   widget: SignUpScreen(
-                    role: args['trade'],
-                    proffesion: args['tradeQuestion'],
+                    role: args?['trade'],
+                    proffesion: args?['tradeQuestion'],
                   ),
                 ),
                 settings: settings)
             : CupertinoPageRoute(
                 builder: (context) => SignUpScreen(
-                      role: args['trade'],
-                      proffesion: args['tradeQuestion'],
+                      role: args?['trade'],
+                      proffesion: args?['tradeQuestion'],
                     ));
       case Routes.forgotPass:
         return Platform.isAndroid
@@ -298,13 +301,13 @@ final class RouteGenerator {
                 settings: settings)
             : CupertinoPageRoute(
                 builder: (context) => const ChangePassScreen());
-      case Routes.notification:
-        return Platform.isAndroid
-            ? _FadedTransitionRoute(
-                widget: const ScreenTitle(widget: NotificationScreen()),
-                settings: settings)
-            : CupertinoPageRoute(
-                builder: (context) => const NotificationScreen());
+      // case Routes.notification:
+      //   return Platform.isAndroid
+      //       ? _FadedTransitionRoute(
+      //           widget: const ScreenTitle(widget: NotificationScreen()),
+      //           settings: settings)
+      //       : CupertinoPageRoute(
+      //           builder: (context) => const NotificationScreen());
       case Routes.paymentHistory:
         return Platform.isAndroid
             ? _FadedTransitionRoute(
@@ -352,6 +355,20 @@ final class RouteGenerator {
                 widget: const ScreenTitle(widget: SecurityScreen()),
                 settings: settings)
             : CupertinoPageRoute(builder: (context) => const SecurityScreen());
+      case Routes.webview:
+        final args = settings.arguments as Map;
+        return Platform.isAndroid
+            ? _FadedTransitionRoute(
+                widget: WebviewHelper(
+                  name: args["name"],
+                  url: args["url"],
+                ),
+                settings: settings)
+            : CupertinoPageRoute(
+                builder: (context) => WebviewHelper(
+                      name: args["name"],
+                      url: args["url"],
+                    ));
 
       //========<>======<>=======<>=======<>=======<>=========
       //===============<><><>==============<><><><>===============

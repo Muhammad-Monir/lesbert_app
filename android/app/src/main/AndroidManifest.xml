@@ -10,7 +10,7 @@
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.hardware.location.gps" />
     <application
-        android:label="lsebert"
+        android:label="Trade Pros"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

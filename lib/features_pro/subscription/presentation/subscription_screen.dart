@@ -8,9 +8,13 @@ import 'package:lsebert/constants/text_font_style.dart';
 import 'package:lsebert/gen/assets.gen.dart';
 import 'package:lsebert/gen/colors.gen.dart';
 import 'package:lsebert/helpers/ui_helpers.dart';
-
+import '../../../common_widgets/delete_dilouge_widget.dart';
 import '../../../helpers/all_routes.dart';
 import '../../../helpers/navigation_service.dart';
+import '../../../helpers/toast.dart';
+import '../../../networks/api_acess.dart';
+import '../../../networks/endpoints.dart';
+import '../../../networks/stream_cleaner.dart';
 
 class SubscriptionScreen extends StatefulWidget {
   const SubscriptionScreen({super.key});
@@ -42,7 +46,6 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        drawer: const CustomDrawer(),
         key: _scaffoldKey,
         backgroundColor: AppColors.cE7ECF1,
         appBar: AppBar(
@@ -193,6 +196,45 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
             ),
           ),
         ),
+        drawer: CustomDrawer(
+          onTapLogout: () {
+            deleteButtonDialouge(context, "You are about to Logout!", () {
+              //  getDeleteTokenRXObj.deleteTokenData();
+              getLogOutRXObj.fetchLogoutData();
+              totalDataClean();
+              NavigationService.navigateToReplacement(Routes.login);
+            });
+          },
+          onTapNotification: () {
+            _scaffoldKey.currentState!.closeDrawer();
+            NavigationService.navigateTo(Routes.proNotification);
+            _scaffoldKey.currentState!.closeDrawer();
+          },
+          onTapPaymnetHistory: () {
+            NavigationService.navigateTo(Routes.paymentHistory);
+            _scaffoldKey.currentState!.closeDrawer();
+          },
+          onTapAboutus: () {
+            NavigationService.navigateToWithArgs(Routes.webview,
+                {"name": "About US", "url": "$url/page/about-us"});
+            _scaffoldKey.currentState!.closeDrawer();
+          },
+          onTapPrivacy: () {
+            NavigationService.navigateToWithArgs(Routes.webview, {
+              "name": "Privacy & Policy",
+              "url": "$url/page/privacy-policy"
+            });
+            _scaffoldKey.currentState!.closeDrawer();
+          },
+          onTapHelpAndSuport: () {
+            NavigationService.navigateTo(Routes.helpAndSupport);
+            _scaffoldKey.currentState!.closeDrawer();
+          },
+          onTapSecurity: () {
+            NavigationService.navigateTo(Routes.securityScreen);
+            _scaffoldKey.currentState!.closeDrawer();
+          },
+        ),
       ),
     );
   }
@@ -278,6 +320,7 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
 class SubscriptionPlan extends StatelessWidget {
   final Color borderColor;
   final VoidCallback? onSelect;
+
   const SubscriptionPlan({
     required this.borderColor,
     this.onSelect,
@@ -358,7 +401,9 @@ class SubscriptionPlan extends StatelessWidget {
             Center(
               child: AuthCustomeButton(
                   name: "Get Boost",
-                  onCallBack: () {},
+                  onCallBack: () {
+                    ToastUtil.showLongToast('Feature is Upcomming....');
+                  },
                   height: .05.sh,
                   minWidth: .6.sw,
                   borderRadius: 20.r,

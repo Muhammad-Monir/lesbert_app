@@ -34,6 +34,7 @@ class CustomDrawer extends StatelessWidget {
       child: ListView(
         padding: EdgeInsets.zero,
         children: <Widget>[
+          UIHelper.verticalSpace(40.h),
           Image.asset(
             Assets.icons.logo.path,
             width: 133.w,
@@ -42,15 +43,7 @@ class CustomDrawer extends StatelessWidget {
           UIHelper.verticalSpace(40.w),
           DrawerItemWidget(
             isColor: isTextColor,
-            widget: CircleAvatar(
-              radius: 12.r,
-              backgroundColor: AppColors.cFF5630,
-              child: Text(
-                '22',
-                style: TextFontStyle.headline12w400C9E9E9EStyleInter
-                    .copyWith(color: AppColors.cffffff),
-              ),
-            ),
+            widget: const SizedBox.shrink(),
             isCircleAvatar: true,
             itemName: 'Notifications',
             onTap: onTapNotification,

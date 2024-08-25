@@ -8,7 +8,6 @@ import '../../../common_widgets/experiance_data_widget.dart';
 import '../../../common_widgets/other_details_widget.dart';
 import '../../../common_widgets/personal_details_widget.dart';
 import '../../../constants/text_font_style.dart';
-import '../../../gen/assets.gen.dart';
 import '../../../gen/colors.gen.dart';
 import '../../../helpers/all_routes.dart';
 import '../../../helpers/dateuitl.dart';

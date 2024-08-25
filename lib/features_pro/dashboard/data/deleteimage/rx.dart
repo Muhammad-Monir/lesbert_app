@@ -2,7 +2,7 @@ import 'package:rxdart/rxdart.dart';
 import '../../../../networks/rx_base.dart';
 import 'api.dart';
 
-// TODO: Need to implement on ui
+
 final class DeleteProfileImageRX extends RxResponseInt {
   final api = DeleteProfileImageApi.instance;
 

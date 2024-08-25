@@ -1,12 +1,7 @@
 import 'dart:convert';
-import 'dart:developer';
-
 import 'package:dio/dio.dart';
-
-import '../../../../../networks/dio/dio.dart';
-import '../../../../networks/exception_handler/data_source.dart';
-import '../../model/signup_response.dart';
 import '/networks/endpoints.dart';
+import '../../../../../networks/dio/dio.dart';
 
 final class SignUpApi {
   static final SignUpApi _singleton = SignUpApi._internal();

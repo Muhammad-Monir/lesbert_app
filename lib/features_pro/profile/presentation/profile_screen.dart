@@ -1,14 +1,13 @@
 import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lsebert/helpers/navigation_service.dart';
 import 'package:lsebert/helpers/ui_helpers.dart';
 import 'package:lsebert/networks/api_acess.dart';
-
 import '../../../common_widgets/auth_button.dart';
 import '../../../common_widgets/bio_widegt.dart';
 import '../../../common_widgets/custom_drawer.dart';
+import '../../../common_widgets/delete_dilouge_widget.dart';
 import '../../../common_widgets/divider_container.dart';
 import '../../../common_widgets/experiance_data_widget.dart';
 import '../../../common_widgets/other_details_widget.dart';
@@ -19,6 +18,7 @@ import '../../../gen/assets.gen.dart';
 import '../../../gen/colors.gen.dart';
 import '../../../helpers/all_routes.dart';
 import '../../../networks/endpoints.dart';
+import '../../../networks/stream_cleaner.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -212,7 +212,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     ],
                   );
                 } else if (snapshot.hasError) {
-                  return Text('No Data Avilable');
+                  return const Text('No Data Avilable');
                 } else {
                   return const Center(
                     child: CircularProgressIndicator(),
@@ -220,7 +220,45 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 }
               }),
         ),
-        drawer: const CustomDrawer(),
+        drawer: CustomDrawer(
+          onTapLogout: () {
+            deleteButtonDialouge(context, "You are about to Logout!", () {
+              //  getDeleteTokenRXObj.deleteTokenData();
+              getLogOutRXObj.fetchLogoutData();
+              totalDataClean();
+              NavigationService.navigateToReplacement(Routes.login);
+            });
+          },
+          onTapNotification: () {
+            _scaffoldKey.currentState!.closeDrawer();
+            NavigationService.navigateTo(Routes.proNotification);
+            _scaffoldKey.currentState!.closeDrawer();
+          },
+          onTapPaymnetHistory: () {
+            NavigationService.navigateTo(Routes.paymentHistory);
+            _scaffoldKey.currentState!.closeDrawer();
+          },
+          onTapAboutus: () {
+            NavigationService.navigateToWithArgs(Routes.webview,
+                {"name": "About US", "url": "$url/page/about-us"});
+            _scaffoldKey.currentState!.closeDrawer();
+          },
+          onTapPrivacy: () {
+            NavigationService.navigateToWithArgs(Routes.webview, {
+              "name": "Privacy & Policy",
+              "url": "$url/page/privacy-policy"
+            });
+            _scaffoldKey.currentState!.closeDrawer();
+          },
+          onTapHelpAndSuport: () {
+            NavigationService.navigateTo(Routes.helpAndSupport);
+            _scaffoldKey.currentState!.closeDrawer();
+          },
+          onTapSecurity: () {
+            NavigationService.navigateTo(Routes.securityScreen);
+            _scaffoldKey.currentState!.closeDrawer();
+          },
+        ),
       ),
     );
   }

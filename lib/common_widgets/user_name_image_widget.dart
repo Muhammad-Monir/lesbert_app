@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:lsebert/helpers/navigation_service.dart';
 import '../constants/text_font_style.dart';
 import '../gen/assets.gen.dart';
-import '../helpers/all_routes.dart';
 import '../helpers/ui_helpers.dart';
 
 class UserImageAndNameWidget extends StatelessWidget {

@@ -1,8 +1,11 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lsebert/common_widgets/custom_drawer.dart';
 import 'package:lsebert/helpers/ui_helpers.dart';
 import 'package:lsebert/networks/endpoints.dart';
+import '../../../common_widgets/delete_dilouge_widget.dart';
 import '../../../common_widgets/personal_details_widget.dart';
 import '../../../common_widgets/user_name_image_widget.dart';
 import '../../../constants/text_font_style.dart';
@@ -11,6 +14,7 @@ import '../../../gen/colors.gen.dart';
 import '../../../helpers/all_routes.dart';
 import '../../../helpers/navigation_service.dart';
 import '../../../networks/api_acess.dart';
+import '../../../networks/stream_cleaner.dart';
 
 class TradeProfileScreen extends StatefulWidget {
   const TradeProfileScreen({super.key});
@@ -132,11 +136,38 @@ class _TradeProfileScreenState extends State<TradeProfileScreen> {
           isTextColor: true,
           onTapNotification: () {
             NavigationService.navigateTo(Routes.proNotification);
+            _scaffoldKey.currentState!.closeDrawer();
           },
           onTapPaymnetHistory: () =>
               NavigationService.navigateTo(Routes.proPaymnetHistory),
-          onTapSecurity: () =>
-              NavigationService.navigateTo(Routes.securityScreen),
+          onTapSecurity: () {
+            NavigationService.navigateTo(Routes.securityScreen);
+            _scaffoldKey.currentState!.closeDrawer();
+          },
+          onTapAboutus: () {
+            NavigationService.navigateToWithArgs(Routes.webview,
+                {"name": "About US", "url": "$url/page/about-us"});
+            _scaffoldKey.currentState!.closeDrawer();
+          },
+          onTapPrivacy: () {
+            NavigationService.navigateToWithArgs(Routes.webview, {
+              "name": "Privacy & Policy",
+              "url": "$url/page/privacy-policy"
+            });
+            _scaffoldKey.currentState!.closeDrawer();
+          },
+          onTapHelpAndSuport: () {
+            NavigationService.navigateTo(Routes.helpAndSupport);
+            _scaffoldKey.currentState!.closeDrawer();
+          },
+          onTapLogout: () {
+            deleteButtonDialouge(context, "You are about to Logout!", () {
+              //  getDeleteTokenRXObj.deleteTokenData();
+              getLogOutRXObj.fetchLogoutData();
+              totalDataClean();
+              NavigationService.navigateToReplacement(Routes.login);
+            });
+          },
         ),
       ),
     );

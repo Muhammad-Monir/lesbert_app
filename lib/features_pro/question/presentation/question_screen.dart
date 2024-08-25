@@ -1,24 +1,19 @@
-// ignore_for_file: library_private_types_in_public_api
+// ignore_for_file: library_private_types_in_public_api, unused_field
 import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:lsebert/common_widgets/custom_text_feild.dart';
-import 'package:lsebert/helpers/all_routes.dart';
-import 'package:lsebert/helpers/navigation_service.dart';
 import 'package:provider/provider.dart';
-import '../../../common_widgets/auth_button.dart';
+
 import '../../../constants/text_font_style.dart';
 import '../../../gen/colors.gen.dart';
 import '../../../helpers/ui_helpers.dart';
 import '../../../networks/api_acess.dart';
 import '../../../provider/resault_provider.dart';
-import 'widget/custom_radio_button.dart';
+import 'widget/check_box_question.dart';
 import 'widget/file_upload_question.dart';
 import 'widget/polar_question.dart';
 import 'widget/radio_question.dart';
-import 'widget/step2.dart';
-import 'widget/check_box_question.dart';
-import 'widget/step5.dart';
 import 'widget/text_area_question.dart';
 
 class QuestionScreen extends StatefulWidget {
@@ -334,7 +329,7 @@ class _QuestionScreenState extends State<QuestionScreen> {
           onChanged: (value) {
             setState(() {
               log(value!);
-              final index = data.indexOf(value!);
+              final index = data.indexOf(value);
               if (index != -1) {
                 //    isCheckedList[index] = !isCheckedList[index];
               }

@@ -6,8 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:lsebert/features_pro/intro/role_screen.dart';
-import 'package:lsebert/features_pro/question/presentation/widget/file_upload_question.dart';
 import 'package:provider/provider.dart';
 import '/helpers/all_routes.dart';
 import 'constants/custome_theme.dart';
@@ -16,7 +14,6 @@ import 'helpers/helper_methods.dart';
 import 'helpers/navigation_service.dart';
 import 'helpers/register_provider.dart';
 import 'loading_screen.dart';
-import 'navigation_screen.dart';
 import 'networks/dio/dio.dart';
 
 Future<void> backgroundHandler(RemoteMessage message) async {}
