@@ -87,7 +87,7 @@ class _HelpSupportState extends State<HelpSupport> {
                         if (snapshot.hasData && !snapshot.hasError) {
                           List data = snapshot.data['data'];
                           return SizedBox(
-                            height: .65.sh,
+                            height: .622.sh,
                             //    padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
                             child: ListView.separated(
                               //   physics: const NeverScrollableScrollPhysics(),
@@ -123,7 +123,7 @@ class _HelpSupportState extends State<HelpSupport> {
                         if (snapshot.hasData && !snapshot.hasError) {
                           List data = snapshot.data['data'];
                           return SizedBox(
-                            height: .65.sh,
+                            height: .62.sh,
                             //    padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
                             child: ListView.separated(
                               //   physics: const NeverScrollableScrollPhysics(),
@@ -163,7 +163,8 @@ class _HelpSupportState extends State<HelpSupport> {
                   color: AppColors.allPrimaryColor,
                   textStyle: TextFontStyle.headline14w600C141414StyleInter
                       .copyWith(color: AppColors.cffffff),
-                  context: context)
+                  context: context),
+              UIHelper.verticalSpaceMedium,
             ],
           ),
         ));

@@ -7,14 +7,21 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:lsebert/features_pro/auth/presentatiom/forgot_password/otp_verify_screen.dart';
+import 'package:lsebert/helpers/loading_helper.dart';
+import 'package:lsebert/networks/endpoints.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:provider/provider.dart';
 import '../../../../gen/colors.gen.dart';
+import '../../../../networks/api_acess.dart';
 import '../../../../provider/image_picker_provider.dart';
 
 class DottedContainer extends StatefulWidget {
   final int index;
-  const DottedContainer({super.key, required this.index});
+  final String? imageUrl;
+  final int? id;
+  const DottedContainer(
+      {super.key, required this.index, this.imageUrl, this.id});
 
   @override
   State<DottedContainer> createState() => _DottedContainerState();
@@ -47,55 +54,66 @@ class _DottedContainerState extends State<DottedContainer> {
                 borderRadius: BorderRadius.circular(6.r),
               ),
             ),
-            padding: EdgeInsets.all(36.sp),
+            padding: EdgeInsets.all(10.sp),
             // Padding for the red container
 
-            child: const Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                // _imageFile != null
-                //     ? Image.file(File(_imageFile!.path))
-                //     : SizedBox.shrink()
-                // Utils.showSvgPicture("camera",
-                //     height: Utils.scrHeight * .024, width: Utils.scrHeight * .024),
-                // SizedBox(width: Utils.scrHeight * .012),
-                // Text( provider.imagePath == null  ?
-                // "Add Photo (Optional)" : _truncateImageName(provider.imageName),
-                //   style: regularTS(serviceRequestTextColor, fontSize: 16),
-                //   textAlign: TextAlign.left,
-                // )
-              ],
+            child: Image.network(
+              widget.imageUrl != null
+                  ? widget.imageUrl!
+                  : "https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png",
+              fit: BoxFit.cover,
             ),
           ),
         ),
-        Positioned(
-          bottom: -12.h,
-          right: -10.w,
-          child: GestureDetector(
-            onTap: () async {
-              Map<Permission, PermissionStatus> statuses = await [
-                Permission.storage,
-                Permission.camera,
-              ].request();
+        widget.id == null
+            ? Positioned(
+                bottom: -12.h,
+                right: -10.w,
+                child: GestureDetector(
+                  onTap: () async {
+                    Map<Permission, PermissionStatus> statuses = await [
+                      Permission.storage,
+                      Permission.camera,
+                    ].request();
 
-              if (statuses[Permission.storage]!.isGranted ||
-                  statuses[Permission.camera]!.isGranted) {
-                _showPickImageBottomSheet(widget.index, imageProvider);
-              } else {
-                _buildShowDialog(context);
-              }
-            },
-            child: CircleAvatar(
-              backgroundColor: AppColors.allPrimaryColor,
-              radius: 16.r,
-              child: const Icon(
-                Icons.add,
-                color: AppColors.cffffff,
-              ),
-            ),
-          ),
-        )
+                    if (statuses[Permission.storage]!.isGranted ||
+                        statuses[Permission.camera]!.isGranted) {
+                      _showPickImageBottomSheet(widget.index, imageProvider);
+                    } else {
+                      _buildShowDialog(context);
+                    }
+                  },
+                  child: CircleAvatar(
+                    backgroundColor: AppColors.allPrimaryColor,
+                    radius: 16.r,
+                    child: const Icon(
+                      Icons.add,
+                      color: AppColors.cffffff,
+                    ),
+                  ),
+                ),
+              )
+            : Positioned(
+                bottom: -12.h,
+                right: -10.w,
+                child: GestureDetector(
+                  onTap: () async {
+                    await deleteProfileImageRXObj
+                        .deleteProfileImage(widget.id.toString())
+                        .waitingForFuture();
+
+                    await getProProfileRxObj.fetchProfileData();
+                  },
+                  child: CircleAvatar(
+                    backgroundColor: AppColors.allPrimaryColor,
+                    radius: 16.r,
+                    child: const Icon(
+                      Icons.cancel,
+                      color: AppColors.cffffff,
+                    ),
+                  ),
+                ),
+              )
       ],
     );
   }
@@ -133,12 +151,8 @@ class _DottedContainerState extends State<DottedContainer> {
     final pickedFile = await picker.pickImage(source: ImageSource.camera);
     log('pickFile is: $pickedFile');
     if (pickedFile != null) {
-      //imageProvider.setImageFile(index, File(pickedFile.path));
-      //imageProvider.imageCount;
-      // setState(() {
-      //   _imageFile = File(pickedFile.path);
-      //   log('imageFile is : $_imageFile');
-      // });
+      imageProvider.setImageFile(index, File(pickedFile.path));
+      imageProvider.imageCount;
     }
   }
 
@@ -148,12 +162,8 @@ class _DottedContainerState extends State<DottedContainer> {
     final pickedFile = await picker.pickImage(source: ImageSource.gallery);
     log('pickFile is: $pickedFile');
     if (pickedFile != null) {
-     // imageProvider.setImageFile(index, File(pickedFile.path));
-      // imageProvider.imageCount;
-      // setState(() {
-      //   _imageFile = File(pickedFile.path);
-      //   log('imageFile is : $_imageFile');
-      // });
+      imageProvider.setImageFile(index, File(pickedFile.path));
+      imageProvider.imageCount;
     }
   }
 

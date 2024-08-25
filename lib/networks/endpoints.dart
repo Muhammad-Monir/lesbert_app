@@ -50,6 +50,7 @@ final class Endpoints {
   static String postChangePass() => "/api/change-password";
   static String getExperiance() => "/api/my-experence";
   static String proImages() => "/api/pro-images";
+  static String proImagesDelete() => "/api/pro-images-delete";
 
   ///=================<<<<<<<<<>>>>>>>>>>>>>==========================
   ///<><><><><><>===========<><><><>===============<><><><>===========

@@ -43,93 +43,94 @@ class _SupportHistoryState extends State<SupportHistory> {
           style: TextFontStyle.headline20w600C141414StyleInter,
         ),
       ),
-      body: SingleChildScrollView(
-        child: Container(
-          padding: EdgeInsets.only(top: 25.sp, left: 25.sp, right: 25.sp),
-          width: double.infinity,
-          height: double.infinity,
-          decoration: const BoxDecoration(color: AppColors.cE7ECF1),
-          child: StreamBuilder(
-              stream: getIssueDetailsRXObj.dataFetcher,
-              builder: (context, snapshot) {
-                if (snapshot.hasData) {
-                  Map data = snapshot.data["data"];
-                  List list = data["replies"];
-                  if (data.isNotEmpty) {
-                    return Column(
-                      children: [
-                        Container(
-                          height: .13.sh,
-                          width: double.infinity,
-                          padding: const EdgeInsets.all(15),
-                          decoration: BoxDecoration(
-                              color: AppColors.cffffff,
-                              borderRadius: BorderRadius.circular(10.r)),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                data['title'],
-                                style: TextFontStyle
-                                    .headline16w600C00000StyleInter
-                                    .copyWith(color: AppColors.c000000),
-                              ),
-                              const Spacer(),
-                              UIHelper.customDivider(width: .8.sw),
-                              UIHelper.verticalSpaceSmall,
-                              Text(
-                                "Request ID",
-                                style: TextFontStyle
-                                    .headline14w400C000000StyleInter
-                                    .copyWith(color: AppColors.c000000),
-                              ),
-                              Text(data['random_ticket_id'],
-                                  style: TextFontStyle
-                                      .headline12w400C9E9E9EStyleInter
-                                      .copyWith(color: AppColors.c9E9E9E)),
-                            ],
-                          ),
-                        ),
-                        UIHelper.verticalSpaceSmall,
-                        Container(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 15, vertical: 15),
-                          decoration: BoxDecoration(
-                              color: AppColors.allPrimaryColor,
-                              borderRadius: BorderRadius.circular(10.r)),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Text(
-                                data['message'],
+      body: Container(
+        padding: EdgeInsets.only(top: 25.sp, left: 25.sp, right: 25.sp),
+        width: double.infinity,
+        height: double.infinity,
+        decoration: const BoxDecoration(color: AppColors.cE7ECF1),
+        child: StreamBuilder(
+            stream: getIssueDetailsRXObj.dataFetcher,
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                Map data = snapshot.data["data"];
+                List list = data["replies"];
+                if (data.isNotEmpty) {
+                  return Column(
+                    children: [
+                      Container(
+                        height: .13.sh,
+                        width: double.infinity,
+                        padding: const EdgeInsets.all(15),
+                        decoration: BoxDecoration(
+                            color: AppColors.cffffff,
+                            borderRadius: BorderRadius.circular(10.r)),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              data['title'],
+                              style: TextFontStyle
+                                  .headline16w600C00000StyleInter
+                                  .copyWith(color: AppColors.c000000),
+                            ),
+                            const Spacer(),
+                            UIHelper.customDivider(width: .8.sw),
+                            UIHelper.verticalSpaceSmall,
+                            Text(
+                              "Request ID",
+                              style: TextFontStyle
+                                  .headline14w400C000000StyleInter
+                                  .copyWith(color: AppColors.c000000),
+                            ),
+                            Text(data['random_ticket_id'],
                                 style: TextFontStyle
                                     .headline12w400C9E9E9EStyleInter
-                                    .copyWith(color: AppColors.c141414),
-                              ),
-                              UIHelper.verticalSpaceSmall,
-                              UIHelper.customDivider(width: .8.sw),
-                              UIHelper.verticalSpaceSmall,
-                              Text(
-                                data['email'],
-                                style: TextFontStyle
-                                    .headline16w600C00000StyleInter
-                                    .copyWith(color: AppColors.c000000),
-                              ),
-                              Text(
-                                DateFormatedUtils()
-                                    .date12format(data["created_at"]),
-                                style: TextFontStyle
-                                    .headline12w400C9E9E9EStyleInter
-                                    .copyWith(color: AppColors.c5A5C5F),
-                              ),
-                            ],
-                          ),
+                                    .copyWith(color: AppColors.c9E9E9E)),
+                          ],
                         ),
-                        UIHelper.verticalSpaceSmall,
-                        ListView.separated(
-                          physics: const NeverScrollableScrollPhysics(),
+                      ),
+                      UIHelper.verticalSpaceSmall,
+                      Container(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 15, vertical: 15),
+                        decoration: BoxDecoration(
+                            color: AppColors.allPrimaryColor,
+                            borderRadius: BorderRadius.circular(10.r)),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Text(
+                              data['message'],
+                              style: TextFontStyle
+                                  .headline12w400C9E9E9EStyleInter
+                                  .copyWith(color: AppColors.c141414),
+                            ),
+                            UIHelper.verticalSpaceSmall,
+                            UIHelper.customDivider(width: .8.sw),
+                            UIHelper.verticalSpaceSmall,
+                            Text(
+                              data['email'],
+                              style: TextFontStyle
+                                  .headline16w600C00000StyleInter
+                                  .copyWith(color: AppColors.c000000),
+                            ),
+                            Text(
+                              DateFormatedUtils()
+                                  .date12format(data["created_at"]),
+                              style: TextFontStyle
+                                  .headline12w400C9E9E9EStyleInter
+                                  .copyWith(color: AppColors.c5A5C5F),
+                            ),
+                          ],
+                        ),
+                      ),
+                      UIHelper.verticalSpaceSmall,
+                      SizedBox(
+                        height: .42.sh,
+                        child: ListView.separated(
+                          //  physics: const NeverScrollableScrollPhysics(),
                           separatorBuilder: (context, index) =>
                               UIHelper.verticalSpaceSmall,
                           shrinkWrap: true,
@@ -175,31 +176,31 @@ class _SupportHistoryState extends State<SupportHistory> {
                             ),
                           ),
                         ),
-                        const Spacer(),
-                        AuthCustomeButton(
-                            name: "Replay",
-                            onCallBack: () {
-                              showBottomNav(data['id'].toString());
-                            },
-                            height: .050.sh,
-                            minWidth: .7.sw,
-                            borderRadius: 15,
-                            color: AppColors.allPrimaryColor,
-                            textStyle: TextFontStyle
-                                .headline14w600C141414StyleInter
-                                .copyWith(color: AppColors.cffffff),
-                            context: context),
-                        UIHelper.verticalSpaceSmall,
-                      ],
-                    );
-                  } else {
-                    return const SizedBox.shrink();
-                  }
+                      ),
+                      const Spacer(),
+                      AuthCustomeButton(
+                          name: "Replay",
+                          onCallBack: () {
+                            showBottomNav(data['id'].toString());
+                          },
+                          height: .050.sh,
+                          minWidth: .7.sw,
+                          borderRadius: 15,
+                          color: AppColors.allPrimaryColor,
+                          textStyle: TextFontStyle
+                              .headline14w600C141414StyleInter
+                              .copyWith(color: AppColors.cffffff),
+                          context: context),
+                      // UIHelper.verticalSpaceMedium,
+                    ],
+                  );
                 } else {
-                  return loadingIndicatorCircle(context: context);
+                  return const SizedBox.shrink();
                 }
-              }),
-        ),
+              } else {
+                return loadingIndicatorCircle(context: context);
+              }
+            }),
       ),
     );
   }
