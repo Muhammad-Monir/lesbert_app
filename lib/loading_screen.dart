@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:lsebert/navigation_screen.dart';
 import 'constants/app_constants.dart';
 import 'features/question/presentation/question_screen.dart';
-import 'features_pro/auth/presentatiom/login/login_screen.dart';
+import 'features/auth/presentatiom/login/login_screen.dart';
 import 'features_trade/pro_navigation_screen.dart';
 import 'helpers/di.dart';
 import 'helpers/helper_methods.dart';

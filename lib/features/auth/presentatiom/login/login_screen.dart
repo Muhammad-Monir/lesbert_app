@@ -115,10 +115,10 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               UIHelper.verticalSpace(32.h),
               const OrDivider(),
-              UIHelper.verticalSpace(24.h),
-              SocialIconWidget(
-                iconName: Assets.icons.googleIcon.path,
-              ),
+              // UIHelper.verticalSpace(24.h),
+              // SocialIconWidget(
+              //   iconName: Assets.icons.googleIcon.path,
+              // ),
               UIHelper.verticalSpace(32.h),
               RichText(
                 textAlign: TextAlign.center,

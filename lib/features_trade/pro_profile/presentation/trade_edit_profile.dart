@@ -5,7 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lsebert/common_widgets/auth_button.dart';
-import 'package:lsebert/features_pro/auth/presentatiom/forgot_password/otp_verify_screen.dart';
+import 'package:lsebert/features/auth/presentatiom/forgot_password/otp_verify_screen.dart';
 import 'package:lsebert/helpers/all_routes.dart';
 import 'package:lsebert/helpers/loading_helper.dart';
 import '../../../common_widgets/custom_text_feild.dart';

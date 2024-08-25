@@ -404,9 +404,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                                         employeeType:
                                                             experiance[index]
                                                                 ['status'],
-                                                        endDate:
-                                                            experiance[index]
-                                                                ['ending_date'],
+                                                        endDate: experiance[index]
+                                                            ?['ending_date'],
                                                         jobLocation:
                                                             experiance[index]
                                                                 [
@@ -414,7 +413,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                                         startDate: experiance[
                                                                 index]
                                                             ['starting_date'],
-                                                        onTapExperianceEdit: () {
+                                                        onTapExperianceEdit:
+                                                            () {
                                                           log(experiance[index]
                                                               .toString());
                                                         });

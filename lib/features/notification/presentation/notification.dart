@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lsebert/helpers/dateuitl.dart';
 
-import '../../common_widgets/notification_widget.dart';
-import '../../constants/text_font_style.dart';
-import '../../gen/colors.gen.dart';
-import '../../helpers/navigation_service.dart';
-import '../../helpers/ui_helpers.dart';
-import '../../networks/api_acess.dart';
+import '../../../common_widgets/notification_widget.dart';
+import '../../../constants/text_font_style.dart';
+import '../../../gen/colors.gen.dart';
+import '../../../helpers/navigation_service.dart';
+import '../../../helpers/ui_helpers.dart';
+import '../../../networks/api_acess.dart';
 
 class ProNotificationScreen extends StatefulWidget {
   const ProNotificationScreen({super.key});

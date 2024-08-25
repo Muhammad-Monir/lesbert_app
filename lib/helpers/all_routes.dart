@@ -1,18 +1,18 @@
 import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
-import 'package:lsebert/features_pro/auth/presentatiom/forgot_password/forgot_pass_screen.dart';
-import 'package:lsebert/features_pro/auth/presentatiom/forgot_password/otp_success_screen.dart';
-import 'package:lsebert/features_pro/auth/presentatiom/forgot_password/otp_verify_screen.dart';
-import 'package:lsebert/features_pro/auth/presentatiom/forgot_password/reset_pass_screen.dart';
-import 'package:lsebert/features_pro/auth/presentatiom/login/login_screen.dart';
-import 'package:lsebert/features_pro/auth/presentatiom/sign_up/sign_up_screen.dart';
+import 'package:lsebert/features/auth/presentatiom/forgot_password/forgot_pass_screen.dart';
+import 'package:lsebert/features/auth/presentatiom/forgot_password/otp_success_screen.dart';
+import 'package:lsebert/features/auth/presentatiom/forgot_password/otp_verify_screen.dart';
+import 'package:lsebert/features/auth/presentatiom/forgot_password/reset_pass_screen.dart';
+import 'package:lsebert/features/auth/presentatiom/login/login_screen.dart';
+import 'package:lsebert/features/auth/presentatiom/sign_up/sign_up_screen.dart';
 import 'package:lsebert/features_pro/dashboard/presentation/dashboard_screen.dart';
 import 'package:lsebert/features_pro/intro/onboarding_screen.dart';
 import 'package:lsebert/features_pro/intro/role_screen.dart';
 import 'package:lsebert/features_pro/intro/splash_screen.dart';
 import 'package:lsebert/features_pro/message/presentation/message_screen.dart';
-import 'package:lsebert/features_pro/notification/presentation/notification_screen.dart';
+
 import 'package:lsebert/features_pro/paymnet_history/presentation/payment_history_screen.dart';
 import 'package:lsebert/features_pro/profile/presentation/add_new_experiance.dart';
 import 'package:lsebert/features_pro/profile/presentation/bio_edit_screen.dart';
@@ -23,9 +23,9 @@ import 'package:lsebert/features_pro/profile/presentation/personal_details_edit_
 import 'package:lsebert/features_pro/profile/presentation/profile_edit_screen.dart';
 import 'package:lsebert/features_pro/profile/presentation/profile_screen.dart';
 import 'package:lsebert/features/question/presentation/question_screen.dart';
-import 'package:lsebert/features_pro/security/presentation/security_screen.dart';
+import 'package:lsebert/features/security/presentation/security_screen.dart';
 import 'package:lsebert/features_pro/subscription/presentation/subscription_screen.dart';
-import 'package:lsebert/features_trade/pro_notification/notification.dart';
+import 'package:lsebert/features/notification/presentation/notification.dart';
 import 'package:lsebert/features_trade/trade_dashboard/presentation/trade_dashboard.dart';
 import 'package:lsebert/features_trade/pro_message/presentation/pro_message_screen.dart';
 import 'package:lsebert/features_trade/pro_paymnet_history/pro_peyment_history_screen.dart';

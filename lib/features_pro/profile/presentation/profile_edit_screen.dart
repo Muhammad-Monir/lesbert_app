@@ -165,13 +165,13 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
                 child: AuthCustomeButton(
                     name: 'Update',
                     onCallBack: () async {
-                      File file = File(_imageFileNotifier.value!);
+                      File? file = _imageFileNotifier.value != null
+                          ? File(_imageFileNotifier.value!)
+                          : null;
                       await postProEditProfile
                           .postEditProProfile(_nameController.text, file,
                               _professionController.text)
                           .waitingForFuture();
-
-                      // log("image type name :  ")
                     },
                     height: 56.h,
                     minWidth: double.infinity,
