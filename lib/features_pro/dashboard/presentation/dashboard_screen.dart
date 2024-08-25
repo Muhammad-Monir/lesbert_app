@@ -16,6 +16,7 @@ import 'package:lsebert/helpers/toast.dart';
 import 'package:lsebert/helpers/ui_helpers.dart';
 import 'package:provider/provider.dart';
 
+import '../../../common_widgets/auth_button.dart';
 import '../../../common_widgets/delete_dilouge_widget.dart';
 import '../../../common_widgets/experiance_data_widget.dart';
 import '../../../helpers/all_routes.dart';
@@ -151,6 +152,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
                             data["boostTransactionsCount"]?.toString() ?? "0",
                         detail: "Boost",
                         imagepath: Assets.icons.flameIcon.path,
+                        onTap: () {
+                          _showAlertDialog(context);
+                        },
                       ),
                       UIHelper.verticalSpaceSmall,
                       DashBoardCardProfessional(
@@ -478,6 +482,83 @@ class _DashboardScreenState extends State<DashboardScreen> {
           },
         ),
       ),
+    );
+  }
+
+  void _showAlertDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.r)),
+          icon: Row(
+            children: [
+              const Spacer(),
+              GestureDetector(
+                onTap: () => NavigationService.goBack,
+                child: Icon(
+                  Icons.close,
+                  size: 28.sp,
+                ),
+              )
+            ],
+          ),
+          title: Text(
+            'My Boosts',
+            style: TextFontStyle.headline24w700C000000StyleInter,
+          ),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                textAlign: TextAlign.center,
+                'Be a top profile your area for 30 minutes to get more matches',
+                style: TextFontStyle.headline14w400C848484StyleInter
+                    .copyWith(color: AppColors.c000000),
+              ),
+              UIHelper.verticalSpace(20.h),
+              Padding(
+                padding: EdgeInsets.only(left: 25.w),
+                child: Row(
+                  children: [
+                    Image.asset(
+                      Assets.icons.boostIcon.path,
+                      width: 48.w,
+                    ),
+                    UIHelper.horizontalSpace(8.h),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'My Boosts',
+                          style: TextFontStyle.headline24w700C000000StyleInter,
+                        ),
+                        UIHelper.verticalSpace(8.h),
+                        Text(
+                          textAlign: TextAlign.center,
+                          '\$2.0',
+                          style: TextFontStyle.headline14w400C848484StyleInter,
+                        ),
+                      ],
+                    )
+                  ],
+                ),
+              ),
+              UIHelper.verticalSpace(43.h),
+              AuthCustomeButton(
+                  name: 'Get More Boosts',
+                  onCallBack: () {},
+                  height: 48.h,
+                  minWidth: 228.w,
+                  borderRadius: 24.r,
+                  color: AppColors.allPrimaryColor,
+                  textStyle: TextFontStyle.headline16w600CFFFFFFFFStyleintere,
+                  context: context)
+            ],
+          ),
+        );
+      },
     );
   }
 
