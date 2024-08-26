@@ -13,14 +13,14 @@ class LoginResponse extends DefaultResponse {
   LoginResponse.fromJson(Map<String, dynamic> json) {
     success = json['success'];
     message = json['message'];
-    data = json['data'] != null ? new Data.fromJson(json['data']) : null;
+    data = json['data'] != null ? Data.fromJson(json['data']) : null;
     code = json['code'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['success'] = this.success;
-    data['message'] = this.message;
+    final Map<String, dynamic> data = Map<String, dynamic>();
+    data['success'] = success;
+    data['message'] = message;
     if (this.data != null) {
       data['data'] = this.data!.toJson();
     }
@@ -46,7 +46,7 @@ class Data {
       this.isAnswered});
 
   Data.fromJson(Map<String, dynamic> json) {
-    token = json['token'] != null ? new Token.fromJson(json['token']) : null;
+    token = json['token'] != null ? Token.fromJson(json['token']) : null;
     role = json['role'];
     isSubscribed = json['is_subscribed'];
     isBoost = json['is_boost'];
@@ -55,7 +55,7 @@ class Data {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = Map<String, dynamic>();
     if (this.token != null) {
       data['token'] = this.token!.toJson();
     }
@@ -75,14 +75,13 @@ class Token {
   Token({this.original, this.exception});
 
   Token.fromJson(Map<String, dynamic> json) {
-    original = json['original'] != null
-        ? new Original.fromJson(json['original'])
-        : null;
+    original =
+        json['original'] != null ? Original.fromJson(json['original']) : null;
     exception = json['exception'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = Map<String, dynamic>();
 
     if (this.original != null) {
       data['original'] = this.original!.toJson();
@@ -106,7 +105,7 @@ class Original {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = Map<String, dynamic>();
     data['access_token'] = this.accessToken;
     data['token_type'] = this.tokenType;
     data['expires_in'] = this.expiresIn;

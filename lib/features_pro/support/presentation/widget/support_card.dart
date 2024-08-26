@@ -47,7 +47,7 @@ class SupportCard extends StatelessWidget {
                   .copyWith(color: AppColors.c141414),
             ),
             UIHelper.verticalSpaceSmall,
-            Spacer(),
+            const Spacer(),
             UIHelper.customDivider(width: .8.sw),
             // UIHelper.verticalSpaceMedium,
             // Text(

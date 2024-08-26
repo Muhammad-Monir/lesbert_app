@@ -6,7 +6,6 @@ import 'package:lsebert/constants/text_font_style.dart';
 import 'package:lsebert/helpers/navigation_service.dart';
 import '../../../../common_widgets/auth_button.dart';
 import '../../../../common_widgets/or_divider.dart';
-import '../../../../common_widgets/social_icon.dart';
 import '../../../../gen/assets.gen.dart';
 import '../../../../gen/colors.gen.dart';
 import '../../../../helpers/all_routes.dart';

@@ -40,7 +40,7 @@ class _QuestionScreenState extends State<QuestionScreen> {
   String currentQustion = "";
   String questionType = "";
   double progressValue = 0;
-  int totalSteps = 0;
+  int totalSteps = 1;
   int qustionId = 0;
 
   List<String> items1 = [
