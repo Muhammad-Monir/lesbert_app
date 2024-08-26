@@ -11,9 +11,9 @@ import 'package:lsebert/features_pro/dashboard/presentation/dashboard_screen.dar
 import 'package:lsebert/features_pro/intro/onboarding_screen.dart';
 import 'package:lsebert/features_pro/intro/role_screen.dart';
 import 'package:lsebert/features_pro/intro/splash_screen.dart';
-import 'package:lsebert/features_pro/message/presentation/message_screen.dart';
+import 'package:lsebert/features/message/presentation/message_screen.dart';
 
-import 'package:lsebert/features_pro/paymnet_history/presentation/payment_history_screen.dart';
+import 'package:lsebert/features/paymnet_history/presentation/payment_history_screen.dart';
 import 'package:lsebert/features_pro/profile/presentation/add_new_experiance.dart';
 import 'package:lsebert/features_pro/profile/presentation/bio_edit_screen.dart';
 import 'package:lsebert/features_pro/profile/presentation/change_pass_screen.dart';
@@ -27,18 +27,16 @@ import 'package:lsebert/features/security/presentation/security_screen.dart';
 import 'package:lsebert/features_pro/subscription/presentation/subscription_screen.dart';
 import 'package:lsebert/features/notification/presentation/notification.dart';
 import 'package:lsebert/features_trade/trade_dashboard/presentation/trade_dashboard.dart';
-import 'package:lsebert/features_trade/pro_message/presentation/pro_message_screen.dart';
-import 'package:lsebert/features_trade/pro_paymnet_history/pro_peyment_history_screen.dart';
-import 'package:lsebert/features_trade/pro_subscription/presentation/pro_subscription_screen.dart';
-import 'package:lsebert/features_trade/view_profile/presentation/view_profile.dart';
+
+import 'package:lsebert/features_trade/view_pro_profile/presentation/view_profile.dart';
 import 'package:lsebert/loading_screen.dart';
 import 'package:lsebert/navigation_screen.dart';
 
 import '../common_widgets/webview_helper.dart';
 import '../features_pro/support/presentation/help_and_support.dart';
 import '../features_pro/support/presentation/support_history.dart';
-import '../features_trade/pro_navigation_screen.dart';
-import '../features_trade/pro_profile/presentation/trade_edit_profile.dart';
+import '../pro_navigation_screen.dart';
+import '../features_trade/profile/presentation/trade_edit_profile.dart';
 
 final class Routes {
   static final Routes _routes = Routes._internal();
@@ -80,12 +78,12 @@ final class Routes {
   // Pro Section
   static const String proNavBar = '/proNavBar';
   static const String proDashboard = '/proDashboard';
-  static const String proSubscription = '/proSubscription';
-  static const String proMessage = '/proMessage';
+  //static const String proSubscription = '/proSubscription';
+  // static const String proMessage = '/proMessage';
   static const String proProfile = '/proProfile';
   static const String viewProfile = '/viewProfile';
   static const String proNotification = '/proNotification';
-  static const String proPaymnetHistory = '/proPaymnetHistory';
+  // static const String proPaymnetHistory = '/proPaymnetHistory';
   static const String proEditProfile = '/proEditProfile';
   static const String aboutUs = '/aboutUs';
 }
@@ -396,20 +394,20 @@ final class RouteGenerator {
                 settings: settings)
             : CupertinoPageRoute(
                 builder: (context) => const ProDashboardScreen());
-      case Routes.proSubscription:
-        return Platform.isAndroid
-            ? _FadedTransitionRoute(
-                widget: const ScreenTitle(widget: ProSubscriptionScreen()),
-                settings: settings)
-            : CupertinoPageRoute(
-                builder: (context) => const ProSubscriptionScreen());
-      case Routes.proMessage:
-        return Platform.isAndroid
-            ? _FadedTransitionRoute(
-                widget: const ScreenTitle(widget: ProMessageScreen()),
-                settings: settings)
-            : CupertinoPageRoute(
-                builder: (context) => const ProMessageScreen());
+      // case Routes.proSubscription:
+      //   return Platform.isAndroid
+      //       ? _FadedTransitionRoute(
+      //           widget: const ScreenTitle(widget: ProSubscriptionScreen()),
+      //           settings: settings)
+      //       : CupertinoPageRoute(
+      //           builder: (context) => const ProSubscriptionScreen());
+      // case Routes.proMessage:
+      //   return Platform.isAndroid
+      //       ? _FadedTransitionRoute(
+      //           widget: const ScreenTitle(widget: ProMessageScreen()),
+      //           settings: settings)
+      //       : CupertinoPageRoute(
+      //           builder: (context) => const ProMessageScreen());
       case Routes.proProfile:
         return Platform.isAndroid
             ? _FadedTransitionRoute(
@@ -430,13 +428,13 @@ final class RouteGenerator {
                 settings: settings)
             : CupertinoPageRoute(
                 builder: (context) => const ProNotificationScreen());
-      case Routes.proPaymnetHistory:
-        return Platform.isAndroid
-            ? _FadedTransitionRoute(
-                widget: const ScreenTitle(widget: ProPaymnetHistoryScreen()),
-                settings: settings)
-            : CupertinoPageRoute(
-                builder: (context) => const ProPaymnetHistoryScreen());
+      // case Routes.proPaymnetHistory:
+      //   return Platform.isAndroid
+      //       ? _FadedTransitionRoute(
+      //           widget: const ScreenTitle(widget: ProPaymnetHistoryScreen()),
+      //           settings: settings)
+      //       : CupertinoPageRoute(
+      //           builder: (context) => const ProPaymnetHistoryScreen());
       case Routes.proEditProfile:
         final args = settings.arguments as Map;
         return Platform.isAndroid

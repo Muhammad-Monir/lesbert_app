@@ -40,7 +40,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           backgroundColor: AppColors.cffffff,
           elevation: 0,
           title: Text(
-            'Profile Screen',
+            'Profile',
             style: TextFontStyle.headline20w600C141414StyleInter,
           ),
           actions: [
@@ -90,47 +90,50 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         onTap: () {
                           NavigationService.navigateToWithArgs(
                               Routes.personalDetailsEdit, {
-                            'phone': data['user_detail']['phone_number'],
-                            'address': data['user_detail']['address'],
+                            'phone': data['user_detail']?['phone_number'] ?? "",
+                            'address': data['user_detail']?['address'] ?? ""
                           });
                         },
                         name: data['name'],
-                        phoneNum: data['user_detail']['phone_number'],
+                        phoneNum: data['user_detail']?['phone_number'],
                         email: data['email'],
                         // gender: 'Male',
-                        address: data['user_detail']['address'],
+                        address: data['user_detail']?['address'],
                       ),
                       const DividerContainer(),
                       BioWidget(
                           // bioDescription: appData.write(, value),
-                          bioDescription: data['user_detail']['bio'],
+                          bioDescription: data['user_detail']?['bio'],
                           currentCompany: data['user_detail']
-                              ['current_company'],
+                              ?['current_company'],
                           designation: data['user_detail']
-                              ['current_designation'],
-                          industry: data['user_detail']['industry'],
-                          prepredLocation: data['user_detail']['location'],
+                              ?['current_designation'],
+                          industry: data['user_detail']?['industry'],
+                          prepredLocation: data['user_detail']?['location'],
                           onTapBioEdit: () {
                             NavigationService.navigateToWithArgs(
                                 Routes.bioEdit, {
-                              'bioDes': data['user_detail']['bio'],
-                              'curntCompany': data['user_detail']
-                                  ['current_company'],
+                              'bioDes': data['user_detail']?['bio'] ?? "",
+                              'curntCompany':
+                                  data['user_detail']?['current_company'] ?? "",
                               'designation': data['user_detail']
-                                  ['current_designation'],
-                              'industry': data['user_detail']['industry'],
-                              'location': data['user_detail']['location'],
+                                      ?['current_designation'] ??
+                                  "",
+                              'industry':
+                                  data['user_detail']?['industry'] ?? "",
+                              'location':
+                                  data['user_detail']?['location'] ?? "",
                             });
                           }),
                       const DividerContainer(),
                       OtherDetailsWidget(
-                        skill: data['user_detail']['key_skills'],
-                        language: data['user_detail']['languages'],
+                        skill: data['user_detail']?['key_skills'],
+                        language: data['user_detail']?['languages'],
                         onTapOtherDetailsEdit: () =>
                             NavigationService.navigateToWithArgs(
                                 Routes.otherDetailsEdit, {
-                          'skill': data['user_detail']['key_skills'],
-                          'language': data['user_detail']['languages'],
+                          'skill': data['user_detail']?['key_skills'] ?? "",
+                          'language': data['user_detail']?['languages'] ?? "",
                         }),
                       ),
                       const DividerContainer(),

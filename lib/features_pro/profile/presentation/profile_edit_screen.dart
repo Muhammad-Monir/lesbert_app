@@ -57,7 +57,7 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
           backgroundColor: AppColors.cffffff,
           leading: GestureDetector(
             onTap: () {
-              NavigationService.goBack();
+              NavigationService.goBack;
             },
             child: const Icon(
               Icons.arrow_back,

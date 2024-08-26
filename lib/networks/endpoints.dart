@@ -53,6 +53,7 @@ final class Endpoints {
   static String getExperiance() => "/api/my-experence";
   static String proImages() => "/api/pro-images";
   static String proImagesDelete() => "/api/pro-images-delete";
+  static String refreshUrl() => "/api/refresh";
 
   ///=================<<<<<<<<<>>>>>>>>>>>>>==========================
   ///<><><><><><>===========<><><><>===============<><><><>===========

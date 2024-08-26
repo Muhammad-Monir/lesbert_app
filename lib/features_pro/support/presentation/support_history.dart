@@ -31,7 +31,7 @@ class _SupportHistoryState extends State<SupportHistory> {
         backgroundColor: AppColors.cffffff,
         leading: GestureDetector(
           onTap: () {
-            NavigationService.goBack();
+            NavigationService.goBack;
           },
           child: const Icon(
             Icons.arrow_back,
@@ -54,7 +54,7 @@ class _SupportHistoryState extends State<SupportHistory> {
               if (snapshot.hasData) {
                 Map data = snapshot.data["data"];
                 List list = data["replies"];
-                if (data.isNotEmpty) {
+                if (list.isNotEmpty) {
                   return Column(
                     children: [
                       Container(
@@ -140,7 +140,7 @@ class _SupportHistoryState extends State<SupportHistory> {
                               padding: EdgeInsets.symmetric(
                                   horizontal: 15.w, vertical: 15.h),
                               decoration: BoxDecoration(
-                                  color: true
+                                  color: list[i]["is_user"] == "0"
                                       ? AppColors.allPrimaryColor
                                       : AppColors.cffffff,
                                   borderRadius: BorderRadius.circular(10.r)),
@@ -153,24 +153,34 @@ class _SupportHistoryState extends State<SupportHistory> {
                                     list[i]["content"],
                                     style: TextFontStyle
                                         .headline12w400C9E9E9EStyleInter
-                                        .copyWith(color: AppColors.c141414),
+                                        .copyWith(
+                                            color: list[i]["is_user"] == "1"
+                                                ? AppColors.c000000
+                                                : AppColors.cffffff),
                                   ),
                                   UIHelper.verticalSpaceSmall,
                                   UIHelper.customDivider(width: .8.sw),
                                   UIHelper.verticalSpaceSmall,
                                   Text(
-                                    "Cameron Williamson",
+                                    list[i]["is_user"] == "1" ? "Admin" : "You",
                                     style: TextFontStyle
                                         .headline16w600C00000StyleInter
-                                        .copyWith(color: AppColors.c000000),
-                                  ),
-                                  Text(
-                                    "Fri, Mar 20, 2020, 02:40 PM ",
-                                    style: TextFontStyle
-                                        .headline12w400C9E9E9EStyleInter
-                                        .copyWith(color: AppColors.c5A5C5F),
+                                        .copyWith(
+                                            color: list[i]["is_user"] == "1"
+                                                ? AppColors.c000000
+                                                : AppColors.cffffff),
                                   ),
                                   UIHelper.verticalSpaceSmall,
+                                  Text(
+                                      DateFormatedUtils()
+                                          .date12format(list[i]["created_at"]),
+                                      style: TextFontStyle
+                                          .headline12w400C9E9E9EStyleInter
+                                          .copyWith(
+                                              color: list[i]["is_user"] == "1"
+                                                  ? AppColors.c000000
+                                                  : AppColors.cffffff)),
+                                  // UIHelper.verticalSpaceSmall,
                                 ],
                               ),
                             ),
@@ -195,7 +205,8 @@ class _SupportHistoryState extends State<SupportHistory> {
                     ],
                   );
                 } else {
-                  return const SizedBox.shrink();
+                  return const Expanded(
+                      child: Center(child: Text("You Have No Replays Yet")));
                 }
               } else {
                 return loadingIndicatorCircle(context: context);

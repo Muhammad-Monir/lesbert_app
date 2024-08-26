@@ -2,6 +2,8 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:lsebert/constants/app_constants.dart';
+import 'package:lsebert/helpers/di.dart';
 import 'package:lsebert/helpers/loading_helper.dart';
 import 'package:provider/provider.dart';
 
@@ -31,8 +33,8 @@ class _ForgotPassScreenState extends State<ForgotPassScreen> {
   final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
-    EmailProvider emailProvider =
-        Provider.of<EmailProvider>(context, listen: false);
+    // EmailProvider emailProvider =
+    //     Provider.of<EmailProvider>(context, listen: false);
     return Scaffold(
       appBar: const CustomAppBar(
         showBackButton: true,
@@ -81,7 +83,7 @@ class _ForgotPassScreenState extends State<ForgotPassScreen> {
                         .then(
                       (value) {
                         if (value) {
-                          emailProvider.changeemail(_emailController.text);
+                          appData.write(kKeyEmail, _emailController.text);
                           NavigationService.navigateToWithArgs(
                               Routes.otpVerify, {"isrest": true});
                         }

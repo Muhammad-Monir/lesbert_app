@@ -119,6 +119,7 @@ const String kKeyissubscribed = "subscribed";
 const String kKeyisboost = "boost";
 const String kKeyisverified = "verified";
 const String kKeyisanswered = "answered";
+const String kKeyEmail = "email";
 //order statuses
 
 const List<String> kLanguagesKey = [

@@ -40,25 +40,30 @@ final class GetLoginRX extends RxResponseInt<LoginResponse> {
     try {
       LoginResponse loginResponse = data;
 
-      if (loginResponse.success == true) {
-        String accesstoken = loginResponse.data!.token!.original!.accessToken!;
-        String userType = loginResponse.data!.role!;
-        bool verified = loginResponse.data?.isVerified ?? false;
-        bool isAnswerd = loginResponse.data?.isAnswered == "1" ? true : false;
-        bool isSubscribed =
-            loginResponse.data?.isSubscribed == "1" ? true : false;
-        await appData.write(kKeyIsLoggedIn, true);
-        await appData.write(kKeyAccessToken, accesstoken);
-        await appData.write(kKeyUserType, userType);
-        await appData.write(kKeyisanswered, isAnswerd);
-        await appData.write(kKeyisverified, verified);
-        await appData.write(kKeyissubscribed, isSubscribed);
-        dataFetcher.sink.add(loginResponse);
-        ToastUtil.showLongToast(loginResponse.message!);
-        NavigationService.navigateToReplacement(Routes.loading);
-      } else {
-        await appData.write(kKeyIsLoggedIn, false);
-        ToastUtil.showLongToast(loginResponse.message!);
+      if (loginResponse.code == 203) {
+        NavigationService.navigateTo(Routes.otpVerify);
+      } else if (loginResponse.code == 200) {
+        if (loginResponse.success == true) {
+          String accesstoken =
+              loginResponse.data!.token!.original!.accessToken!;
+          String userType = loginResponse.data!.role!;
+          bool verified = loginResponse.data?.isVerified != null;
+          bool isAnswerd = loginResponse.data?.isAnswered == "1" ? true : false;
+          bool isSubscribed =
+              loginResponse.data?.isSubscribed == "1" ? true : false;
+          await appData.write(kKeyIsLoggedIn, true);
+          await appData.write(kKeyAccessToken, accesstoken);
+          await appData.write(kKeyUserType, userType);
+          await appData.write(kKeyisanswered, isAnswerd);
+          await appData.write(kKeyisverified, verified);
+          await appData.write(kKeyissubscribed, isSubscribed);
+          dataFetcher.sink.add(loginResponse);
+          ToastUtil.showLongToast(loginResponse.message!);
+          NavigationService.navigateToReplacement(Routes.loading);
+        } else {
+          await appData.write(kKeyIsLoggedIn, false);
+          ToastUtil.showLongToast(loginResponse.message!);
+        }
       }
     } catch (e) {
       rethrow;

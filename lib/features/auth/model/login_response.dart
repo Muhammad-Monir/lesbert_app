@@ -34,7 +34,7 @@ class Data {
   String? role;
   String? isSubscribed;
   String? isBoost;
-  Null? isVerified;
+  String? isVerified;
   String? isAnswered;
 
   Data(

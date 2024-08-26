@@ -1,4 +1,6 @@
 import 'package:dio/dio.dart';
+import 'package:lsebert/helpers/navigation_service.dart';
+import '../../../../helpers/all_routes.dart';
 import '/networks/endpoints.dart';
 import '../../../../networks/dio/dio.dart';
 import '../../../../networks/exception_handler/data_source.dart';
@@ -17,11 +19,15 @@ final class LoginApi {
       if (response.statusCode == 200) {
         LoginResponse data = LoginResponse.fromJson(response.data);
         return data;
+      } else if (response.statusCode == 203) {
+        LoginResponse data = LoginResponse(code: 203);
+        return data;
       } else {
         // Handle non-200 status code errors
         throw DataSource.DEFAULT.getFailure();
       }
     } catch (error) {
+      //
       // Handle generic errors
       throw ErrorHandler.handle(error).failure;
     }

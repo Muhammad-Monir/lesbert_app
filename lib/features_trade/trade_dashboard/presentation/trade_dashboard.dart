@@ -136,7 +136,7 @@ class _ProDashboardScreenState extends State<ProDashboardScreen> {
                       _scaffoldKey.currentState!.closeDrawer();
                     },
                     onTapPaymnetHistory: () =>
-                        NavigationService.navigateTo(Routes.proPaymnetHistory),
+                        NavigationService.navigateTo(Routes.paymentHistory),
                     onTapSecurity: () {
                       NavigationService.navigateTo(Routes.securityScreen);
                       _scaffoldKey.currentState!.closeDrawer();

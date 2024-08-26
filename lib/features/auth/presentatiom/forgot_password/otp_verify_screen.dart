@@ -1,6 +1,8 @@
 import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:lsebert/constants/app_constants.dart';
+import 'package:lsebert/helpers/di.dart';
 import 'package:lsebert/helpers/loading_helper.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:provider/provider.dart';
@@ -28,8 +30,8 @@ class _OtpVerifyScreenState extends State<OtpVerifyScreen> {
   final _otpController = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    EmailProvider emailProvider =
-        Provider.of<EmailProvider>(context, listen: false);
+    // EmailProvider emailProvider =
+    //     Provider.of<EmailProvider>(context, listen: false);
     return Scaffold(
       appBar: const CustomAppBar(
         title: 'OTP',
@@ -99,9 +101,11 @@ class _OtpVerifyScreenState extends State<OtpVerifyScreen> {
                   String otpCode = _otpController.text;
 
                   bool success = await verifyOtpRX
-                      .verifyOtp(code: otpCode, email: emailProvider.email)
+                      .verifyOtp(code: otpCode, email: appData.read(kKeyEmail))
                       .waitingForFutureWithoutBg();
                   if (success) {
+                    appData.write(kKeyisverified, true);
+                    ToastUtil.showLongToast("Otp Verification Successful");
                     if (widget.isResetPw ?? false) {
                       NavigationService.navigateToWithArgs(
                         Routes.resetPass,
@@ -137,7 +141,7 @@ class _OtpVerifyScreenState extends State<OtpVerifyScreen> {
                 onTap: () async {
                   try {
                     bool success = await resendOtpRxObj
-                        .resendOtp(email: emailProvider.email)
+                        .resendOtp(email: appData.read(kKeyEmail))
                         .waitingForFutureWithoutBg();
                     if (success) {
                       ToastUtil.showShortToast("Otp Sent");

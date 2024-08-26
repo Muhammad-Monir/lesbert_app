@@ -31,10 +31,10 @@ import '../features/security/data/security_rx.dart';
 import '../features_pro/support/data/rx_get_pending_list/rx.dart';
 import '../features_pro/support/data/rx_get_resolved_list/rx.dart';
 import '../features_pro/support/data/rx_post_issues/rx.dart';
-import '../features_trade/pro_profile/data/rx.dart';
-import '../features_trade/pro_profile/data/rx_edit_trade_api.dart';
+import '../features_trade/profile/data/rx.dart';
+import '../features_trade/profile/data/rx_edit_trade_api.dart';
 import '../features_trade/trade_dashboard/data/rx.dart';
-import '../features_trade/view_profile/data/rx.dart';
+import '../features_trade/view_pro_profile/data/rx.dart';
 
 GetLoginRX getLoginRXObj = GetLoginRX(
     empty: LoginResponse(), dataFetcher: BehaviorSubject<LoginResponse>());

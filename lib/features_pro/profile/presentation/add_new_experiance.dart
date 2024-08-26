@@ -33,7 +33,7 @@ class _AddNewExperianceState extends State<AddNewExperiance> {
           backgroundColor: AppColors.cffffff,
           leading: GestureDetector(
             onTap: () {
-              NavigationService.goBack();
+              NavigationService.goBack;
             },
             child: const Icon(
               Icons.arrow_back,
@@ -45,7 +45,6 @@ class _AddNewExperianceState extends State<AddNewExperiance> {
             style: TextFontStyle.headline20w600C141414StyleInter,
           ),
         ),
-       
         body: SingleChildScrollView(
           physics: const BouncingScrollPhysics(),
           child: Padding(

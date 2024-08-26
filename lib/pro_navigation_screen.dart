@@ -3,14 +3,14 @@
 import 'package:custom_navigation_bar/custom_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:lsebert/features_trade/pro_message/presentation/pro_message_screen.dart';
-import 'package:lsebert/features_trade/pro_subscription/presentation/pro_subscription_screen.dart';
 import 'package:lsebert/features_trade/trade_dashboard/presentation/trade_dashboard.dart';
+import 'features/message/presentation/message_screen.dart';
+import 'features_pro/subscription/presentation/subscription_screen.dart';
 import '/constants/text_font_style.dart';
 import '/gen/assets.gen.dart';
-import '../gen/colors.gen.dart';
-import '../helpers/helper_methods.dart';
-import 'pro_profile/presentation/trade_profile_screen.dart';
+import 'gen/colors.gen.dart';
+import 'helpers/helper_methods.dart';
+import 'features_trade/profile/presentation/trade_profile_screen.dart';
 
 final class TardeNavigationScreen extends StatefulWidget {
   final Widget? pageNum;
@@ -33,8 +33,8 @@ class _TardeNavigationScreenState extends State<TardeNavigationScreen> {
 
   final List<StatefulWidget> _screens = [
     const ProDashboardScreen(),
-    const ProSubscriptionScreen(),
-    const ProMessageScreen(),
+    const SubscriptionScreen(),
+    const MessageScreen(),
     const TradeProfileScreen(),
   ];
 

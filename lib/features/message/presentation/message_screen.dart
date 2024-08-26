@@ -12,14 +12,14 @@ import '../../../networks/api_acess.dart';
 import '../../../networks/endpoints.dart';
 import '../../../networks/stream_cleaner.dart';
 
-class ProMessageScreen extends StatefulWidget {
-  const ProMessageScreen({super.key});
+class MessageScreen extends StatefulWidget {
+  const MessageScreen({super.key});
 
   @override
-  State<ProMessageScreen> createState() => _ProMessageScreenState();
+  State<MessageScreen> createState() => _MessageScreenState();
 }
 
-class _ProMessageScreenState extends State<ProMessageScreen> {
+class _MessageScreenState extends State<MessageScreen> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
@@ -29,12 +29,12 @@ class _ProMessageScreenState extends State<ProMessageScreen> {
           appBar: AppBar(
             automaticallyImplyLeading: false,
             toolbarHeight: 75.h,
-            backgroundColor: AppColors.allPrimaryColor,
+            backgroundColor: AppColors.cffffff,
             elevation: 0,
             title: Text(
               'Message',
               style: TextFontStyle.headline20w600C141414StyleInter
-                  .copyWith(color: AppColors.cffffff),
+                  .copyWith(color: AppColors.c000000),
             ),
             actions: [
               Padding(
@@ -44,21 +44,21 @@ class _ProMessageScreenState extends State<ProMessageScreen> {
                     _scaffoldKey.currentState!.openDrawer();
                   },
                   child: Image.asset(
-                    Assets.icons.whiteMenuIcon.path,
-                    width: 40.w,
+                    Assets.icons.menuIcon.path,
+                    width: 38.w,
                   ),
                 ),
               )
             ],
           ),
           drawer: CustomDrawer(
-            isTextColor: true,
+            isTextColor: false,
             onTapNotification: () {
               NavigationService.navigateTo(Routes.proNotification);
               _scaffoldKey.currentState!.closeDrawer();
             },
             onTapPaymnetHistory: () =>
-                NavigationService.navigateTo(Routes.proPaymnetHistory),
+                NavigationService.navigateTo(Routes.paymentHistory),
             onTapSecurity: () {
               NavigationService.navigateTo(Routes.securityScreen);
               _scaffoldKey.currentState!.closeDrawer();

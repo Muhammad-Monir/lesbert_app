@@ -2,7 +2,9 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lsebert/common_widgets/custom_text_feild.dart';
+import 'package:lsebert/constants/app_constants.dart';
 import 'package:lsebert/constants/text_font_style.dart';
+import 'package:lsebert/helpers/di.dart';
 import 'package:lsebert/helpers/navigation_service.dart';
 import '../../../../common_widgets/auth_button.dart';
 import '../../../../common_widgets/or_divider.dart';
@@ -105,6 +107,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 minWidth: double.infinity,
                 name: 'Sign In',
                 onCallBack: () async {
+                  appData.write(kKeyEmail, _emailController.text);
                   getLoginRXObj.login(
                       _emailController.text, _passController.text);
 

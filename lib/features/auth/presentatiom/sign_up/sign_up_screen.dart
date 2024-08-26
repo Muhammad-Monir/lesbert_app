@@ -4,6 +4,8 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:lsebert/constants/app_constants.dart';
+import 'package:lsebert/helpers/di.dart';
 import 'package:lsebert/helpers/loading_helper.dart';
 import 'package:provider/provider.dart';
 import '../../../../common_widgets/auth_button.dart';
@@ -46,8 +48,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   @override
   Widget build(BuildContext context) {
-    EmailProvider emailProvider =
-        Provider.of<EmailProvider>(context, listen: false);
+    // EmailProvider emailProvider =
+    //     Provider.of<EmailProvider>(context, listen: false);
     return Scaffold(
       body: SingleChildScrollView(
         physics: const BouncingScrollPhysics(),
@@ -149,7 +151,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 minWidth: double.infinity,
                 name: 'Sign Up',
                 onCallBack: () async {
-                  emailProvider.changeemail(_emailController.text);
+                  appData.write(kKeyEmail, _emailController.text);
+                  //   emailProvider.changeemail(_emailController.text);
                   bool success = await postSignUpRXObj
                       .signup(
                           firstName: _fullNameController.text,

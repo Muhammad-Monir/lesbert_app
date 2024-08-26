@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:lsebert/features/auth/presentatiom/forgot_password/otp_verify_screen.dart';
 import 'package:lsebert/navigation_screen.dart';
 import 'constants/app_constants.dart';
 import 'features/question/presentation/question_screen.dart';
 import 'features/auth/presentatiom/login/login_screen.dart';
-import 'features_trade/pro_navigation_screen.dart';
+import 'pro_navigation_screen.dart';
 import 'helpers/di.dart';
 import 'helpers/helper_methods.dart';
 import 'networks/api_acess.dart';
@@ -52,11 +53,13 @@ class _LoadingState extends State<Loading> {
       return const WelcomeScreen();
     } else {
       return appData.read(kKeyIsLoggedIn)
-          ? appData.read(kKeyisanswered) == false
-              ? const QuestionScreen()
-              : appData.read(kKeyUserType) == "trade"
-                  ? const TardeNavigationScreen()
-                  : const NavigationScreen()
+          ? appData.read(kKeyisverified) == true
+              ? appData.read(kKeyisanswered) == false
+                  ? const QuestionScreen()
+                  : appData.read(kKeyUserType) == "trade"
+                      ? const TardeNavigationScreen()
+                      : const NavigationScreen()
+              : const OtpVerifyScreen(isResetPw: false)
           : const LoginScreen();
     }
   }

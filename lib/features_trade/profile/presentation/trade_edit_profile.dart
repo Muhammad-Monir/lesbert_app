@@ -62,7 +62,7 @@ class _TradeEditProfileScreenState extends State<TradeEditProfileScreen> {
         backgroundColor: AppColors.allPrimaryColor,
         leading: GestureDetector(
           onTap: () {
-            NavigationService.goBack();
+            NavigationService.goBack;
           },
           child: const Icon(
             Icons.arrow_back,

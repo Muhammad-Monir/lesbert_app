@@ -344,7 +344,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                                           data['avatar']);
 
                                                   return Text(
-                                                    data['user_detail']['bio'],
+                                                    data['user_detail']
+                                                            ?['bio'] ??
+                                                        "",
                                                     textAlign:
                                                         TextAlign.justify,
                                                     style: TextFontStyle

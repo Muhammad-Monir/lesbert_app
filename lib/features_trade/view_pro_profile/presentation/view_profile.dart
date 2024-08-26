@@ -33,7 +33,7 @@ class _ViewProfileScreenState extends State<ViewProfileScreen> {
         elevation: 0,
         leading: GestureDetector(
           onTap: () {
-            NavigationService.goBack();
+            NavigationService.goBack;
           },
           child: const Icon(
             Icons.arrow_back,
