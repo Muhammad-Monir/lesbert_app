@@ -135,8 +135,11 @@ class _ProDashboardScreenState extends State<ProDashboardScreen> {
                       NavigationService.navigateTo(Routes.proNotification);
                       _scaffoldKey.currentState!.closeDrawer();
                     },
-                    onTapPaymnetHistory: () =>
-                        NavigationService.navigateTo(Routes.paymentHistory),
+                    onTapPaymnetHistory: () {
+                      getPaymentHistoryRxObj.fetchPaymentHistoryData();
+                      NavigationService.navigateTo(Routes.paymentHistory);
+                      _scaffoldKey.currentState!.closeDrawer();
+                    },
                     onTapSecurity: () {
                       NavigationService.navigateTo(Routes.securityScreen);
                       _scaffoldKey.currentState!.closeDrawer();
@@ -169,7 +172,8 @@ class _ProDashboardScreenState extends State<ProDashboardScreen> {
                   ),
                 );
               } else {
-                return const Text('No Data Available');
+                return const Expanded(
+                    child: Center(child: Text('No Profile Available')));
               }
             }));
   }

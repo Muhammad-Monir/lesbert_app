@@ -24,7 +24,7 @@ import 'package:lsebert/features_pro/profile/presentation/profile_edit_screen.da
 import 'package:lsebert/features_pro/profile/presentation/profile_screen.dart';
 import 'package:lsebert/features/question/presentation/question_screen.dart';
 import 'package:lsebert/features/security/presentation/security_screen.dart';
-import 'package:lsebert/features_pro/subscription/presentation/subscription_screen.dart';
+import 'package:lsebert/features/subscription/presentation/subscription_screen.dart';
 import 'package:lsebert/features/notification/presentation/notification.dart';
 import 'package:lsebert/features_trade/trade_dashboard/presentation/trade_dashboard.dart';
 

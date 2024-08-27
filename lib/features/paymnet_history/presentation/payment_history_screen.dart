@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:lsebert/common_widgets/loading_indicators.dart';
+import 'package:lsebert/networks/api_acess.dart';
 import '../../../common_widgets/paymnet_data_widget.dart';
 import '../../../constants/text_font_style.dart';
 import '../../../gen/colors.gen.dart';
+import '../../../helpers/dateuitl.dart';
 import '../../../helpers/navigation_service.dart';
 import '../../../helpers/ui_helpers.dart';
 
@@ -14,6 +17,11 @@ class PaymentHistoryScreen extends StatefulWidget {
 }
 
 class _PaymentHistoryScreenState extends State<PaymentHistoryScreen> {
+  @override
+  void initState() {
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,15 +58,44 @@ class _PaymentHistoryScreenState extends State<PaymentHistoryScreen> {
                   style: TextFontStyle.headline16w600C000000tyleiPoppins,
                 ),
                 UIHelper.verticalSpace(24.h),
-                ListView.separated(
-                    shrinkWrap: true,
-                    physics: const NeverScrollableScrollPhysics(),
-                    itemBuilder: (context, index) {
-                      return const PaymentDataWidget();
-                    },
-                    separatorBuilder: (context, index) =>
-                        UIHelper.verticalSpace(10.h),
-                    itemCount: 20)
+                StreamBuilder(
+                  stream: getPaymentHistoryRxObj.dataFetcher,
+                  builder: (context, snapshot) {
+                    if (snapshot.hasData && snapshot.data != null) {
+                      Map? data = snapshot.data?["data"];
+                      List? hitoryList = data?["payments"];
+                      if (hitoryList != null && hitoryList.isNotEmpty) {
+                        return ListView.separated(
+                          shrinkWrap: true,
+                          physics: const NeverScrollableScrollPhysics(),
+                          itemBuilder: (context, index) {
+                            return PaymentDataWidget(
+                              id: hitoryList[index]["transaction_id"],
+                              purcheseDate: DateFormatedUtils().date12format(
+                                  hitoryList[index]["created_at"]),
+                              purpose: hitoryList[index]["subscription_id"],
+                              cardId: hitoryList[index]["amount"],
+                            );
+                          },
+                          separatorBuilder: (context, index) =>
+                              UIHelper.verticalSpace(10.h),
+                          itemCount: hitoryList.length,
+                        );
+                      } else {
+                        return Center(
+                            child: Text(
+                          "You don't have any transaction yet",
+                          style: TextFontStyle.headline12w400C9E9E9EStyleInter,
+                        ));
+                      }
+                    } else if (snapshot.hasError) {
+                      return const SizedBox.shrink();
+                    } else {
+                      return Center(
+                          child: loadingIndicatorCircle(context: context));
+                    }
+                  },
+                )
               ],
             ),
           ),

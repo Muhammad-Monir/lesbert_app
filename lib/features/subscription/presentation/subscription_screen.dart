@@ -1,9 +1,13 @@
 // ignore_for_file: camel_case_types
 
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 import 'package:lsebert/common_widgets/auth_button.dart';
 import 'package:lsebert/common_widgets/custom_drawer.dart';
+import 'package:lsebert/common_widgets/loading_indicators.dart';
 import 'package:lsebert/constants/text_font_style.dart';
 import 'package:lsebert/gen/assets.gen.dart';
 import 'package:lsebert/gen/colors.gen.dart';
@@ -26,17 +30,7 @@ class SubscriptionScreen extends StatefulWidget {
 class _SubscriptionScreenState extends State<SubscriptionScreen> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   int selectedIndex = 0;
-  final List<Widget> items = const [
-    SubscriptionPlan(
-      borderColor: AppColors.allPrimaryColor,
-    ),
-    SubscriptionPlan(
-      borderColor: AppColors.c000000,
-    ),
-    SubscriptionPlan(
-      borderColor: AppColors.allPrimaryColor,
-    )
-  ];
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -83,29 +77,53 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
                   textAlign: TextAlign.center,
                 ),
                 UIHelper.verticalSpace(22.h),
-                SizedBox(
-                  height: .6.sh,
-                  child: ListView.separated(
-                    shrinkWrap: true,
-                    scrollDirection: Axis.horizontal,
-                    separatorBuilder: (context, index) =>
-                        UIHelper.horizontalSpaceMedium,
-                    itemCount: items.length,
-                    itemBuilder: (context, index) {
-                      return SubscriptionPlan(
-                        onSelect: () {
-                          setState(() {
-                            selectedIndex = index;
-                          });
-                        },
-                        borderColor: selectedIndex == index
-                            ? AppColors.allPrimaryColor
-                            : Colors
-                                .transparent, // Change border color based on selection
-                      );
-                    },
-                  ),
-                ),
+                StreamBuilder(
+                    stream: getSubscriptionPackagesRxObj.dataFetcher,
+                    builder: (context, snapshot) {
+                      if (snapshot.hasData && snapshot.data != null) {
+                        Map? data = snapshot.data?["data"];
+                        List? packages = data?["subscriptions"];
+                        if (packages != null && packages.isNotEmpty) {
+                          return SizedBox(
+                            height: .55.sh,
+                            child: ListView.separated(
+                              shrinkWrap: true,
+                              scrollDirection: Axis.horizontal,
+                              separatorBuilder: (context, index) =>
+                                  UIHelper.horizontalSpaceMedium,
+                              itemCount: packages.length,
+                              itemBuilder: (context, index) {
+                                return SubscriptionPlan(
+                                  packageName: packages[index]["package_type"],
+                                  amount: packages[index]["price"],
+                                  duration: packages[index]["timeline"],
+                                  messageLimit: packages[index]
+                                      ["message_limit"],
+                                  viewLimit: packages[index]["view_limit"],
+                                  features: packages[index]["feature"],
+                                  onSelect: () {
+                                    setState(() {
+                                      selectedIndex = index;
+                                    });
+                                  },
+                                  borderColor: selectedIndex == index
+                                      ? AppColors.allPrimaryColor
+                                      : Colors
+                                          .transparent, // Change border color based on selection
+                                );
+                              },
+                            ),
+                          );
+                        } else {
+                          return const SizedBox.shrink();
+                        }
+                      } else if (snapshot.hasError) {
+                        return const SizedBox.shrink();
+                      } else {
+                        return loadingIndicatorCircle(context: context);
+                      }
+                      return loadingIndicatorCircle(context: context);
+                    }),
                 UIHelper.verticalSpaceMedium,
                 //this will be optional based on if subscription purchased
                 Container(
@@ -311,11 +329,23 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
 class SubscriptionPlan extends StatelessWidget {
   final Color borderColor;
   final VoidCallback? onSelect;
+  final String packageName;
+  final String amount;
+  final String duration;
+  final String viewLimit;
+  final String messageLimit;
+  final String features;
 
   const SubscriptionPlan({
     required this.borderColor,
     this.onSelect,
     super.key,
+    required this.packageName,
+    required this.amount,
+    required this.duration,
+    required this.viewLimit,
+    required this.messageLimit,
+    required this.features,
   });
 
   @override
@@ -337,27 +367,22 @@ class SubscriptionPlan extends StatelessWidget {
             Row(
               children: [
                 Text(
-                  "Basic",
+                  packageName,
                   style: TextFontStyle.headline16w700CffffffStyleInter
                       .copyWith(color: AppColors.c2C2126),
                 ),
                 UIHelper.horizontalSpace(8.w),
-                Text(
-                  "(Popular)",
-                  style: TextFontStyle.headline14w400C000000StyleInter
-                      .copyWith(color: AppColors.allPrimaryColor),
-                ),
               ],
             ),
             UIHelper.verticalSpaceSmall,
             RichText(
               text: TextSpan(
-                text: '\$144',
+                text: '\$$amount',
                 style: TextFontStyle.headline48w600CFFFFFFFFStylePoppins
                     .copyWith(color: AppColors.c2C2126),
                 children: [
                   TextSpan(
-                    text: '/Monthly',
+                    text: '/$duration',
                     style: TextFontStyle.headline14w400C848484StyleInter,
                   ),
                 ],
@@ -373,20 +398,26 @@ class SubscriptionPlan extends StatelessWidget {
               ),
               child: Center(
                   child: Text(
-                "Pay Monthly",
+                "Pay $duration",
                 style: TextFontStyle.headline16w600C000000tyleiPoppins
                     .copyWith(color: AppColors.allPrimaryColor),
               )),
             ),
-            UIHelper.verticalSpaceMedium,
-            const subscriptionFeatures(
-              feature: "Enhance Your Experience",
+            UIHelper.verticalSpaceSmall,
+            subscriptionFeatures(
+              feature: "View Limit : ",
+              value: viewLimit,
             ),
-            const subscriptionFeatures(
-              feature: "Enhance Your Experience",
+            subscriptionFeatures(
+              feature: "Message Limit : ",
+              value: messageLimit,
             ),
-            const subscriptionFeatures(
-              feature: "Enhance Your Experience",
+            UIHelper.verticalSpaceSmall,
+            HtmlWidget(
+              features,
+              textStyle: TextFontStyle.headline14w400C000000StyleInter
+                  .copyWith(color: AppColors.c000000),
+              renderMode: RenderMode.column,
             ),
             const Spacer(),
             Center(
@@ -413,24 +444,26 @@ class SubscriptionPlan extends StatelessWidget {
 
 class subscriptionFeatures extends StatelessWidget {
   final String feature;
+  final String? value;
   const subscriptionFeatures({
     super.key,
     required this.feature,
+    this.value = "",
   });
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 10.w),
+      padding: EdgeInsets.symmetric(vertical: 3.h, horizontal: 10.w),
       child: Row(
         children: [
-          Image.asset(
-            Assets.icons.tickCircle.path,
-            height: 18.r,
-          ),
-          UIHelper.horizontalSpaceSmall,
           Text(
-            feature,
+            "$feature : ",
+            style: TextFontStyle.headline14w400C000000StyleInter
+                .copyWith(color: AppColors.c000000),
+          ),
+          Text(
+            "$value",
             style: TextFontStyle.headline12w400C9E9E9EStyleInter.copyWith(
               color: AppColors.c000000,
             ),

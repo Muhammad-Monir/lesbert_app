@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -46,7 +48,7 @@ class HomeWidget extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Container(
-                  height: .70.sh,
+                  height: Platform.isIOS ? 500.h : .70.sh,
                   width: .9.sw,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(15.r),

@@ -49,25 +49,34 @@ class _ProNotificationScreenState extends State<ProNotificationScreen> {
           builder: (context, snapshot) {
             if (snapshot.hasData) {
               List data = snapshot.data?['data']['notifications'];
-              return ListView.separated(
-                separatorBuilder: (context, index) => UIHelper.customDivider(),
-                itemCount: data.length,
-                shrinkWrap: true,
-                physics: const BouncingScrollPhysics(),
-                itemBuilder: (context, index) {
-                  Map message = data[index]['data'];
-                  return NotificationWidget(
-                    firstWord: message.entries.first.value
-                        .toString()
-                        .toUpperCase()
-                        .trim()
-                        .substring(0, 1),
-                    time: DateFormatedUtils()
-                        .date12format(data[index]['created_at']),
-                    title: message.entries.first.value,
-                  );
-                },
-              );
+              if (data.isNotEmpty) {
+                return ListView.separated(
+                  separatorBuilder: (context, index) =>
+                      UIHelper.customDivider(),
+                  itemCount: data.length,
+                  shrinkWrap: true,
+                  physics: const BouncingScrollPhysics(),
+                  itemBuilder: (context, index) {
+                    Map message = data[index]['data'];
+                    return NotificationWidget(
+                      firstWord: message.entries.first.value
+                          .toString()
+                          .toUpperCase()
+                          .trim()
+                          .substring(0, 1),
+                      time: DateFormatedUtils()
+                          .date12format(data[index]['created_at']),
+                      title: message.entries.first.value,
+                    );
+                  },
+                );
+              } else {
+                return Center(
+                    child: Text(
+                  "No Notification for you yet",
+                  style: TextFontStyle.headline12w400C9E9E9EStyleInter,
+                ));
+              }
             } else {
               return const Center(
                 child: CircularProgressIndicator(),

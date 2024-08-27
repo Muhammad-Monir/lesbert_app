@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:lsebert/helpers/navigation_service.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import 'package:webview_flutter_android/webview_flutter_android.dart';
 // Import for iOS features.
@@ -126,6 +127,13 @@ class _WebviewHelperState extends State<WebviewHelper> {
       child: Scaffold(
         appBar: CustomAppbar(name: widget.name),
         body: WebViewWidget(controller: webviewController),
+        floatingActionButton: Platform.isIOS
+            ? GestureDetector(
+                onTap: () {
+                  NavigationService.goBack;
+                },
+                child: const Icon(Icons.arrow_back_ios))
+            : null,
       ),
     );
   }
@@ -146,17 +154,18 @@ class CustomAppbar extends StatelessWidget implements PreferredSizeWidget {
       child: Padding(
         padding: const EdgeInsets.only(top: 10),
         child: Row(crossAxisAlignment: CrossAxisAlignment.center, children: [
-          InkWell(
-            onTap: () {
-              Get.back();
-            },
-            child: IconHolder(
-              icon: Icons.arrow_back_ios_new,
-              size: 18.sp,
-              bgColor: Colors.transparent,
-              iconColor: AppColors.cffffff,
+          if (Platform.isAndroid)
+            InkWell(
+              onTap: () {
+                NavigationService.goBack;
+              },
+              child: IconHolder(
+                icon: Icons.arrow_back_ios_new,
+                size: 18.sp,
+                bgColor: Colors.transparent,
+                iconColor: AppColors.cffffff,
+              ),
             ),
-          ),
           UIHelper.horizontalSpaceMedium,
           Text(
             name.tr, // title,

@@ -1,5 +1,7 @@
 import 'package:lsebert/features_pro/profile/data/profile/rx_profile.dart';
 import 'package:rxdart/subjects.dart';
+import '../features/paymnet_history/data/rx_get_payment_history/rx.dart';
+import '../features/subscription/data/rx_get_subscription/rx.dart';
 import '../features_pro/support/data/rx_get_issue_details/rx.dart';
 
 import '../features_pro/dashboard/data/deleteimage/rx.dart';
@@ -78,6 +80,10 @@ GetExperianceRx getExperianceRXObj =
     GetExperianceRx(empty: {}, dataFetcher: BehaviorSubject<Map>());
 PostImageRx postImageRxObj =
     PostImageRx(empty: {}, dataFetcher: BehaviorSubject<Map>());
+GetPaymentHistoryRx getPaymentHistoryRxObj =
+    GetPaymentHistoryRx(empty: {}, dataFetcher: BehaviorSubject<Map>());
+GetSubscriptionPackagesRx getSubscriptionPackagesRxObj =
+    GetSubscriptionPackagesRx(empty: {}, dataFetcher: BehaviorSubject<Map>());
 
 PostIssuesRX postTicketRXObj =
     PostIssuesRX(empty: {}, dataFetcher: BehaviorSubject<Map>());

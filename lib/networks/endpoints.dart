@@ -54,6 +54,9 @@ final class Endpoints {
   static String proImages() => "/api/pro-images";
   static String proImagesDelete() => "/api/pro-images-delete";
   static String refreshUrl() => "/api/refresh";
+  static String paymentHistory() => "/api/my-payments";
+  static String proSubscriptioPackages() => "/api/pro-subscriptions";
+  static String tradeSubscriptioPackages() => "/api/tread-subscriptions";
 
   ///=================<<<<<<<<<>>>>>>>>>>>>>==========================
   ///<><><><><><>===========<><><><>===============<><><><>===========

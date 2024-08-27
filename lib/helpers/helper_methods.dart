@@ -79,7 +79,6 @@ Future<void> setInitValue() async {
 
 Future<void> initiInternetChecker() async {
   InternetConnectionChecker.createInstance(
-          checkTimeout: const Duration(seconds: 1),
           checkInterval: const Duration(seconds: 2))
       .onStatusChange
       .listen((status) {

@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lsebert/features_trade/trade_dashboard/presentation/trade_dashboard.dart';
 import 'features/message/presentation/message_screen.dart';
-import 'features_pro/subscription/presentation/subscription_screen.dart';
+import 'features/subscription/presentation/subscription_screen.dart';
 import '/constants/text_font_style.dart';
 import '/gen/assets.gen.dart';
 import 'gen/colors.gen.dart';

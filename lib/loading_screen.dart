@@ -33,6 +33,8 @@ class _LoadingState extends State<Loading> {
       String token = appData.read(kKeyAccessToken);
       DioSingleton.instance.update(token);
       await getQuestionRx.fetchQuestionData();
+      await getSubscriptionPackagesRxObj.fetchSubscriptionPackageData();
+      await getPaymentHistoryRxObj.fetchPaymentHistoryData();
       if (appData.read(kKeyUserType) == "trade") {
         await getTradeProfileRXObj.fetchTradeProfileData();
         await getTradeDashboardRXObj.fetchTradeDashboard();

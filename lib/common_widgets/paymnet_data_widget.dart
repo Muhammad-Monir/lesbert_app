@@ -30,20 +30,20 @@ class PaymentDataWidget extends StatelessWidget {
       ),
       child: Row(
         children: [
-          Container(
-            padding: EdgeInsets.symmetric(
-              vertical: 62.h,
-              horizontal: 12.w,
-            ),
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20.r),
-                color: AppColors.c9AC1E7),
-            child: Image.asset(
-              Assets.icons.folderIcon.path,
-              width: 30.w,
-            ),
-          ),
-          UIHelper.horizontalSpace(20.w),
+          // Container(
+          //   padding: EdgeInsets.symmetric(
+          //     vertical: 62.h,
+          //     horizontal: 12.w,
+          //   ),
+          //   decoration: BoxDecoration(
+          //       borderRadius: BorderRadius.circular(20.r),
+          //       color: AppColors.c9AC1E7),
+          //   child: Image.asset(
+          //     Assets.icons.folderIcon.path,
+          //     width: 30.w,
+          //   ),
+          // ),
+          //    UIHelper.horizontalSpace(20.w),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -53,31 +53,31 @@ class PaymentDataWidget extends StatelessWidget {
               ),
               UIHelper.verticalSpace(6.h),
               PaymnetDataTitleAndValue(
-                title: 'Purchase Date: ',
-                value: purcheseDate ?? '',
-              ),
-              UIHelper.verticalSpace(6.h),
-              PaymnetDataTitleAndValue(
-                title: 'Purpose: ',
+                title: 'Subscription Type: ',
                 value: purpose,
               ),
               UIHelper.verticalSpace(6.h),
               PaymnetDataTitleAndValue(
-                title: 'Card ID: ',
+                title: 'Amount: ',
                 value: cardId,
               ),
               UIHelper.verticalSpace(6.h),
-              GestureDetector(
-                onTap: onTap,
-                child: Text(
-                  'Download Invoice',
-                  style: TextStyle(
-                      fontSize: 16.sp,
-                      fontWeight: FontWeight.w500,
-                      decoration: TextDecoration.underline,
-                      color: AppColors.c141414),
-                ),
-              )
+              PaymnetDataTitleAndValue(
+                title: 'Purchase Date: ',
+                value: purcheseDate ?? '',
+              ),
+              UIHelper.verticalSpace(6.h),
+              // GestureDetector(
+              //   onTap: onTap,
+              //   child: Text(
+              //     'Download Invoice',
+              //     style: TextStyle(
+              //         fontSize: 16.sp,
+              //         fontWeight: FontWeight.w500,
+              //         decoration: TextDecoration.underline,
+              //         color: AppColors.c141414),
+              //   ),
+              // )
             ],
           )
         ],
